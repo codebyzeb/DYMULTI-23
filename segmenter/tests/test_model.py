@@ -14,7 +14,7 @@ def test_model_segments_each_utterance():
     text = ["a b c d", "e f g h"]
     model = SimpleModel()
 
-    segmented = [utt for utt in model.segment(text)]
+    segmented = list(model.segment(text))
 
     assert(len(segmented) == 2)
     assert(segmented[0] == "abcd")

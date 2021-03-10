@@ -20,7 +20,7 @@ def test_initialise_correct_ngram_counters_and_ntoken_counts():
     phonestats = PhoneStats(3)
     empty_counter = collections.Counter()
 
-    assert(phonestats.max_ng == 3)
+    assert(phonestats.max_ngram == 3)
     assert(list(phonestats.ngrams.keys()) == [1,2,3])
     for key in phonestats.ngrams:
         assert(phonestats.ngrams[key] == empty_counter)
@@ -396,3 +396,24 @@ def test_get_reverse_boundary_entropy_at_late_position_returns_none():
         unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
 
         assert(unpredictability == None)
+
+def test_get_transitional_probability_computes_conditional_entropy():
+    """
+    For utterance "abbbc" checks if finding the ngram transitional probability at position n-1
+    returns the entropy of the correct ngram. For the bigram case, this is "ab" at position 1.
+    """
+
+    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    utterance = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_utterance(utterance)
+
+    measure = "tp" # getting boundary entropy
+    reverse = False # forward measure
+
+    for ngram_length in range(1, 5):
+        position = ngram_length - 1
+        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
+        ngram_cond_prob = phonestats._conditional_probability_reverse(utterance[:ngram_length], [utterance[ngram_length]])
+
+        assert(unpredictability == ngram_cond_prob)
+

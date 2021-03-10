@@ -1,5 +1,7 @@
 """ Abstract class to represent a segmentation model that provides a segment() method """
 
+import time
+
 from abc import ABC, abstractmethod
 from wordseg import utils
 
@@ -32,8 +34,14 @@ class Model(ABC):
 
         """
 
-        for utterance in text:
+        t = time.time()
+
+        for i, utterance in enumerate(text):
+            if i % 100 == 0:
+                self._log.info("Utterances segmented: " + str(i))
             yield self.segment_utterance(utterance, update_model).strip()
+
+        self._log.info("Total time to segment: " + str(time.time() - t))
 
     @abstractmethod
     def segment_utterance(self, utterance, update_model=True):

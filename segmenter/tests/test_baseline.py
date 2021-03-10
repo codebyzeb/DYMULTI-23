@@ -43,7 +43,7 @@ def test_segment_empty_text():
 
     model = BaselineModel()
 
-    segmented = [utt for utt in model.segment("")]
+    segmented = list(model.segment(""))
 
     assert(len(segmented) == 0)
 
@@ -52,7 +52,7 @@ def test_zero_probability_segments_nothing():
     text = ["a b c d", "e f g h"]
     model = BaselineModel(0)
 
-    segmented = [utt for utt in model.segment(text)]
+    segmented = list(model.segment(text))
 
     assert(len(segmented) == 2)
     assert(segmented[0] == "abcd")
@@ -63,7 +63,7 @@ def test_one_probability_segments_all():
     text = ["a b c d", "e f g h"]
     model = BaselineModel(1)
 
-    segmented = [utt for utt in model.segment(text)]
+    segmented = list(model.segment(text))
 
     assert(len(segmented) == 2)
     assert(segmented[0] == "a b c d")
@@ -75,7 +75,7 @@ def test_half_probability_segments_some():
     random.seed(0)
     model = BaselineModel(0.5)
 
-    segmented = [utt for utt in model.segment(text)]
+    segmented = list(model.segment(text))
 
     assert(len(segmented) == 2)
     assert(segmented[0] == "abc d")

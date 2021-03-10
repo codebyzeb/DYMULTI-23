@@ -27,18 +27,18 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ng=1, smoothing=True, correct_conditional=False):
+    def __init__(self, max_ngram=1, smoothing=True, correct_conditional=False):
 
-        if max_ng < 1:
-            raise(ValueError(str(max_ng) + " is not a valid ngram length, cannot initialise PhoneStats object."))
+        if max_ngram < 1:
+            raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
 
-        self.max_ng = max_ng
-        self.ngrams = {i+1 : collections.Counter() for i in range(max_ng)}
-        self.ntokens = {i+1 : 0 for i in range(max_ng)}
+        self.max_ngram = max_ngram
+        self.ngrams = {i+1 : collections.Counter() for i in range(max_ngram)}
+        self.ntokens = {i+1 : 0 for i in range(max_ngram)}
 
         self.smoothing = smoothing
         self.correct_conditional = correct_conditional
-    
+
     def add_utterance(self, utterance):
         """ Update ngram counts given an utterance.
         
@@ -49,14 +49,14 @@ class PhoneStats:
         
         """
 
-        for n in range(1, self.max_ng+1):
+        for n in range(1, self.max_ngram+1):
             # ngrams indexed as tuples
             ngrams = [tuple(utterance[i:i+n]) for i in range(len(utterance)-(n-1))]
             self.ngrams[n].update(ngrams)
             self.ntokens[n] += len(ngrams)
 
     def _check_n(self, n):
-        if n > self.max_ng or n < 1:
+        if n > self.max_ngram or n < 1:
             raise(ValueError("Ngrams of length " + str(n) + " not stored in this PhoneStats object."))
     
     def _types(self, n=1):
@@ -186,6 +186,25 @@ class PhoneStats:
         # This is ok since xlogx tends to 0 as x tends to 0, so we can ignore these terms.
         return - probs[probs != 0].dot(np.log2(probs[probs != 0]))
 
+    def _successor_variety(self, ngram_X):
+        """ Returns the number of ngrams that have the prefix ngram_X """
+
+        ngram_length = len(ngram_X) + 1
+        self._check_n(ngram_length)
+        return np.count_nonzero([self.ngrams[ngram_length][tuple(ngram_X + unigram)] for unigram in self._types()])
+
+    def _successor_variety_reverse(self, ngram_X):
+        """ Returns the number of ngrams that have the suffix ngram_X """
+
+        ngram_length = len(ngram_X) + 1
+        self._check_n(ngram_length)
+        return np.count_nonzero([self.ngrams[ngram_length][tuple(unigram + ngram_X)] for unigram in self._types()])
+
+    def _mutual_information(self, ngram_A, ngram_B):
+        """ Calculates the mutual information of ngram_A and ngram_B, assuming that B follows A """
+
+        return np.log2(self.probability(ngram_A + ngram_B) / (self.probability(ngram_A) * self.probability(ngram_B)))
+
     def get_unpredictability(self, utterance, position, measure, reverse, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
 
@@ -231,5 +250,44 @@ class PhoneStats:
                     return None
                 else:
                     return self._boundary_entropy(utterance[boundary-ngram_length:boundary])
+        elif measure == "tp":
+            if reverse:
+                if boundary + ngram_length > len(utterance):
+                    return None
+                else:
+                    # High transitional probability is low unpredictability, so return negative
+                    return - self._conditional_probability([utterance[boundary-1]], utterance[boundary:boundary+ngram_length])
+            else:
+                if boundary < ngram_length or boundary >= len(utterance):
+                    return None
+                else:
+                    # High transitional probability is low unpredictability, so return negative
+                    return - self._conditional_probability_reverse(utterance[boundary-ngram_length:boundary], [utterance[boundary]])
+        elif measure == "sv":
+            if reverse:
+                if boundary + ngram_length > len(utterance):
+                    return None
+                else:
+                    # High successor variety is low unpredictability, so return negative
+                    return - self._successor_variety_reverse(utterance[boundary:boundary+ngram_length])
+            else:
+                if boundary < ngram_length:
+                    return None
+                else:
+                    # High successor variety is low unpredictability, so return negative
+                    return self._successor_variety(utterance[boundary-ngram_length:boundary])
+        elif measure == "mi":
+            if reverse:
+                if boundary + ngram_length > len(utterance):
+                    return None
+                else:
+                    # High mutual information is low unpredictability, so return negative
+                    return - self._mutual_information([utterance[boundary-1]], utterance[boundary:boundary+ngram_length])
+            else:
+                if boundary < ngram_length or boundary >= len(utterance):
+                    return None
+                else:
+                    # High mutual information is low unpredictability, so return negative
+                    return - self._mutual_information(utterance[boundary-ngram_length:boundary], [utterance[boundary]])
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))
