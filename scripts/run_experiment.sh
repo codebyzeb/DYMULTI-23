@@ -2,8 +2,8 @@
 # Run basic experiment
 
 EXPERIMENT_DIR="experiments/experiment"
-TRANSCRIPT="/Users/zebulon/Documents/UniDocs/Year4/Project/Corpora/CHILDES_wordseg/phonemized/EnglishUK_Manchester_anne_10000utterances_phonemes.txt"
-CLEAN=FALSE
+TRANSCRIPT="/Users/zebulon/Documents/UniDocs/Year4/Project/Repository/data/br-phonemes.txt"
+CLEAN=TRUE
 SEGMENTER=${1:-baseline}
 
 if $CLEAN
@@ -15,7 +15,7 @@ then
 
     # Prepare transcript for segmentation using wordseg
     echo "Preparing transcript for segmentation in '$EXPERIMENT_DIR'"
-    wordseg-prep -u phone --gold $EXPERIMENT_DIR/gold.txt $TRANSCRIPT > $EXPERIMENT_DIR/prepared.txt
+    wordseg-prep -P -u phone --gold $EXPERIMENT_DIR/gold.txt $TRANSCRIPT > $EXPERIMENT_DIR/prepared.txt
 fi
 
 # Run segmenter
