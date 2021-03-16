@@ -27,7 +27,7 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ngram=1, smoothing=True, correct_conditional=False):
+    def __init__(self, max_ngram=1, smoothing=False, correct_conditional=False):
 
         if max_ngram < 1:
             raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
@@ -92,42 +92,6 @@ class PhoneStats:
         else:
             return (freq / self.ntokens[n]) if self.ntokens[n] > 0 else 0
 
-    def _probability_ngram_start(self, ngram_X, ngram_length):
-        """ Returns the probablity the probabilty that an ngram of length ngram_length
-        starts with ngram_X. Uses add1 smoothing. """
-
-        self._check_n(ngram_length)
-        if len(ngram_X) > ngram_length:
-            raise ValueError("Cannot calculate the probability that an ngram of length {}"
-                            " starts with a longer ngram {} of length {}.".format(
-                                ngram_length, ngram_X, len(ngram_X)))
-        
-        ngram_Y_length = ngram_length - len(ngram_X)
-        ngrams_start_with_ngram_X = np.sum([self.ngrams[ngram_length][tuple(ngram_X + ngram_Y)] for ngram_Y in self._types(ngram_Y_length)])
-        
-        if self.smoothing:
-            return (ngrams_start_with_ngram_X + 1) / (self.ntokens[ngram_length] + 1)
-        else:
-            return (ngrams_start_with_ngram_X / self.ntokens[ngram_length]) if self.ntokens[ngram_length] > 0 else 0
-
-    def _probability_ngram_end(self, ngram_X, ngram_length):
-        """ Returns the probablity the probabilty that an ngram of length ngram_length
-        ends with ngram_X. Uses add1 smoothing. """
-
-        self._check_n(ngram_length)
-        if len(ngram_X) > ngram_length:
-            raise ValueError("Cannot calculate the probability that an ngram of length {}"
-                            " ends with a longer ngram {} of length {}.".format(
-                                ngram_length, ngram_X, len(ngram_X)))
-        
-        ngram_Y_length = ngram_length - len(ngram_X)
-        ngrams_end_with_ngram_X = np.sum([self.ngrams[ngram_length][tuple(ngram_Y + ngram_X)] for ngram_Y in self._types(ngram_Y_length)])
-        
-        if self.smoothing:
-            return (ngrams_end_with_ngram_X + 1) / (self.ntokens[ngram_length] + 1)
-        else:
-            return (ngrams_end_with_ngram_X / self.ntokens[ngram_length]) if self.ntokens[ngram_length] > 0 else 0
-
     def _conditional_probability(self, ngram_A, ngram_B):
         """ Return P(ngram_A | ngram_B) assuming ngram_B follows ngram_A
 
@@ -135,18 +99,30 @@ class PhoneStats:
         can be approximated with P(ngram_B). This can lead to probabilities over 1 when the number
         counts of ngrams of different lengths diverge (as can happen when utterances are processed
         individually).
-        If self.correct_conditional is True, will calculate the conditional correctly, using
-        self._probability_ngram_end, but this is more expensive as we need to loop over ngrams.
+        If self.correct_conditional is True, will calculate the conditional correctly, by counting
+        the number of ngrams that end in ngram_B, but this is more expensive as we need to loop over
+        ngrams.
 
         """
 
-        if not self.correct_conditional:
-            return self.probability(ngram_A + ngram_B) / self.probability(ngram_B)
-        else:
-            joint_prob = self.probability(ngram_A + ngram_B)
-            prob_end_with_ngram_B = self._probability_ngram_end(ngram_B, len(ngram_A) + len(ngram_B))
+        len_A = len(ngram_A)
+        len_B = len(ngram_B)
+        self._check_n(len_A + len_B)
 
-            return joint_prob / prob_end_with_ngram_B
+        freq_AB = self.ngrams[len_A + len_B][tuple(ngram_A + ngram_B)]
+        freq_B = self.ngrams[len_B][tuple(ngram_B)]
+
+        if not self.correct_conditional:
+            if self.smoothing:
+                return (freq_AB + 1) / (freq_B + 1)
+            else:
+                return freq_AB / freq_B if freq_B != 0 else 0
+        else:
+            ngrams_end_with_ngram_B = np.sum([self.ngrams[len_A + len_B][tuple(ngram_X + ngram_B)] for ngram_X in self._types(len_A)])
+            if self.smoothing:
+                return (freq_AB + 1) / (ngrams_end_with_ngram_B + 1)
+            else:
+                return freq_AB / ngrams_end_with_ngram_B if ngrams_end_with_ngram_B != 0 else 0
 
     def _conditional_probability_reverse(self, ngram_A, ngram_B):
         """ Returns P(ngram_B | ngram_A) assuming ngram_B follows ngram_A.
@@ -155,18 +131,30 @@ class PhoneStats:
         can be approximated with P(ngram_A). This can lead to probabilities over 1 when the number
         counts of ngrams of different lengths diverge (as can happen when utterances are processed
         individually).
-        If self.correct_conditional is True, will calculate the conditional correctly, using
-        self._probability_ngram_start, but this is more expensive as we need to loop over ngrams.
+        If self.correct_conditional is True, will calculate the conditional correctly, by counting
+        the number of ngrams that start in ngram_A, but this is more expensive as we need to loop
+        over ngrams.
 
         """
 
-        if not self.correct_conditional:
-            return self.probability(ngram_A + ngram_B) / self.probability(ngram_A)
-        else:
-            joint_prob = self.probability(ngram_A + ngram_B)
-            prob_start_with_ngram_A = self._probability_ngram_start(ngram_A, len(ngram_A) + len(ngram_B))
+        len_A = len(ngram_A)
+        len_B = len(ngram_B)
+        self._check_n(len_A + len_B)
 
-            return joint_prob / prob_start_with_ngram_A
+        freq_AB = self.ngrams[len_A + len_B][tuple(ngram_A + ngram_B)]
+        freq_A = self.ngrams[len_A][tuple(ngram_A)]
+
+        if not self.correct_conditional:
+            if self.smoothing:
+                return (freq_AB + 1) / (freq_A + 1)
+            else:
+                return freq_AB / freq_A if freq_A != 0 else 0
+        else:
+            ngrams_start_with_ngram_A = np.sum([self.ngrams[len_A + len_B][tuple(ngram_A + ngram_Y)] for ngram_Y in self._types(len_B)])
+            if self.smoothing:
+                return (freq_AB + 1) / (ngrams_start_with_ngram_A + 1)
+            else:
+                return freq_AB / ngrams_start_with_ngram_A if ngrams_start_with_ngram_A != 0 else 0
 
     def _boundary_entropy(self, ngram):
         """ Calculates H(ngram) using the boundary entropy equation """ 
@@ -186,19 +174,19 @@ class PhoneStats:
         # This is ok since xlogx tends to 0 as x tends to 0, so we can ignore these terms.
         return - probs[probs != 0].dot(np.log2(probs[probs != 0]))
 
-    def _successor_variety(self, ngram_X):
-        """ Returns the number of ngrams that have the prefix ngram_X """
+    def _successor_variety(self, ngram):
+        """ Returns the number of ngrams that have the prefix ngram """
 
-        ngram_length = len(ngram_X) + 1
+        ngram_length = len(ngram) + 1
         self._check_n(ngram_length)
-        return np.count_nonzero([self.ngrams[ngram_length][tuple(ngram_X + unigram)] for unigram in self._types()])
+        return np.count_nonzero([self.ngrams[ngram_length][tuple(ngram + unigram)] for unigram in self._types()])
 
-    def _successor_variety_reverse(self, ngram_X):
+    def _successor_variety_reverse(self, ngram):
         """ Returns the number of ngrams that have the suffix ngram_X """
 
-        ngram_length = len(ngram_X) + 1
+        ngram_length = len(ngram) + 1
         self._check_n(ngram_length)
-        return np.count_nonzero([self.ngrams[ngram_length][tuple(unigram + ngram_X)] for unigram in self._types()])
+        return np.count_nonzero([self.ngrams[ngram_length][tuple(unigram + ngram)] for unigram in self._types()])
 
     def _mutual_information(self, ngram_A, ngram_B):
         """ Calculates the mutual information of ngram_A and ngram_B, assuming that B follows A """
@@ -239,55 +227,44 @@ class PhoneStats:
         self._check_n(ngram_length)
         boundary = position + 1 # makes ranged indexing neater
 
-        if measure == "ent":
-            if reverse:
-                if boundary + ngram_length > len(utterance):
-                    return None
-                else:
-                    return self._boundary_entropy_reverse(utterance[boundary:boundary+ngram_length])
-            else:
-                if boundary < ngram_length:
-                    return None
-                else:
-                    return self._boundary_entropy(utterance[boundary-ngram_length:boundary])
-        elif measure == "tp":
-            if reverse:
-                if boundary + ngram_length > len(utterance):
-                    return None
-                else:
-                    # High transitional probability is low unpredictability, so return negative
-                    return - self._conditional_probability([utterance[boundary-1]], utterance[boundary:boundary+ngram_length])
-            else:
-                if boundary < ngram_length or boundary >= len(utterance):
-                    return None
-                else:
-                    # High transitional probability is low unpredictability, so return negative
-                    return - self._conditional_probability_reverse(utterance[boundary-ngram_length:boundary], [utterance[boundary]])
-        elif measure == "sv":
-            if reverse:
-                if boundary + ngram_length > len(utterance):
-                    return None
-                else:
-                    # High successor variety is low unpredictability, so return negative
-                    return - self._successor_variety_reverse(utterance[boundary:boundary+ngram_length])
-            else:
-                if boundary < ngram_length:
-                    return None
-                else:
-                    # High successor variety is low unpredictability, so return negative
-                    return self._successor_variety(utterance[boundary-ngram_length:boundary])
-        elif measure == "mi":
-            if reverse:
-                if boundary + ngram_length > len(utterance):
-                    return None
-                else:
-                    # High mutual information is low unpredictability, so return negative
-                    return - self._mutual_information([utterance[boundary-1]], utterance[boundary:boundary+ngram_length])
-            else:
-                if boundary < ngram_length or boundary >= len(utterance):
-                    return None
-                else:
-                    # High mutual information is low unpredictability, so return negative
-                    return - self._mutual_information(utterance[boundary-ngram_length:boundary], [utterance[boundary]])
+        if reverse:
+            if boundary + ngram_length > len(utterance):
+                return None
+            right_context = utterance[boundary:boundary+ngram_length]
+            left_context = [utterance[boundary-1]]
+        else:
+            if boundary < ngram_length:
+                return None
+            if measure in ["tp", "mi"] and boundary >= len(utterance):
+                return None
+            elif measure in ["tp", "mi"]:
+                right_context = [utterance[boundary]]
+            left_context = utterance[boundary-ngram_length:boundary]
+
+        # Large boundary entropy = high unpredictability
+        if measure == "ent" and reverse:
+            return self._boundary_entropy_reverse(right_context)
+        elif measure == "ent" and not reverse:
+            return self._boundary_entropy(left_context)
+
+        # Large transitional probability = low unpredictability (so return negative)
+        elif measure == "tp" and reverse:
+            return - self._conditional_probability(left_context, right_context)
+        elif measure == "tp" and not reverse:
+            return - self._conditional_probability_reverse(left_context, right_context)
+
+        # Large successor variety indicates the end of a word (used like high unpredictability)
+        elif measure == "sv" and reverse:
+            return self._successor_variety_reverse(right_context)
+        elif measure == "sv" and not reverse:
+            return self._successor_variety(left_context)
+
+        # Large mutual information = low unpredictability (so return negative)
+        elif measure == "mi" and reverse:
+            return - self._mutual_information(left_context, right_context)
+        elif measure == "mi" and not reverse:
+            return - self._mutual_information(left_context, right_context)
+
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))
+
