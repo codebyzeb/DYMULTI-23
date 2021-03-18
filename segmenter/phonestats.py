@@ -7,6 +7,8 @@ Provides various methods for probability and predictability.
 import collections
 import numpy as np
 
+BOUND = "BOUND"
+
 class PhoneStats:
     """ Stores phoneme n-gram counts and provides methods for calculating information-theoretic measures
 
@@ -27,7 +29,7 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ngram=1, smoothing=False, correct_conditional=False):
+    def __init__(self, max_ngram=1, smoothing=True, correct_conditional=False, use_boundary_tokens=False):
 
         if max_ngram < 1:
             raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
@@ -38,6 +40,7 @@ class PhoneStats:
 
         self.smoothing = smoothing
         self.correct_conditional = correct_conditional
+        self.use_boundary_tokens = use_boundary_tokens
 
     def add_utterance(self, utterance):
         """ Update ngram counts given an utterance.
@@ -48,6 +51,10 @@ class PhoneStats:
             An utterance represented by a list of phonemes.
         
         """
+
+        # If using boundary tokens, pad the utterance with bondary tokens
+        if self.use_boundary_tokens:
+            utterance = [BOUND] * (self.max_ngram - 1) + utterance + [BOUND] * (self.max_ngram - 1)
 
         for n in range(1, self.max_ngram+1):
             # ngrams indexed as tuples
@@ -191,7 +198,11 @@ class PhoneStats:
     def _mutual_information(self, ngram_A, ngram_B):
         """ Calculates the mutual information of ngram_A and ngram_B, assuming that B follows A """
 
-        return np.log2(self.probability(ngram_A + ngram_B) / (self.probability(ngram_A) * self.probability(ngram_B)))
+        prod = (self.probability(ngram_A) * self.probability(ngram_B))
+        # TODO: Check if this assumption is ok
+        if prod == 0:
+            return 0
+        return np.log2(self.probability(ngram_A + ngram_B) / prod)
 
     def get_unpredictability(self, utterance, position, measure, reverse, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
@@ -227,18 +238,23 @@ class PhoneStats:
         self._check_n(ngram_length)
         boundary = position + 1 # makes ranged indexing neater
 
+        if self.use_boundary_tokens:
+            utterance = [BOUND] * (self.max_ngram - 1) + utterance + [BOUND] * (self.max_ngram - 1)
+            boundary += self.max_ngram - 1
+
         if reverse:
-            if boundary + ngram_length > len(utterance):
+            if not self.use_boundary_tokens and boundary + ngram_length > len(utterance):
                 return None
             right_context = utterance[boundary:boundary+ngram_length]
             left_context = [utterance[boundary-1]]
         else:
-            if boundary < ngram_length:
+            if not self.use_boundary_tokens and boundary < ngram_length:
                 return None
-            if measure in ["tp", "mi"] and boundary >= len(utterance):
-                return None
-            elif measure in ["tp", "mi"]:
-                right_context = [utterance[boundary]]
+            if measure in ["tp", "mi"]:
+                if not self.use_boundary_tokens and boundary >= len(utterance):
+                    return None
+                else:
+                    right_context = [utterance[boundary]]
             left_context = utterance[boundary-ngram_length:boundary]
 
         # Large boundary entropy = high unpredictability

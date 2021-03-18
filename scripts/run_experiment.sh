@@ -1,10 +1,10 @@
 #!/bin/bash
 # Run basic experiment
 
-EXPERIMENT_DIR="experiments/experiment"
+EXPERIMENT_DIR=$2
 TRANSCRIPT="/Users/zebulon/Documents/UniDocs/Year4/Project/Repository/data/br-phonemes.txt"
 CLEAN=TRUE
-SEGMENTER=${1:-baseline}
+SEGMENTER=$1
 
 if $CLEAN
 then
@@ -19,16 +19,13 @@ then
 fi
 
 # Run segmenter
-if (( $# < 1 ))
-then
-	echo "Running baseline segmenter with no additional arguments"
-elif (( $# < 2 ))
+if (( $# < 3 ))
 then
 	echo "Running '$SEGMENTER' segmenter with no additional arguments"
 else
-	echo "Running '$SEGMENTER' segmenter with additional arguments '${@:2}'"
+	echo "Running '$SEGMENTER' segmenter with additional arguments '${@:3}'"
 fi
-python -m segmenter.$SEGMENTER -o $EXPERIMENT_DIR/segmented.txt ${@:2} $EXPERIMENT_DIR/prepared.txt
+python -m segmenter.$SEGMENTER -o $EXPERIMENT_DIR/segmented.txt ${@:3} $EXPERIMENT_DIR/prepared.txt
 
 # Evaluate segmentation using wordseg
 echo "Calculating statistics"
