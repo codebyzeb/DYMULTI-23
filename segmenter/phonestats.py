@@ -5,6 +5,7 @@ Provides various methods for probability and predictability.
 """
 
 import collections
+import sortedcontainers
 import numpy as np
 
 BOUNDARY_TOKEN = "BOUND"
@@ -16,11 +17,8 @@ class PhoneStats:
     ----------
     max_ng : int, optional
         The maximum length of ngrams to keep track of.
-    smoothing : bool, optional
-        If true, use add1 smoothing for probabilities.
-    correct_conditional : bool, optional
-        If true, use the correct method for calculating conditional probaiblities, otherwise
-        use the assumption that lower n-gram counts can be used.
+    smoothing : float, optional
+        If non-zero, use add-k smoothing for probabilities.
 
     Raises
     ------
@@ -29,17 +27,17 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ngram=1, smoothing=0, correct_conditional=False, use_boundary_tokens=False):
+    def __init__(self, max_ngram=1, smoothing=0, use_boundary_tokens=False):
 
         if max_ngram < 1:
             raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
 
         self.max_ngram = max_ngram
-        self.ngrams = {i+1 : collections.Counter() for i in range(max_ngram)}
+        self.types = {i+1 : sortedcontainers.SortedSet() for i in range(max_ngram)}
+        self.ngrams = collections.Counter()
         self.ntokens = {i+1 : 0 for i in range(max_ngram)}
 
         self.smoothing = smoothing
-        self.correct_conditional = correct_conditional
         self.use_boundary_tokens = use_boundary_tokens
 
     def add_utterance(self, utterance):
@@ -57,20 +55,22 @@ class PhoneStats:
             utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
 
         for n in range(1, self.max_ngram+1):
-            # ngrams indexed as tuples
-            ngrams = [tuple(utterance[i:i+n]) for i in range(len(utterance)-(n-1))]
-            self.ngrams[n].update(ngrams)
+            # collapse ngrams to strings
+            ngrams = [utterance[i:i+n] for i in range(len(utterance)-(n-1))]
+            self.ngrams.update([''.join(ngram) for ngram in ngrams])
             self.ntokens[n] += len(ngrams)
+            for ngram in ngrams:
+                self.types[n].add(tuple(ngram))
 
     def _check_n(self, n):
         if n > self.max_ngram or n < 1:
             raise(ValueError("Ngrams of length " + str(n) + " not stored in this PhoneStats object."))
     
     def _types(self, n=1):
-        """ Returns a list of ngram types seen """
+        """ Returns a list of ngram types of length n """
 
         self._check_n(n)
-        return [list(key) for key in self.ngrams[n].keys()]
+        return [list(ngram) for ngram in self.types[n]]
 
     def probability(self, ngram):
         """ Returns P(ngram), using add-k smoothing if self.smoothing > 0
@@ -92,7 +92,7 @@ class PhoneStats:
         self._check_n(n)
 
         # TODO: Implement n-gram backoff?
-        freq = self.ngrams[n][tuple(ngram)]
+        freq = self.ngrams[''.join(ngram)]
 
         if self.ntokens[n] + self.smoothing == 0:
             return 0
@@ -101,62 +101,40 @@ class PhoneStats:
     def _conditional_probability(self, ngram_A, ngram_B):
         """ Return P(ngram_A | ngram_B) assuming ngram_B follows ngram_A
 
-        If self.correct_conditional is False, makes an assumption that P(ngram ends with ngram_B)
+        Makes an assumption that P(ngram ends with ngram_B)
         can be approximated with P(ngram_B). This can lead to probabilities over 1 when the number
         counts of ngrams of different lengths diverge (as can happen when utterances are processed
-        individually).
-        If self.correct_conditional is True, will calculate the conditional correctly, by counting
-        the number of ngrams that end in ngram_B, but this is more expensive as we need to loop over
-        ngrams.
+        individually, but only if utterance boundaries aren't used).
 
         """
 
-        len_A = len(ngram_A)
-        len_B = len(ngram_B)
-        self._check_n(len_A + len_B)
+        self._check_n(len(ngram_A) + len(ngram_B))
 
-        freq_AB = self.ngrams[len_A + len_B][tuple(ngram_A + ngram_B)]
-        freq_B = self.ngrams[len_B][tuple(ngram_B)]
+        freq_AB = self.ngrams[''.join(ngram_A + ngram_B)]
+        freq_B = self.ngrams[''.join(ngram_B)]
 
-        if not self.correct_conditional:
-            if freq_B + self.smoothing == 0:
-                return 0
-            return (freq_AB + self.smoothing) / (freq_B + self.smoothing)
-        else:
-            ngrams_end_with_ngram_B = np.sum([self.ngrams[len_A + len_B][tuple(ngram_X + ngram_B)] for ngram_X in self._types(len_A)])
-            if ngrams_end_with_ngram_B + self.smoothing == 0:
-                return 0
-            return (freq_AB + self.smoothing) / (ngrams_end_with_ngram_B + self.smoothing)
+        if freq_B + self.smoothing == 0:
+            return 0
+        return (freq_AB + self.smoothing) / (freq_B + self.smoothing)
 
     def _conditional_probability_reverse(self, ngram_A, ngram_B):
         """ Returns P(ngram_B | ngram_A) assuming ngram_B follows ngram_A.
 
-        If self.correct_conditional is False, makes an assumption that P(ngram starts with ngram_A)
+        Makes an assumption that P(ngram starts with ngram_A)
         can be approximated with P(ngram_A). This can lead to probabilities over 1 when the number
         counts of ngrams of different lengths diverge (as can happen when utterances are processed
-        individually).
-        If self.correct_conditional is True, will calculate the conditional correctly, by counting
-        the number of ngrams that start in ngram_A, but this is more expensive as we need to loop
-        over ngrams.
+        individually, but only if utterance boundaries aren't used).
 
         """
 
-        len_A = len(ngram_A)
-        len_B = len(ngram_B)
-        self._check_n(len_A + len_B)
+        self._check_n(len(ngram_A) + len(ngram_B))
 
-        freq_AB = self.ngrams[len_A + len_B][tuple(ngram_A + ngram_B)]
-        freq_A = self.ngrams[len_A][tuple(ngram_A)]
+        freq_AB = self.ngrams[''.join(ngram_A + ngram_B)]
+        freq_A = self.ngrams[''.join(ngram_A)]
 
-        if not self.correct_conditional:
-            if freq_A + self.smoothing == 0:
-                return 0
-            return (freq_AB + self.smoothing) / (freq_A + self.smoothing)
-        else:
-            ngrams_start_with_ngram_A = np.sum([self.ngrams[len_A + len_B][tuple(ngram_A + ngram_Y)] for ngram_Y in self._types(len_B)])
-            if ngrams_start_with_ngram_A + self.smoothing == 0:
-                return 0
-            return (freq_AB + self.smoothing) / (ngrams_start_with_ngram_A + self.smoothing)
+        if freq_A + self.smoothing == 0:
+            return 0
+        return (freq_AB + self.smoothing) / (freq_A + self.smoothing)
 
     def _boundary_entropy(self, ngram):
         """ Calculates H(ngram) using the boundary entropy equation """ 
@@ -179,16 +157,14 @@ class PhoneStats:
     def _successor_variety(self, ngram):
         """ Returns the number of ngrams that have the prefix ngram """
 
-        ngram_length = len(ngram) + 1
-        self._check_n(ngram_length)
-        return np.count_nonzero([self.ngrams[ngram_length][tuple(ngram + unigram)] for unigram in self._types()])
+        self._check_n(len(ngram) + 1)
+        return np.count_nonzero([self.ngrams[''.join(ngram + unigram)] for unigram in self._types()])
 
     def _successor_variety_reverse(self, ngram):
         """ Returns the number of ngrams that have the suffix ngram_X """
 
-        ngram_length = len(ngram) + 1
-        self._check_n(ngram_length)
-        return np.count_nonzero([self.ngrams[ngram_length][tuple(unigram + ngram)] for unigram in self._types()])
+        self._check_n(len(ngram) + 1)
+        return np.count_nonzero([self.ngrams[''.join(unigram + ngram)] for unigram in self._types()])
 
     def _mutual_information(self, ngram_A, ngram_B):
         """ Calculates the mutual information of ngram_A and ngram_B, assuming that B follows A """

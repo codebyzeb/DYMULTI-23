@@ -22,9 +22,7 @@ def test_initialise_correct_ngram_counters_and_ntoken_counts():
     empty_counter = collections.Counter()
 
     assert(phonestats.max_ngram == 3)
-    assert(list(phonestats.ngrams.keys()) == [1,2,3])
-    for key in phonestats.ngrams:
-        assert(phonestats.ngrams[key] == empty_counter)
+    assert(phonestats.ngrams == empty_counter)
     assert(list(phonestats.ntokens.keys()) == [1,2,3])
     for key in phonestats.ntokens:
         assert(phonestats.ntokens[key] == 0)
@@ -39,15 +37,13 @@ def test_add_utterance_updates_ngram_counts():
 
     phonestats = PhoneStats(3)
     utterance = ['a', 'b', 'b', 'b', 'c']
-    unigram_counter = collections.Counter({('a',) : 1, ('b',) : 3, ('c',) : 1})
-    bigram_counter = collections.Counter({('a','b') : 1, ('b','b') : 2, ('b','c') : 1})
-    trigram_counter = collections.Counter({('a', 'b', 'b') : 1, ('b','b','b') : 1, ('b', 'b', 'c') : 1})
+    ngram_counter = collections.Counter({'a' : 1, 'b' : 3, 'c' : 1,
+                                        'ab' : 1, 'bb' : 2, 'bc' : 1,
+                                        'abb' : 1, 'bbb' : 1, 'bbc' : 1})
 
     phonestats.add_utterance(utterance)
 
-    assert(phonestats.ngrams[1] == unigram_counter)
-    assert(phonestats.ngrams[2] == bigram_counter)
-    assert(phonestats.ngrams[3] == trigram_counter)
+    assert(phonestats.ngrams == ngram_counter)
 
 def test_add_utterance_updates_ntokens_counts():
 
@@ -174,7 +170,7 @@ def test_reverse_conditional_probability_ngram_too_large_raises_value_error():
         phonestats._conditional_probability_reverse(threegram, unigram)
 
 def test_conditional_probability_of_ngram_fast():
-    """ Test unsmoothed conditional probability using the lower-ngram assumption """
+    """ Test unsmoothed conditional probability """
 
     phonestats = PhoneStats(3, smoothing=False)
     phonestats.add_utterance(['a', 'b', 'b', 'b'])
@@ -188,8 +184,8 @@ def test_conditional_probability_of_ngram_fast():
     # freq('bb') == 3, freq('abb') == 1 so P('a'|'bb') is 1/3
     assert(probability_bi == (1/3))
 
-def test_conditional_probability_of_ngram_fast_smoothed():
-    """ Test unsmoothed conditional probability using the lower-ngram assumption """
+def test_conditional_probability_of_ngram_smoothed():
+    """ Test unsmoothed conditional probability """
 
     phonestats = PhoneStats(3, smoothing=True)
     phonestats.add_utterance(['a', 'b', 'b', 'b'])
@@ -203,38 +199,8 @@ def test_conditional_probability_of_ngram_fast_smoothed():
     # freq('bb') == 3, freq('abb') == 1 so P('a'|'bb') is (1+1)/(3+1)
     assert(probability_bi == (2/4))
 
-def test_conditional_probability_of_ngram_correct():
-    """ Test unsmoothed conditional probability using the correct method """
-
-    phonestats = PhoneStats(3, smoothing=False, correct_conditional=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
-
-    probability_uni = phonestats._conditional_probability(['a'], ['b'])
-    probability_bi = phonestats._conditional_probability(['a'], ['b', 'b'])
-
-    # freq('xb') == 4, freq('ab') == 1 so P('a'|'b') is 1/4
-    assert(probability_uni == (1/4))
-    # freq('xbb') == 2, freq('abb') == 1 so P('a'|'bb') is 1/2
-    assert(probability_bi == (1/2))
-
-def test_conditional_probability_of_ngram_correct_smoothed():
-    """ Test unsmoothed conditional probability using the correct method """
-
-    phonestats = PhoneStats(3, smoothing=True, correct_conditional=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
-
-    probability_uni = phonestats._conditional_probability(['a'], ['b'])
-    probability_bi = phonestats._conditional_probability(['a'], ['b', 'b'])
-
-    # freq('xb') == 4, freq('ab') == 1 so P('a'|'b') is (1+1)/(4+1)
-    assert(probability_uni == (2/5))
-    # freq('xbb') == 2, freq('abb') == 1 so P('a'|'bb') is (1+1)/(2+1)
-    assert(probability_bi == (2/3))
-
-def test_reverse_conditional_probability_of_ngram_fast():
-    """ Test unsmoothed reverse conditional probability using the lower-ngram assumption """
+def test_reverse_conditional_probability_of_ngram_unsmoothed():
+    """ Test unsmoothed reverse conditional probability """
 
     phonestats = PhoneStats(3, smoothing=False)
     phonestats.add_utterance(['a', 'b', 'b', 'b'])
@@ -248,8 +214,8 @@ def test_reverse_conditional_probability_of_ngram_fast():
     # freq('ab') == 1, freq('abb') == 1 so P('b'|'ab') is 1
     assert(probability_bi == 1)
 
-def test_reverse_conditional_probability_of_ngram_fast_smoothed():
-    """ Test unsmoothed reverse conditional probability using the lower-ngram assumption """
+def test_reverse_conditional_probability_of_ngram_smoothed():
+    """ Test smoothed reverse conditional probability """
 
     phonestats = PhoneStats(3, smoothing=True)
     phonestats.add_utterance(['a', 'b', 'b', 'b'])
@@ -263,22 +229,6 @@ def test_reverse_conditional_probability_of_ngram_fast_smoothed():
     # freq('ab') == 1, freq('abb') == 1 so P('b'|'ab') is (1+1)/(1+1)
     assert(probability_bi == 1)
 
-def test_reverse_conditional_probability_of_ngram_correct():
-    """ Test unsmoothed reverse conditional probability using the correct method """
-
-    phonestats = PhoneStats(3, smoothing=False, correct_conditional=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
-
-    probability_uni = phonestats._conditional_probability_reverse(['a'], ['b'])
-    probability_bi = phonestats._conditional_probability_reverse(['a', 'b'], ['b'])
-
-    # freq('ax') == 1, freq('ab') == 1 so P('b'|'a') is 1
-    assert(probability_uni == 1)
-    # freq('abx') == 1, freq('abb') == 1 so P('b'|'ab') is 1
-    assert(probability_bi == 1)
-
-
 """
 ----------------------------------------------
             ENTROPY TESTS
@@ -287,7 +237,7 @@ def test_reverse_conditional_probability_of_ngram_correct():
 
 def test_boundary_entropy():
 
-    phonestats = PhoneStats(3, smoothing=False, correct_conditional=False)
+    phonestats = PhoneStats(3, smoothing=False)
     phonestats.add_utterance(['a', 'b', 'b', 'b', 'c'])
 
     entropy = phonestats._boundary_entropy(['a', 'b'])
@@ -303,7 +253,7 @@ def test_boundary_entropy():
 
 def test_boundary_entropy_smoothed():
 
-    phonestats = PhoneStats(3, smoothing=True, correct_conditional=False)
+    phonestats = PhoneStats(3, smoothing=True)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -320,7 +270,7 @@ def test_boundary_entropy_smoothed():
 
 def test_reverse_boundary_entropy():
 
-    phonestats = PhoneStats(3, smoothing=False, correct_conditional=False)
+    phonestats = PhoneStats(3, smoothing=False)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -337,7 +287,7 @@ def test_reverse_boundary_entropy():
 
 def test_reverse_boundary_entropy_smoothed():
 
-    phonestats = PhoneStats(3, smoothing=True, correct_conditional=False)
+    phonestats = PhoneStats(3, smoothing=True)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -451,7 +401,7 @@ def test_get_boundary_entropy_in_utterance_uses_correct_ngram():
     returns the entropy of the correct ngram. For the bigram case, this is "ab" at position 1.
     """
 
-    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    phonestats = PhoneStats(5, smoothing=False)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -471,7 +421,7 @@ def test_get_boundary_entropy_at_bad_position_returns_none():
     returns None (since there is no ngram before that position).
     """
 
-    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    phonestats = PhoneStats(5, smoothing=False)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -490,7 +440,7 @@ def test_get_reverse_boundary_entropy_in_utterance_uses_correct_ngram():
     returns the entropy of the correct ngram. For the bigram case, this is "bc" at position 2.
     """
 
-    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    phonestats = PhoneStats(5, smoothing=False)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -510,7 +460,7 @@ def test_get_reverse_boundary_entropy_at_late_position_returns_none():
     returns None (since there is no ngram after that position).
     """
 
-    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    phonestats = PhoneStats(5, smoothing=False,)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 
@@ -529,7 +479,7 @@ def test_get_transitional_probability_computes_conditional_entropy():
     returns the entropy of the correct ngram. For the bigram case, this is "ab" at position 1.
     """
 
-    phonestats = PhoneStats(5, smoothing=False, correct_conditional=True)
+    phonestats = PhoneStats(5, smoothing=False)
     utterance = ['a', 'b', 'b', 'b', 'c']
     phonestats.add_utterance(utterance)
 

@@ -98,7 +98,7 @@ def test_segment_updates_phonestats_when_not_provided():
 
     assert(model._phonestats.ntokens[1] == 8)
     assert(model._phonestats.ntokens[2] == 6)
-    assert(model._phonestats.ngrams[2][('a', 'b')] == 1)
+    assert(model._phonestats.ngrams['ab'] == 1)
 
 def test_segment_does_not_update_phonestats_when_provided():
     """ If provided a PhoneStats object, the model should not update it """
@@ -110,6 +110,6 @@ def test_segment_does_not_update_phonestats_when_provided():
     list(model.segment(text, update_model=True))
 
     assert(model._phonestats.ntokens[1] == 0)
-    assert(model._phonestats.ngrams[1][('a',)] == 0)
+    assert(model._phonestats.ngrams['a'] == 0)
 
 # TODO: Write tests to ensure the model segments when unpredictability increases or decreases

@@ -1,4 +1,4 @@
-""" A mulitple-cue algorithm for word segmentation.
+""" A predictabilty cue algorithm for word segmentation.
 
 TODO: Add documentation
 
@@ -217,7 +217,7 @@ def segment(text, max_ngram=1, measure="ent", direction="forwards", smoothing=0,
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(smoothing) if smoothing else "Not using"))
     log.info('{} utterance boundary padding for ngram estimages'.format("Using" if use_boundary_tokens else "Not using"))
 
-    phonestats = PhoneStats(max_ngram=max_ngram+1, smoothing=smoothing, correct_conditional=False, use_boundary_tokens=use_boundary_tokens)
+    phonestats = PhoneStats(max_ngram=max_ngram+1, smoothing=smoothing, use_boundary_tokens=use_boundary_tokens)
     model = MultiPredictabilityModel(max_ngram=max_ngram, measure=measure, direction=direction, phonestats=phonestats, log=log)
     
     return model.segment(text)
