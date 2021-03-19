@@ -70,8 +70,8 @@ class MultiCueModel(Model):
 
         Returns
         ------
-        segmented : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
+        segmented : list of str
+            The segmented utterance as a list of phonemes and spaces for word boundaries.
         """
 
         # Get suggested segmentations from each model
@@ -112,6 +112,7 @@ class MultiCueModel(Model):
         boundary : bool
             A decision whether or not to place a boundary.
         """
+
         # Get each model's boundary decision
         votes_for_boundary = boundary_votes.astype(int)
         votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
@@ -138,9 +139,9 @@ class MultiCueModel(Model):
         
         Parameters
         ----------
-        segmented_utterance : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
-
+        segmented_utterance : list of str
+            The segmented utterance as a list of phonemes and spaces for word boundaries.
+        
         Returns
         -------
         boundaries : list of bool
@@ -149,7 +150,7 @@ class MultiCueModel(Model):
         """
 
         boundaries = []
-        for c in segmented_utterance.strip():
+        for c in segmented_utterance:
             if c == ' ':
                 boundaries[-1] = True
             else:

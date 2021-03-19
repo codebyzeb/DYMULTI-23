@@ -42,13 +42,20 @@ class BaselineModel(Model):
     def __str__(self):
         return "Baseline(P={})".format(self.probability)
 
-    # Override parent model, but does not use update_model
     def segment_utterance(self, utterance, update_model=True):
-        """ Segment an utterance randomly using a boundary probability """
+        """ Segment an utterance randomly using a boundary probability.
+        
+        update_model is inherited from parent, but not used.
+        
+        """
 
-        return ''.join(
-            token + ' ' if random.random() < self.probability else token
-            for token in utterance.strip().split(' '))
+        segmented = []
+        for token in utterance.strip().split(' '):
+            segmented.append(token)
+            if random.random() < self.probability:
+                segmented.append(' ')
+
+        return segmented
 
 def _add_arguments(parser):
     """ Add algorithm specific options to the parser """

@@ -46,11 +46,11 @@ class PeakModel(Model):
 
         Returns
         -------
-        segmented : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
+        segmented : list of str
+            The segmented utterance as a list of phonemes and spaces for word boundaries.
         """
 
-        segmented = ""
+        segmented = []
         utterance = utterance.strip().split(' ')
 
         last_score = None
@@ -70,13 +70,17 @@ class PeakModel(Model):
             # Either place word boundaries when the score increases at candidate boundary
             # or when the score decreases after a candidate boundary
             if self.increase:
-                segmented += utterance[i] + (' ' if score > last_score else '')
+                segmented.append(utterance[i])
+                if score > last_score:
+                    segmented.append(' ')
             else:
-                segmented += (' ' if score < last_score else '') + utterance[i]
+                if score < last_score and i > 0:
+                    segmented.append(' ')
+                segmented.append(utterance[i])
 
             last_score = score
         
-        return segmented.strip()
+        return segmented
 
     @abstractmethod
     def score(self, utterance, position):

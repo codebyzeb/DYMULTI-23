@@ -39,7 +39,8 @@ class Model(ABC):
         for i, utterance in enumerate(text):
             if i % 100 == 0:
                 self._log.info("Utterances segmented: " + str(i))
-            yield self.segment_utterance(utterance, update_model).strip()
+            segmented = ''.join(self.segment_utterance(utterance, update_model)).strip()
+            yield segmented
 
         self._log.info("Total time to segment: " + str(time.time() - t))
 

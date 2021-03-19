@@ -15,7 +15,7 @@ from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
 from segmenter.peakmodel import PeakModel
 
-PREDICTABILITY_MEASURES = ["mi", "tp", "ent", "sv"]
+PREDICTABILITY_MEASURES = ["mi", "tp", "ent", "sv", "bp"]
 
 class PredictabilityModel(PeakModel):
     """ Train and segment using measures of predictability. 
@@ -77,6 +77,7 @@ class PredictabilityModel(PeakModel):
             "Boundary Entropy" if self.measure == "ent" else 
             "Mutual Information" if self.measure == "mi" else
             "Successor Variety" if self.measure == "sv" else
+            "Boundary Probability" if self.measure == "bp" else
             "Transitional Probability" if self.measure == "tp" else self.measure)
 
     def segment_utterance(self, utterance, update_model=True):
@@ -92,8 +93,8 @@ class PredictabilityModel(PeakModel):
 
         Returns
         -------
-        segmented : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
+        segmented : list of str
+            The segmented utterance as a list of phonemes and spaces for word boundaries.
         """
 
         segmented = super().segment_utterance(utterance, update_model)
@@ -129,6 +130,8 @@ class MultiPredictabilityModel(MultiCueModel):
         When "Forwards", only the forwards predictability measure is used.
         When "Reverse", only the reverse predictability measure is used. Otherwise,
         uses both measures.
+    smoothing : float, optional
+        If non-zero, use add-k smoothing for probabilities.
     log : logging.Logger, optional
         Where to send log messages
 
@@ -139,7 +142,7 @@ class MultiPredictabilityModel(MultiCueModel):
 
     """
 
-    def __init__(self, max_ngram=1, measure="ent", direction="forwards", phonestats=None, log=utils.null_logger()):
+    def __init__(self, max_ngram=1, measure="ent", direction="forwards", smoothing=0, log=utils.null_logger()):
         
         # Initialise model parameters
         if max_ngram < 1:
@@ -149,7 +152,7 @@ class MultiPredictabilityModel(MultiCueModel):
         
         self.max_ngram = max_ngram
         self.measure = measure
-        self._phonestats = PhoneStats(max_ngram+1) if phonestats is None else phonestats
+        self._phonestats = PhoneStats(max_ngram+1, use_boundary_tokens=True, smoothing=smoothing)
 
         # Create models
         models = []
@@ -177,8 +180,8 @@ class MultiPredictabilityModel(MultiCueModel):
 
         Returns
         ------
-        segmented : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
+        segmented : list of str
+            The segmented utterance as a list of phonemes and spaces for word boundaries.
         """
 
         # Call MultiCue model for weighted majority voting
@@ -193,17 +196,15 @@ class MultiPredictabilityModel(MultiCueModel):
     def __str__(self):
         return "MultiPredictability({})".format(", ".join([str(model) for model in self.models]))
 
-def segment(text, max_ngram=1, measure="ent", direction="forwards", smoothing=0, use_boundary_tokens=False, log=utils.null_logger()):
+def segment(text, max_ngram=1, measure="ent", direction="forwards", smoothing=0, log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of Predictability models. """
 
     log.info('Using a Multi Predictability model to segment text.')
 
     # TODO: Check the input is valid
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(smoothing) if smoothing else "Not using"))
-    log.info('{} utterance boundary padding for ngram estimages'.format("Using" if use_boundary_tokens else "Not using"))
 
-    phonestats = PhoneStats(max_ngram=max_ngram+1, smoothing=smoothing, use_boundary_tokens=use_boundary_tokens)
-    model = MultiPredictabilityModel(max_ngram=max_ngram, measure=measure, direction=direction, phonestats=phonestats, log=log)
+    model = MultiPredictabilityModel(max_ngram=max_ngram, measure=measure, direction=direction, smoothing=smoothing, log=log)
     
     return model.segment(text)
 
@@ -226,9 +227,6 @@ def _add_arguments(parser):
     group.add_argument(
         '-S', '--smooth', type=float, default=0.0, metavar='<float>',
         help='What value of k to use for add-k smoothing for probability calculations.')
-    group.add_argument(
-        '-B', '--useboundary', action='store_true',
-        help='Whether to use boundary tokens for ngram estimates.')
 
 def main():
     """ Entry point """
@@ -238,7 +236,7 @@ def main():
         add_arguments=_add_arguments)
 
     segmented = segment(streamin, max_ngram=args.max_ngram, measure=args.measure, smoothing=args.smooth,
-                        use_boundary_tokens=args.useboundary, direction=args.direction, log=log)
+                        direction=args.direction, log=log)
     streamout.write('\n'.join(segmented) + '\n')
 
 if __name__ == '__main__':
