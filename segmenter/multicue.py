@@ -149,7 +149,7 @@ class MultiCueModel(Model):
         """
 
         boundaries = []
-        for c in segmented_utterance:
+        for c in segmented_utterance.strip():
             if c == ' ':
                 boundaries[-1] = True
             else:

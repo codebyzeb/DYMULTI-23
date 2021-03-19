@@ -13,10 +13,11 @@ from wordseg import utils
 from segmenter.model import Model
 from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
+from segmenter.peakmodel import PeakModel
 
 PREDICTABILITY_MEASURES = ["mi", "tp", "ent", "sv"]
 
-class PredictabilityModel(Model):
+class PredictabilityModel(PeakModel):
     """ Train and segment using measures of predictability. 
 
     Only provides a single cue, should be used in combination with other ngram lengths and
@@ -48,7 +49,7 @@ class PredictabilityModel(Model):
 
     def __init__(self, ngram_length=1, increase=True, measure="ent",
                 reverse=False,  phonestats=None, log=utils.null_logger()):
-        super().__init__(log)
+        super().__init__(increase, log)
 
         # Initialise model parameters
         if ngram_length < 1:
@@ -56,7 +57,6 @@ class PredictabilityModel(Model):
         if not measure in PREDICTABILITY_MEASURES:
             raise ValueError("Cannot initialise a Predictability Model with unknown predictability measure '{}'".format(measure))
         self.ngram_length = ngram_length
-        self.increase = increase
         self.measure = measure
         self.reverse = reverse
 
@@ -80,7 +80,7 @@ class PredictabilityModel(Model):
             "Transitional Probability" if self.measure == "tp" else self.measure)
 
     def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance using weighted majority voting.
+        """ Segment a single utterance using the peak strategy at increases or decreases of unpredictability.
 
         Parameters
         ----------
@@ -96,33 +96,18 @@ class PredictabilityModel(Model):
             The segmented utterance as a string of phonemes with spaces at word boundaries.
         """
 
-        segmented = ""
-        utterance = utterance.strip().split(' ')
-
-        last_unpredictability = None
-        
-        for i in range(len(utterance)):
-            unpredictability = self._phonestats.get_unpredictability(utterance, i, self.measure, self.reverse, self.ngram_length)
-
-            if unpredictability is None or last_unpredictability is None:
-                segmented += utterance[i]
-                last_unpredictability = unpredictability
-                continue
-
-            # Either place word boundaries when the unpredictability increases before a candidate boundary
-            # or when unpredictability decreases after a candidate boundary
-            if self.increase:
-                segmented += utterance[i] + (' ' if unpredictability > last_unpredictability else '')
-            else:
-                segmented += (' ' if unpredictability < last_unpredictability else '') + utterance[i]
-
-            last_unpredictability = unpredictability
+        segmented = super().segment_utterance(utterance, update_model)
 
         # Update ngram counts in phonestats object to refine unpredictability calculations
         if self._updatephonestats and update_model:
-            self._phonestats.add_utterance(utterance)
+            self._phonestats.add_utterance(utterance.strip().split(' '))
         
-        return segmented  
+        return segmented 
+
+    def score(self, utterance, position):
+        """ Score used for the peak strategy is some measure of (un)predictability. """
+
+        return self._phonestats.get_unpredictability(utterance, position=position, measure=self.measure, reverse=self.reverse, ngram_length=self.ngram_length)
 
 class MultiPredictabilityModel(MultiCueModel):
     """ Train and segment using measures of predictability with multiple models of varying lengths.
@@ -180,7 +165,7 @@ class MultiPredictabilityModel(MultiCueModel):
         super().__init__(models=models, log=log)
 
     def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance using weighted majority voting.
+        """ Segment a single utterance using an increase or decrease of unpredictability.
 
         Parameters
         ----------
