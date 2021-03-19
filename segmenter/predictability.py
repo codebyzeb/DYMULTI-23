@@ -208,13 +208,13 @@ class MultiPredictabilityModel(MultiCueModel):
     def __str__(self):
         return "MultiPredictability({})".format(", ".join([str(model) for model in self.models]))
 
-def segment(text, max_ngram=1, measure="ent", direction="forwards", smoothing=False, use_boundary_tokens=False, log=utils.null_logger()):
+def segment(text, max_ngram=1, measure="ent", direction="forwards", smoothing=0, use_boundary_tokens=False, log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of Predictability models. """
 
     log.info('Using a Multi Predictability model to segment text.')
 
     # TODO: Check the input is valid
-    log.info('{} add-1 smoothing for probability estimates'.format("Using" if smoothing else "Not using"))
+    log.info('{} smoothing for probability estimates'.format("Using add-"+str(smoothing) if smoothing else "Not using"))
     log.info('{} utterance boundary padding for ngram estimages'.format("Using" if use_boundary_tokens else "Not using"))
 
     phonestats = PhoneStats(max_ngram=max_ngram+1, smoothing=smoothing, correct_conditional=False, use_boundary_tokens=use_boundary_tokens)
@@ -239,8 +239,8 @@ def _add_arguments(parser):
         help='Select whether to use "forwards" predictability calculation, "backwards" or "both". '
         'default is %(default)s')
     group.add_argument(
-        '-S', '--smooth', action='store_true',
-        help='Whether to use add-1 smoothing for probability calculations.')
+        '-S', '--smooth', type=float, default=0.0, metavar='<float>',
+        help='What value of k to use for add-k smoothing for probability calculations.')
     group.add_argument(
         '-B', '--useboundary', action='store_true',
         help='Whether to use boundary tokens for ngram estimates.')

@@ -7,7 +7,7 @@ Provides various methods for probability and predictability.
 import collections
 import numpy as np
 
-BOUND = "BOUND"
+BOUNDARY_TOKEN = "BOUND"
 
 class PhoneStats:
     """ Stores phoneme n-gram counts and provides methods for calculating information-theoretic measures
@@ -29,7 +29,7 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ngram=1, smoothing=True, correct_conditional=False, use_boundary_tokens=False):
+    def __init__(self, max_ngram=1, smoothing=0, correct_conditional=False, use_boundary_tokens=False):
 
         if max_ngram < 1:
             raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
@@ -54,7 +54,7 @@ class PhoneStats:
 
         # If using boundary tokens, pad the utterance with bondary tokens
         if self.use_boundary_tokens:
-            utterance = [BOUND] * (self.max_ngram - 1) + utterance + [BOUND] * (self.max_ngram - 1)
+            utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
 
         for n in range(1, self.max_ngram+1):
             # ngrams indexed as tuples
@@ -73,7 +73,7 @@ class PhoneStats:
         return [list(key) for key in self.ngrams[n].keys()]
 
     def probability(self, ngram):
-        """ Returns P(ngram), using add1 smoothing if smoothing is set
+        """ Returns P(ngram), using add-k smoothing if self.smoothing > 0
         
         Parameters
         ----------
@@ -94,11 +94,10 @@ class PhoneStats:
         # TODO: Implement n-gram backoff?
         freq = self.ngrams[n][tuple(ngram)]
 
-        if self.smoothing:
-            return (freq + 1) / (self.ntokens[n] + 1)
-        else:
-            return (freq / self.ntokens[n]) if self.ntokens[n] > 0 else 0
-
+        if self.ntokens[n] + self.smoothing == 0:
+            return 0
+        return (freq + self.smoothing) / (self.ntokens[n] + self.smoothing)
+        
     def _conditional_probability(self, ngram_A, ngram_B):
         """ Return P(ngram_A | ngram_B) assuming ngram_B follows ngram_A
 
@@ -120,16 +119,14 @@ class PhoneStats:
         freq_B = self.ngrams[len_B][tuple(ngram_B)]
 
         if not self.correct_conditional:
-            if self.smoothing:
-                return (freq_AB + 1) / (freq_B + 1)
-            else:
-                return freq_AB / freq_B if freq_B != 0 else 0
+            if freq_B + self.smoothing == 0:
+                return 0
+            return (freq_AB + self.smoothing) / (freq_B + self.smoothing)
         else:
             ngrams_end_with_ngram_B = np.sum([self.ngrams[len_A + len_B][tuple(ngram_X + ngram_B)] for ngram_X in self._types(len_A)])
-            if self.smoothing:
-                return (freq_AB + 1) / (ngrams_end_with_ngram_B + 1)
-            else:
-                return freq_AB / ngrams_end_with_ngram_B if ngrams_end_with_ngram_B != 0 else 0
+            if ngrams_end_with_ngram_B + self.smoothing == 0:
+                return 0
+            return (freq_AB + self.smoothing) / (ngrams_end_with_ngram_B + self.smoothing)
 
     def _conditional_probability_reverse(self, ngram_A, ngram_B):
         """ Returns P(ngram_B | ngram_A) assuming ngram_B follows ngram_A.
@@ -152,16 +149,14 @@ class PhoneStats:
         freq_A = self.ngrams[len_A][tuple(ngram_A)]
 
         if not self.correct_conditional:
-            if self.smoothing:
-                return (freq_AB + 1) / (freq_A + 1)
-            else:
-                return freq_AB / freq_A if freq_A != 0 else 0
+            if freq_A + self.smoothing == 0:
+                return 0
+            return (freq_AB + self.smoothing) / (freq_A + self.smoothing)
         else:
             ngrams_start_with_ngram_A = np.sum([self.ngrams[len_A + len_B][tuple(ngram_A + ngram_Y)] for ngram_Y in self._types(len_B)])
-            if self.smoothing:
-                return (freq_AB + 1) / (ngrams_start_with_ngram_A + 1)
-            else:
-                return freq_AB / ngrams_start_with_ngram_A if ngrams_start_with_ngram_A != 0 else 0
+            if ngrams_start_with_ngram_A + self.smoothing == 0:
+                return 0
+            return (freq_AB + self.smoothing) / (ngrams_start_with_ngram_A + self.smoothing)
 
     def _boundary_entropy(self, ngram):
         """ Calculates H(ngram) using the boundary entropy equation """ 
@@ -238,8 +233,9 @@ class PhoneStats:
         self._check_n(ngram_length)
         boundary = position + 1 # makes ranged indexing neater
 
+        # Pad utterance with boundary tokens and shift boundary index accordingly
         if self.use_boundary_tokens:
-            utterance = [BOUND] * (self.max_ngram - 1) + utterance + [BOUND] * (self.max_ngram - 1)
+            utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
             boundary += self.max_ngram - 1
 
         if reverse:
