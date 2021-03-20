@@ -50,6 +50,9 @@ class PhoneStats:
         
         """
 
+        if utterance is None or len(utterance) == 0:
+            return
+
         # If using boundary tokens, pad the utterance with bondary tokens
         if self.use_boundary_tokens:
             utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
@@ -203,8 +206,12 @@ class PhoneStats:
         Raises
         ------
         ValueError
-            If `measure` is not a valid measure or if ngram_length is an invalid length.
+            If `measure` is not a valid measure, if ngram_length is an invalid length or
+            if `measure` is "bp" and use_boundary_tokens is not set.
         """
+
+        if measure == "bp" and not self.use_boundary_tokens:
+            raise ValueError("Cannot calculate boundary probability if boundary tokens are not used. Try using -B.")
 
         self._check_n(ngram_length)
         boundary = position + 1 # makes ranged indexing neater
@@ -252,6 +259,11 @@ class PhoneStats:
             return - self._mutual_information(left_context, right_context)
         elif measure == "mi" and not reverse:
             return - self._mutual_information(left_context, right_context)
+
+        elif measure == "bp" and reverse:
+            return self._conditional_probability([BOUNDARY_TOKEN], right_context)
+        elif measure =="bp" and not reverse:
+            return self._conditional_probability_reverse(left_context, [BOUNDARY_TOKEN])
 
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))

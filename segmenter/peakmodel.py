@@ -32,7 +32,7 @@ class PeakModel(Model):
         self.increase = increase
 
     def __str__(self):
-        return "PeakModel({},{}{}{})".format("Increase" if self.increase else "Decrease")
+        return "PeakModel({})".format("Increase" if self.increase else "Decrease")
 
     def segment_utterance(self, utterance, update_model=True):
         """ Segment a single utterance by placing word boundaries at peaks of a particular score..

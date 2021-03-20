@@ -50,7 +50,7 @@ def test_init_with_invalid_measure_raises_value_error():
 
 def test_to_string():
 
-    model = model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", reverse=True, phonestats=None)
+    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", reverse=True, phonestats=None)
 
     s = str(model)
 
@@ -78,15 +78,6 @@ def test_segment_update_model_false_does_not_update_model():
     list(model.segment(text, update_model=False))
 
     assert(model._phonestats.ntokens[1] == 0)
-
-def test_segment_update_model_true_updates_model():
-
-    text = ["a b b c", "b a c b"]
-    model = PredictabilityModel()
-
-    list(model.segment(text, update_model=True))
-
-    assert(model._phonestats.ntokens[1] == 8)
 
 def test_segment_updates_phonestats_when_not_provided():
     """ If not provided a PhoneStats object, a local one is created an updated at each utterance """

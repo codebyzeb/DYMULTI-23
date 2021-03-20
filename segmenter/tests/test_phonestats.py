@@ -68,6 +68,19 @@ def test_get_types():
     assert(phonestats._types(2) == [['a', 'b'], ['b', 'b'], ['b', 'c']])
     assert(phonestats._types(3) == [['a', 'b', 'b'], ['b', 'b', 'b'], ['b', 'b', 'c']])
 
+def test_add_invalid_utterances():
+
+    phonestats = PhoneStats(3)
+    utterance_A = []
+    utterance_B = None
+
+    phonestats.add_utterance(utterance_A)
+    phonestats.add_utterance(utterance_B)
+
+    assert(phonestats.ntokens[1] == 0)
+    assert(phonestats.ntokens[2] == 0)
+    assert(phonestats.ntokens[3] == 0)
+
 """
 ----------------------------------------------
             PROBABILITY TESTS
