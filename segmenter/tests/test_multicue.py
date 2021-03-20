@@ -47,7 +47,7 @@ def test_to_string():
 
     assert(s == "MultiCue(Baseline(P=0), Baseline(P=1))")
 
-# TODO: Add tests for _make_boundary_decision(), _segmented_utterance_to_boundaries and _boundaries_to_segmented_utterance
+# TODO: Add tests for _make_boundary_decision()
 
 """
 ----------------------------------------------

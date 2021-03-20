@@ -11,6 +11,7 @@ from wordseg import utils
 
 from segmenter.model import Model
 from segmenter.baseline import BaselineModel
+from segmenter import utils as utilities
 
 class MultiCueModel(Model):
     """ Train and segment using multiple models as individual cues
@@ -76,7 +77,7 @@ class MultiCueModel(Model):
 
         # Get suggested segmentations from each model
         segmentations = [model.segment_utterance(utterance, update_model) for model in self.models]
-        boundaries = np.array([self._segmented_utterance_to_boundaries(segmentation) for segmentation in segmentations])
+        boundaries = np.array([utilities.segmented_utterance_to_boundaries(segmentation) for segmentation in segmentations])
 
         # Use weighted majority voting at each boundary position to find best segmentation
         # We don't do majority voting for the last boundary (we assume all algorithms can
@@ -87,7 +88,7 @@ class MultiCueModel(Model):
         # Appending utterance boundary (not a word boundary)
         best_boundaries.append(False)
 
-        segmented = self._boundaries_to_segmented_utterance(utterance, best_boundaries)
+        segmented = utilities.boundaries_to_segmented_utterance(utterance, best_boundaries)
 
         self._log.debug("Segmented utterance '{}' as '{}".format(''.join(utterance.strip().split(' ')), segmented))
         self._log.debug("Current errors: {} out of {}".format(self.errors, self.num_boundaries))
@@ -131,57 +132,6 @@ class MultiCueModel(Model):
             self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
 
         return boundary
-
-    # TODO: Maybe move these two methods to a "utilities" file, as they don't depend on this class
-
-    def _segmented_utterance_to_boundaries(self, segmented_utterance):
-        """ Convert a segmented utterance to an array representing boundary positions.
-        
-        Parameters
-        ----------
-        segmented_utterance : list of str
-            The segmented utterance as a list of phonemes and spaces for word boundaries.
-        
-        Returns
-        -------
-        boundaries : list of bool
-            The boundary positions where True indicates a boundary after the associated phoneme.
-        
-        """
-
-        boundaries = []
-        for c in segmented_utterance:
-            if c == ' ':
-                boundaries[-1] = True
-            else:
-                boundaries.append(False)
-        
-        # Boundaries array should be the same length as the unsegmented utterance
-        assert(len(boundaries) == len(segmented_utterance) - segmented_utterance.count(' '))
-
-        return boundaries
-
-    def _boundaries_to_segmented_utterance(self, utterance, boundaries):
-        """ Combines an unsegmented utterance with a list of boundaries to produce
-        a segmented utterance
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-        boundaries : list of bool
-            Boundary positions where True indicates a boundary after the associated phoneme.
-
-        Returns
-        -------
-        segmented_utterance : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
-        """
-
-        return ''.join(
-            token + ' ' if boundary else token
-            for (token, boundary) in zip(utterance.strip().split(' '), boundaries))
-
 
 def segment(text, log=utils.null_logger()):
     """ Segment using a Multicue segmenter model """

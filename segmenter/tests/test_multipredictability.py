@@ -77,7 +77,7 @@ def test_segment_empty_text():
 
 def test_segment_update_model_false_does_not_update_model():
 
-    text = ["a b b c", "b a c b"]
+    text = ["a b b b c", "b a c b b"]
     model = MultiPredictabilityModel()
 
     list(model.segment(text, update_model=False))
@@ -89,23 +89,23 @@ def test_segment_update_model_false_does_not_update_model():
 
 def test_segment_update_model_true_updates_model():
 
-    text = ["a b b c", "b a c b"]
+    text = ["a b b b c", "b a c b b"]
     model = MultiPredictabilityModel()
 
     list(model.segment(text, update_model=True))
 
-    assert(model._phonestats.ntokens[1] == 8)
+    assert(model._phonestats.ntokens[1] == 14)
     assert((model.weights != np.ones(model.num_models)).any())
     assert((model.errors != np.zeros(model.num_models)).any())
-    assert(model.num_boundaries == 6)
+    assert(model.num_boundaries == 8)
 
 def test_segment_updates_phonestats_of_submodels():
 
-    text = ["a b b c", "b a c b"]
+    text = ["a b b b c", "b a c b b"]
     model = MultiPredictabilityModel()
 
     list(model.segment(text, update_model=True))
 
     for submodel in model.models:
-        assert(submodel._phonestats.ntokens[1] == 8)
-        assert(submodel._phonestats.ntokens[2] == 6)
+        assert(submodel._phonestats.ntokens[1] == 14)
+        assert(submodel._phonestats.ntokens[2] == 12)
