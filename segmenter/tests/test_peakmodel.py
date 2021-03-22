@@ -2,7 +2,7 @@
 
 import pytest
 
-from segmenter.peakmodel import PeakModel
+from segmenter.model import PeakModel
 
 # Create subclass with implementation of score() for testing
 class ExamplePeakModel(PeakModel):

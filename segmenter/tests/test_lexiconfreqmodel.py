@@ -1,6 +1,4 @@
-""" Run tests for the PhoneStats class """
-
-import pytest
+""" Run tests for the LexiconFrequencyModel class """
 
 from segmenter.lexicon import Lexicon
 from segmenter.lexicon import LexiconFrequencyModel

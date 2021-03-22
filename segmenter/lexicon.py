@@ -10,7 +10,7 @@ from wordseg import utils
 
 from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
-from segmenter.peakmodel import PeakModel
+from segmenter.model import PeakModel
 from segmenter import utils as utilities
 
 class Lexicon(SortedDict):
@@ -83,33 +83,6 @@ class LexiconFrequencyModel(PeakModel):
             "Increase" if self.increase else "Decrease",
             "Type Frequency" if self.use_presence else "Token Frequency")
 
-    def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance by placing word boundaries where there are many words
-        in the lexicon that match the phonemes to the left and right of the word boundary.
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-        update_model : bool
-            Updates the model's lexicon if it controls its own Lexicon object (if it wasn't provided
-            one when initialised, it controls its own Lexicon object, otherwise it does not).
-
-        Returns
-        -------
-        segmented : list of str
-            The segmented utterance as a list of phonemes and spaces for word boundaries.
-        """
-
-        segmented = super().segment_utterance(utterance, update_model)
-
-        # Update lexicon with newly found words
-        if update_model and self._updatelexicon:
-            for word in utilities.split_segmented_utterance(segmented):
-                self._lexicon.increase_count(''.join(word))
-        
-        return segmented
-
     def score(self, utterance, position):
         # Get possible words that end or start at the boundary
         candidate_words = ([''.join(utterance[j:position+1]) for j in range(0, position+1)] +
@@ -121,6 +94,12 @@ class LexiconFrequencyModel(PeakModel):
             word_count = sum([self._lexicon[word] for word in candidate_words])
 
         return word_count
+
+    def update(self, utterance, segmented):
+        """ Update lexicon with newly found words """
+        if self._updatelexicon:
+            for word in utilities.split_segmented_utterance(segmented):
+                    self._lexicon.increase_count(''.join(word))
 
 class LexiconBoundaryModel(PeakModel):
     """ A simple lexicon-based model for word segmentation.
@@ -182,41 +161,19 @@ class LexiconBoundaryModel(PeakModel):
             "Increase" if self.increase else "Decrease",
             "Right Context" if self.right else "Left Context")
 
-    def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance by placing word boundaries where the left or right context
-        at the boundary is often found at the edge of words in the lexicon.
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-        update_model : bool
-            Updates the model's lexicon if it controls its own Lexicon object (if it wasn't provided
-            one when initialised, it controls its own Lexicon object, otherwise it does not).
-
-        Returns
-        -------
-        segmented : list of str
-            The segmented utterance as a list of phonemes and spaces for word boundaries.
-        """
-
-        segmented = super().segment_utterance(utterance, update_model)
-
-        # Update lexicon and phonestats with newly found words
-        if update_model:
-            for word in utilities.split_segmented_utterance(segmented):
-                if self._updatelexicon:
-                    self._lexicon.increase_count(''.join(word))
-                if self._updatephonestats:
-                    self._phonestats.add_utterance(word)
-        
-        return segmented  
-
     def score(self, utterance, position):
         """ Get the conditional boundary probability using the phonestats of the lexicon """
 
         return self._phonestats.get_unpredictability(utterance=utterance, position=position,
                     measure="bp", reverse=self.right, ngram_length=self.ngram_length)
+
+    def update(self, utterance, segmented):
+        """ Updates lexicon and phonestats with newly found words """
+        for word in utilities.split_segmented_utterance(segmented):
+            if self._updatelexicon:
+                self._lexicon.increase_count(''.join(word))
+            if self._updatephonestats:
+                self._phonestats.add_utterance(word)
 
 class MultiLexiconModel(MultiCueModel):
     """ Train and segment using multiple lexicon-based cues .
@@ -273,36 +230,13 @@ class MultiLexiconModel(MultiCueModel):
         # Give all predictability models to multicue model
         super().__init__(models=models, log=log)
 
-    def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance using weighted majority voting.
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-
-        update_model : bool
-            When True (default), updates the model online during segmentation.
-
-        Returns
-        ------
-        segmented : str
-            The segmented utterance as a string of phonemes with spaces at word boundaries.
-        """
-
-        # Call MultiCue model for weighted majority voting
-        segmented = super().segment_utterance(utterance, update_model)
-
-        # Update lexicon and phonestats with newly found words
-        if update_model:
-            for word in utilities.split_segmented_utterance(segmented):
-                self._lexicon.increase_count(''.join(word))
-                self._phonestats.add_utterance(word)
-
-        return segmented
-
     def __str__(self):
         return "MultiLexiconModel({})".format(", ".join([str(model) for model in self.models]))
+
+    def update(self, utterance, segmented):
+        for word in utilities.split_segmented_utterance(segmented):
+            self._lexicon.increase_count(''.join(word))
+            self._phonestats.add_utterance(word)
 
 def segment(text, max_ngram=1, direction="forwards", smoothing=0, model_selection="both", log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of Predictability models. """

@@ -94,6 +94,9 @@ class MultiCueModel(Model):
         self._log.debug("Current errors: {} out of {}".format(self.errors, self.num_boundaries))
         self._log.debug("Current weights: {}".format(self.weights))
 
+        if update_model:
+            self.update(utterance.strip().split(' '), segmented)
+
         return segmented
 
     def _make_boundary_decision(self, boundary_votes, update_model):

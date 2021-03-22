@@ -13,7 +13,7 @@ from wordseg import utils
 from segmenter.model import Model
 from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
-from segmenter.peakmodel import PeakModel
+from segmenter.model import PeakModel
 
 PREDICTABILITY_MEASURES = ["mi", "tp", "ent", "sv", "bp"]
 
@@ -80,35 +80,14 @@ class PredictabilityModel(PeakModel):
             "Boundary Probability" if self.measure == "bp" else
             "Transitional Probability" if self.measure == "tp" else self.measure)
 
-    def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance using the peak strategy at increases or decreases of unpredictability.
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-        update_model : bool
-            Updates the model's phoneme counts if it controls its own PhoneStats object (if it wasn't provided
-            one when initialised, it controls its own PhoneStats object, otherwise it does not).
-
-        Returns
-        -------
-        segmented : list of str
-            The segmented utterance as a list of phonemes and spaces for word boundaries.
-        """
-
-        segmented = super().segment_utterance(utterance, update_model)
-
-        # Update ngram counts in phonestats object to refine unpredictability calculations
-        if self._updatephonestats and update_model:
-            self._phonestats.add_utterance(utterance.strip().split(' '))
-        
-        return segmented 
-
     def score(self, utterance, position):
         """ Score used for the peak strategy is some measure of (un)predictability. """
 
         return self._phonestats.get_unpredictability(utterance, position=position, measure=self.measure, reverse=self.reverse, ngram_length=self.ngram_length)
+
+    def update(self, utterance, segmented):
+        if self._updatephonestats:
+            self._phonestats.add_utterance(utterance)
 
 class MultiPredictabilityModel(MultiCueModel):
     """ Train and segment using measures of predictability with multiple models of varying lengths.
@@ -167,31 +146,8 @@ class MultiPredictabilityModel(MultiCueModel):
         # Give all predictability models to multicue model
         super().__init__(models=models, log=log)
 
-    def segment_utterance(self, utterance, update_model=True):
-        """ Segment a single utterance using an increase or decrease of unpredictability.
-
-        Parameters
-        ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
-
-        update_model : bool
-            When True (default), updates the model online during segmentation.
-
-        Returns
-        ------
-        segmented : list of str
-            The segmented utterance as a list of phonemes and spaces for word boundaries.
-        """
-
-        # Call MultiCue model for weighted majority voting
-        segmented = super().segment_utterance(utterance, update_model)
-
-        # Update phoneme ngram counts using the utterance
-        if update_model:
-            self._phonestats.add_utterance(utterance.strip().split(' '))
-
-        return segmented
+    def update(self, utterance, segmented):
+        self._phonestats.add_utterance(utterance)
 
     def __str__(self):
         return "MultiPredictability({})".format(", ".join([str(model) for model in self.models]))
