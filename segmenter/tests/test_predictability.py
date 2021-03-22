@@ -4,6 +4,7 @@ import pytest
 
 from segmenter.predictability import PredictabilityModel
 from segmenter.phonestats import PhoneStats
+from segmenter.phonesequence import PhoneSequence
 
 """
 ----------------------------------------------
@@ -87,8 +88,8 @@ def test_segment_updates_phonestats_when_not_provided():
 
     list(model.segment(text, update_model=True))
 
-    assert(model._phonestats.ntokens[1] == 8)
-    assert(model._phonestats.ntokens[2] == 6)
+    assert(model._phonestats.ntokens[1] == 12)
+    assert(model._phonestats.ntokens[2] == 10)
     assert(model._phonestats.ngrams['ab'] == 1)
 
 def test_segment_does_not_update_phonestats_when_provided():
@@ -102,5 +103,14 @@ def test_segment_does_not_update_phonestats_when_provided():
 
     assert(model._phonestats.ntokens[1] == 0)
     assert(model._phonestats.ngrams['a'] == 0)
+
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = PredictabilityModel()
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))
 
 # TODO: Write tests to ensure the model segments when unpredictability increases or decreases

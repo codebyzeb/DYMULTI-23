@@ -4,13 +4,8 @@ TODO: Add documentation
 
 """
 
-import collections
-import random
-import numpy as np
-
 from wordseg import utils
 
-from segmenter.model import Model
 from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
 from segmenter.model import PeakModel
@@ -80,14 +75,21 @@ class PredictabilityModel(PeakModel):
             "Boundary Probability" if self.measure == "bp" else
             "Transitional Probability" if self.measure == "tp" else self.measure)
 
+    # Overrides PeakModel.update()
     def score(self, utterance, position):
-        """ Score used for the peak strategy is some measure of (un)predictability. """
+        """
+        Returns a score for the candidate boundary after utterance.phones[i], calculated
+        using some measure of (un)predictability at the boundary.
+        """
+        return self._phonestats.get_unpredictability(
+            phones=utterance.phones, position=position, measure=self.measure,
+            reverse=self.reverse, ngram_length=self.ngram_length)
 
-        return self._phonestats.get_unpredictability(utterance, position=position, measure=self.measure, reverse=self.reverse, ngram_length=self.ngram_length)
-
-    def update(self, utterance, segmented):
+    # Overrides PeakModel.update()
+    def update(self, segmented):
+        """ Update phonestats with phones in utterance. """
         if self._updatephonestats:
-            self._phonestats.add_utterance(utterance)
+            self._phonestats.add_phones(segmented.phones)
 
 class MultiPredictabilityModel(MultiCueModel):
     """ Train and segment using measures of predictability with multiple models of varying lengths.
@@ -146,8 +148,10 @@ class MultiPredictabilityModel(MultiCueModel):
         # Give all predictability models to multicue model
         super().__init__(models=models, log=log)
 
-    def update(self, utterance, segmented):
-        self._phonestats.add_utterance(utterance)
+    # Overrides MultiCue.update()
+    def update(self, segmented):
+        """ Update phonestats with phones in utterance. """
+        self._phonestats.add_phones(segmented.phones)
 
     def __str__(self):
         return "MultiPredictability({})".format(", ".join([str(model) for model in self.models]))

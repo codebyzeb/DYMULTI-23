@@ -1,6 +1,7 @@
 """ Run tests for the PhoneStats class """
 
 import collections
+from segmenter.phonesequence import PhoneSequence
 import pytest
 import numpy as np
 
@@ -35,47 +36,45 @@ def test_initialise_correct_ngram_counters_and_ntoken_counts():
 
 def test_add_utterance_updates_ngram_counts():
 
-    phonestats = PhoneStats(3)
-    utterance = ['a', 'b', 'b', 'b', 'c']
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
     ngram_counter = collections.Counter({'a' : 1, 'b' : 3, 'c' : 1,
                                         'ab' : 1, 'bb' : 2, 'bc' : 1,
                                         'abb' : 1, 'bbb' : 1, 'bbc' : 1})
 
-    phonestats.add_utterance(utterance)
+    phonestats.add_phones(phones)
 
     assert(phonestats.ngrams == ngram_counter)
 
-def test_add_utterance_updates_ntokens_counts():
+def test_add_phones_updates_ntokens_counts():
 
-    phonestats = PhoneStats(3)
-    utterance = ['a', 'b', 'b', 'b', 'c']
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
 
-    phonestats.add_utterance(utterance)
+    phonestats.add_phones(phones)
 
-    # The utterance contains five unigrams, four bigrams, three trigrams
+    # The phones contains five unigrams, four bigrams, three trigrams
     assert(phonestats.ntokens[1] == 5)
     assert(phonestats.ntokens[2] == 4)
     assert(phonestats.ntokens[3] == 3)
 
 def test_get_types():
 
-    phonestats = PhoneStats(3)
-    utterance = ['a', 'b', 'b', 'b', 'c']
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
 
-    phonestats.add_utterance(utterance)
+    phonestats.add_phones(phones)
 
     assert(phonestats._types(1) == [['a'], ['b'], ['c']])
     assert(phonestats._types(2) == [['a', 'b'], ['b', 'b'], ['b', 'c']])
     assert(phonestats._types(3) == [['a', 'b', 'b'], ['b', 'b', 'b'], ['b', 'b', 'c']])
 
-def test_add_invalid_utterances():
+def test_add_invalid_phoness():
 
-    phonestats = PhoneStats(3)
-    utterance_A = []
-    utterance_B = None
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phones = []
 
-    phonestats.add_utterance(utterance_A)
-    phonestats.add_utterance(utterance_B)
+    phonestats.add_phones(phones)
 
     assert(phonestats.ntokens[1] == 0)
     assert(phonestats.ntokens[2] == 0)
@@ -89,7 +88,7 @@ def test_add_invalid_utterances():
 
 def test_probability_ngram_too_large_raises_value_error():
 
-    phonestats = PhoneStats(3)
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
     fourgram = ['a', 'b', 'b', 'c']
 
     with pytest.raises(ValueError, match=".*not stored in this PhoneStats object.*"):
@@ -97,7 +96,7 @@ def test_probability_ngram_too_large_raises_value_error():
 
 def test_probability_of_unseen_ngram():
     """ Test that the probabilty returns a valid value if the ngram hasn't been seen """
-    phonestats = PhoneStats(2, smoothing=False)
+    phonestats = PhoneStats(2, smoothing=False, use_boundary_tokens=False)
 
     probability_uni = phonestats.probability(['a'])
     probability_bi = phonestats.probability(['a', 'b'])
@@ -107,7 +106,7 @@ def test_probability_of_unseen_ngram():
 
 def test_probability_of_unseen_ngram_smoothed():
     """ Test that the probabilty returns a valid value if the ngram hasn't been seen """
-    phonestats = PhoneStats(2, smoothing=True)
+    phonestats = PhoneStats(2, smoothing=True, use_boundary_tokens=False)
 
     probability_uni = phonestats.probability(['a'])
     probability_bi = phonestats.probability(['a', 'b'])
@@ -118,9 +117,9 @@ def test_probability_of_unseen_ngram_smoothed():
 
 def test_probability_of_seen_unigram():
 
-    phonestats = PhoneStats(1, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(1, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     probability = phonestats.probability(['a'])
 
@@ -128,9 +127,9 @@ def test_probability_of_seen_unigram():
 
 def test_probability_of_seen_unigram_smoothed():
 
-    phonestats = PhoneStats(1, smoothing=True)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(1, smoothing=True, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     probability = phonestats.probability(['a'])
 
@@ -139,9 +138,9 @@ def test_probability_of_seen_unigram_smoothed():
 
 def test_probability_of_seen_bigram():
 
-    phonestats = PhoneStats(2, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(2, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     probability = phonestats.probability(['a', 'b'])
 
@@ -149,9 +148,9 @@ def test_probability_of_seen_bigram():
 
 def test_probability_of_seen_bigram_smoothed():
 
-    phonestats = PhoneStats(2, smoothing=True)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(2, smoothing=True, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     probability = phonestats.probability(['a', 'b'])
 
@@ -186,8 +185,8 @@ def test_conditional_probability_of_ngram_fast():
     """ Test unsmoothed conditional probability """
 
     phonestats = PhoneStats(3, smoothing=False)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
 
     probability_uni = phonestats._conditional_probability(['a'], ['b'])
     probability_bi = phonestats._conditional_probability(['a'], ['b', 'b'])
@@ -201,8 +200,8 @@ def test_conditional_probability_of_ngram_smoothed():
     """ Test unsmoothed conditional probability """
 
     phonestats = PhoneStats(3, smoothing=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
 
     probability_uni = phonestats._conditional_probability(['a'], ['b'])
     probability_bi = phonestats._conditional_probability(['a'], ['b', 'b'])
@@ -216,8 +215,8 @@ def test_reverse_conditional_probability_of_ngram_unsmoothed():
     """ Test unsmoothed reverse conditional probability """
 
     phonestats = PhoneStats(3, smoothing=False)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
 
     probability_uni = phonestats._conditional_probability_reverse(['a'], ['b'])
     probability_bi = phonestats._conditional_probability_reverse(['a', 'b'], ['b'])
@@ -231,8 +230,8 @@ def test_reverse_conditional_probability_of_ngram_smoothed():
     """ Test smoothed reverse conditional probability """
 
     phonestats = PhoneStats(3, smoothing=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b'])
-    phonestats.add_utterance(['b', 'b', 'c', 'a'])
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
 
     probability_uni = phonestats._conditional_probability_reverse(['a'], ['b'])
     probability_bi = phonestats._conditional_probability_reverse(['a', 'b'], ['b'])
@@ -250,8 +249,8 @@ def test_reverse_conditional_probability_of_ngram_smoothed():
 
 def test_boundary_entropy():
 
-    phonestats = PhoneStats(3, smoothing=False)
-    phonestats.add_utterance(['a', 'b', 'b', 'b', 'c'])
+    phonestats = PhoneStats(3, smoothing=False, use_boundary_tokens=False)
+    phonestats.add_phones(['a', 'b', 'b', 'b', 'c'])
 
     entropy = phonestats._boundary_entropy(['a', 'b'])
 
@@ -259,16 +258,16 @@ def test_boundary_entropy():
     # where P(x|ab) is the conditional probability of x FOLLOWING ab.
     # We have freq(ab) == 1, so P(a|ab) == 0, P(b|ab) == 1, P(c|ab) == 0
     # using the correct conditional probability calculation.
-    # This gives a boundary entropy of 0 (which makes sense, since from our utterance "ab" fully
+    # This gives a boundary entropy of 0 (which makes sense, since from our phones "ab" fully
     # predicts what comes next, so there is no uncertainty).
 
     assert(entropy == 0)
 
 def test_boundary_entropy_smoothed():
 
-    phonestats = PhoneStats(3, smoothing=True)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(3, smoothing=True, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     entropy = phonestats._boundary_entropy(['a', 'b'])
 
@@ -283,9 +282,9 @@ def test_boundary_entropy_smoothed():
 
 def test_reverse_boundary_entropy():
 
-    phonestats = PhoneStats(3, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(3, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     entropy = phonestats._boundary_entropy_reverse(['b', 'b'])
 
@@ -293,16 +292,16 @@ def test_reverse_boundary_entropy():
     # where P(x|bb) is the conditional probability of x PRECEDING ab.
     # We have freq(bb) == 2
     # so P(a|bb) == 1/2, P(b|bb) == 1/2, P(c|bb) == 0 using the conditional probability calculation.
-    # This gives a boundary entropy of 1 (which makes sense, since from our utterance, 'bb' can be
+    # This gives a boundary entropy of 1 (which makes sense, since from our phones, 'bb' can be
     # preceded by either 'a' or 'b'.
 
     assert(entropy == 1)
 
 def test_reverse_boundary_entropy_smoothed():
 
-    phonestats = PhoneStats(3, smoothing=True)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(3, smoothing=True, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     entropy = phonestats._boundary_entropy_reverse(['b', 'b'])
 
@@ -323,7 +322,7 @@ def test_reverse_boundary_entropy_smoothed():
 
 def test_successor_variety_ngram_too_large_raises_value_error():
 
-    phonestats = PhoneStats(3)
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
     threegram = ['a', 'b', 'b']
 
     with pytest.raises(ValueError, match=".*not stored in this PhoneStats object.*"):
@@ -331,9 +330,9 @@ def test_successor_variety_ngram_too_large_raises_value_error():
 
 def test_successor_variety():
 
-    phonestats = PhoneStats(3)
-    phonestats.add_utterance(['a', 'b', 'b', 'c'])
-    phonestats.add_utterance(['b', 'a', 'b'])
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phonestats.add_phones(['a', 'b', 'b', 'c'])
+    phonestats.add_phones(['b', 'a', 'b'])
 
     sv_a = phonestats._successor_variety(['a'])
     sv_b = phonestats._successor_variety(['b'])
@@ -347,9 +346,9 @@ def test_successor_variety():
 
 def test_reverse_successor_variety():
 
-    phonestats = PhoneStats(3)
-    phonestats.add_utterance(['a', 'b', 'b', 'c'])
-    phonestats.add_utterance(['b', 'a', 'b'])
+    phonestats = PhoneStats(3, use_boundary_tokens=False)
+    phonestats.add_phones(['a', 'b', 'b', 'c'])
+    phonestats.add_phones(['b', 'a', 'b'])
 
     sv_a = phonestats._successor_variety_reverse(['a'])
     sv_b = phonestats._successor_variety_reverse(['b'])
@@ -369,8 +368,8 @@ def test_reverse_successor_variety():
 
 def test_mutual_information():
 
-    phonestats = PhoneStats(3, smoothing=False)
-    phonestats.add_utterance(['a', 'b', 'b', 'b', 'c'])
+    phonestats = PhoneStats(3, smoothing=False, use_boundary_tokens=False)
+    phonestats.add_phones(['a', 'b', 'b', 'b', 'c'])
 
     mutual_information_uni = phonestats._mutual_information(['a'], ['b'])
     mutual_information_bi = phonestats._mutual_information(['a', 'b'], ['b'])
@@ -386,8 +385,8 @@ def test_mutual_information():
 
 def test_mutual_information_smoothed():
 
-    phonestats = PhoneStats(3, smoothing=True)
-    phonestats.add_utterance(['a', 'b', 'b', 'b', 'c'])
+    phonestats = PhoneStats(3, smoothing=True, use_boundary_tokens=False)
+    phonestats.add_phones(['a', 'b', 'b', 'b', 'c'])
 
     mutual_information_uni = phonestats._mutual_information(['a'], ['b'])
     mutual_information_bi = phonestats._mutual_information(['a', 'b'], ['b'])
@@ -414,17 +413,17 @@ def test_get_boundary_entropy_in_utterance_uses_correct_ngram():
     returns the entropy of the correct ngram. For the bigram case, this is "ab" at position 1.
     """
 
-    phonestats = PhoneStats(5, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(5, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     measure = "ent" # getting boundary entropy
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
         position = ngram_length - 1
-        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
-        ngram_entropy = phonestats._boundary_entropy(utterance[:ngram_length])
+        unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
+        ngram_entropy = phonestats._boundary_entropy(phones[:ngram_length])
 
         assert(unpredictability == ngram_entropy)
 
@@ -434,16 +433,16 @@ def test_get_boundary_entropy_at_bad_position_returns_none():
     returns None (since there is no ngram before that position).
     """
 
-    phonestats = PhoneStats(5, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(5, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     measure = "ent" # getting boundary entropy
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
         position = ngram_length - 2
-        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
+        unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
 
         assert(unpredictability == None)
 
@@ -453,17 +452,17 @@ def test_get_reverse_boundary_entropy_in_utterance_uses_correct_ngram():
     returns the entropy of the correct ngram. For the bigram case, this is "bc" at position 2.
     """
 
-    phonestats = PhoneStats(5, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(5, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     measure = "ent" # getting boundary entropy
     reverse = True # forward measure
 
     for ngram_length in range(1, 5):
         position = 5 - ngram_length - 1
-        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
-        ngram_entropy = phonestats._boundary_entropy_reverse(utterance[5-ngram_length:])
+        unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
+        ngram_entropy = phonestats._boundary_entropy_reverse(phones[5-ngram_length:])
 
         assert(unpredictability == ngram_entropy)
 
@@ -473,16 +472,16 @@ def test_get_reverse_boundary_entropy_at_late_position_returns_none():
     returns None (since there is no ngram after that position).
     """
 
-    phonestats = PhoneStats(5, smoothing=False,)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(5, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     measure = "ent" # getting boundary entropy
     reverse = True # reverse measure
 
     for ngram_length in range(1, 5):
         position = 5 - ngram_length
-        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
+        unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
 
         assert(unpredictability == None)
 
@@ -492,17 +491,17 @@ def test_get_transitional_probability_computes_conditional_entropy():
     returns the entropy of the correct ngram. For the bigram case, this is "ab" at position 1.
     """
 
-    phonestats = PhoneStats(5, smoothing=False)
-    utterance = ['a', 'b', 'b', 'b', 'c']
-    phonestats.add_utterance(utterance)
+    phonestats = PhoneStats(5, smoothing=False, use_boundary_tokens=False)
+    phones = ['a', 'b', 'b', 'b', 'c']
+    phonestats.add_phones(phones)
 
     measure = "tp" # getting boundary entropy
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
         position = ngram_length - 1
-        unpredictability = phonestats.get_unpredictability(utterance, position, measure, reverse, ngram_length)
-        ngram_cond_prob = phonestats._conditional_probability_reverse(utterance[:ngram_length], [utterance[ngram_length]])
+        unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
+        ngram_cond_prob = phonestats._conditional_probability_reverse(phones[:ngram_length], [phones[ngram_length]])
 
         assert(unpredictability == - ngram_cond_prob)
 

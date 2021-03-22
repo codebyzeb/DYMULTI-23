@@ -4,6 +4,7 @@ import pytest
 import numpy as np
 
 from segmenter.predictability import MultiPredictabilityModel
+from segmenter.phonesequence import PhoneSequence
 
 """
 ----------------------------------------------
@@ -109,3 +110,12 @@ def test_segment_updates_phonestats_of_submodels():
     for submodel in model.models:
         assert(submodel._phonestats.ntokens[1] == 14)
         assert(submodel._phonestats.ntokens[2] == 12)
+
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = MultiPredictabilityModel()
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))

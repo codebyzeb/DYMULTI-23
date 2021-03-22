@@ -7,9 +7,9 @@ Randomly add word boundaries after the input tokens with a given probability.
 import random
 
 from wordseg import utils
-from wordseg.separator import Separator
 
 from segmenter.model import Model
+from segmenter.phonesequence import PhoneSequence
 
 class BaselineModel(Model):
 
@@ -42,18 +42,27 @@ class BaselineModel(Model):
     def __str__(self):
         return "Baseline(P={})".format(self.probability)
 
+    # Overrides Model.segment_utterance()
     def segment_utterance(self, utterance, update_model=True):
         """ Segment an utterance randomly using a boundary probability.
-        
-        update_model is inherited from parent, but not used.
-        
+    
+        Parameters
+        ----------
+        utterance : PhoneSequence
+            A sequence of phones representing the utterance.
+        update_model : bool
+            Inherited by parent but not used for this simple model (no state to update).
+
+        Returns
+        -------
+        segmented : PhoneSequence
+            A sequence of phones with word boundaries.
         """
 
-        segmented = []
-        for token in utterance.strip().split(' '):
-            segmented.append(token)
+        segmented = PhoneSequence(utterance.phones)
+        for i in range(len(segmented)):
             if random.random() < self.probability:
-                segmented.append(' ')
+                segmented.boundaries[i] = True
 
         return segmented
 

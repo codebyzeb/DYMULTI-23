@@ -11,7 +11,6 @@ from wordseg import utils
 from segmenter.phonestats import PhoneStats
 from segmenter.multicue import MultiCueModel
 from segmenter.model import PeakModel
-from segmenter import utils as utilities
 
 class Lexicon(SortedDict):
     """ Store a noisy lexicon as a sorted dictionary. The lexicon consists
@@ -19,7 +18,7 @@ class Lexicon(SortedDict):
     """
 
     def increase_count(self, word, k=1):
-        """ Increase the frequency count of a given word by k. """
+        """ Increase the frequency count of a given word by k. `word` passed as a string. """
 
         if word is None or word == "":
             return
@@ -83,10 +82,15 @@ class LexiconFrequencyModel(PeakModel):
             "Increase" if self.increase else "Decrease",
             "Type Frequency" if self.use_presence else "Token Frequency")
 
+    # Overrides PeakModel.score()
     def score(self, utterance, position):
-        # Get possible words that end or start at the boundary
-        candidate_words = ([''.join(utterance[j:position+1]) for j in range(0, position+1)] +
-                            [''.join(utterance[position+1:j]) for j in range(position+2, len(utterance)+1)])
+        """
+        Returns a score for the candidate boundary after utterance.phones[i], calculated
+        according to the words in the lexicon found in the utterance that start or end at that boundary.
+        """
+
+        candidate_words = ([''.join(utterance.phones[j:position+1]) for j in range(0, position+1)] +
+                            [''.join(utterance.phones[position+1:j]) for j in range(position+2, len(utterance)+1)])
 
         if self.use_presence:
             word_count = sum([1 for word in candidate_words if self._lexicon[word] > 0])
@@ -95,11 +99,12 @@ class LexiconFrequencyModel(PeakModel):
 
         return word_count
 
-    def update(self, utterance, segmented):
-        """ Update lexicon with newly found words """
+    # Overrides PeakModel.update()
+    def update(self, segmented):
+        """ Updates lexicon with newly found words. """
         if self._updatelexicon:
-            for word in utilities.split_segmented_utterance(segmented):
-                    self._lexicon.increase_count(''.join(word))
+            for word in segmented.get_words():
+                self._lexicon.increase_count(''.join(word))
 
 class LexiconBoundaryModel(PeakModel):
     """ A simple lexicon-based model for word segmentation.
@@ -161,19 +166,24 @@ class LexiconBoundaryModel(PeakModel):
             "Increase" if self.increase else "Decrease",
             "Right Context" if self.right else "Left Context")
 
+    # Overrides PeakModel.score()
     def score(self, utterance, position):
-        """ Get the conditional boundary probability using the phonestats of the lexicon """
+        """
+        Returns a score for the candidate boundary after utterance.phones[i], calculated
+        using the conditional boundary probability using the phonestats of the lexicon.
+        """
+        return self._phonestats.get_unpredictability(
+            phones=utterance.phones, position=position, measure="bp",
+            reverse=self.right, ngram_length=self.ngram_length)
 
-        return self._phonestats.get_unpredictability(utterance=utterance, position=position,
-                    measure="bp", reverse=self.right, ngram_length=self.ngram_length)
-
-    def update(self, utterance, segmented):
-        """ Updates lexicon and phonestats with newly found words """
-        for word in utilities.split_segmented_utterance(segmented):
+    # Overrides PeakModel.update()
+    def update(self, segmented):
+        """ Updates lexicon and phonestats with newly found words. """
+        for word in segmented.get_words():
             if self._updatelexicon:
                 self._lexicon.increase_count(''.join(word))
             if self._updatephonestats:
-                self._phonestats.add_utterance(word)
+                self._phonestats.add_phones(word)
 
 class MultiLexiconModel(MultiCueModel):
     """ Train and segment using multiple lexicon-based cues .
@@ -233,10 +243,11 @@ class MultiLexiconModel(MultiCueModel):
     def __str__(self):
         return "MultiLexiconModel({})".format(", ".join([str(model) for model in self.models]))
 
-    def update(self, utterance, segmented):
-        for word in utilities.split_segmented_utterance(segmented):
+    # Overrides PeakModel.update()
+    def update(self, segmented):
+        for word in segmented.get_words():
             self._lexicon.increase_count(''.join(word))
-            self._phonestats.add_utterance(word)
+            self._phonestats.add_phones(word)
 
 def segment(text, max_ngram=1, direction="forwards", smoothing=0, model_selection="both", log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of Predictability models. """

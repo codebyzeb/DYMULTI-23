@@ -1,6 +1,6 @@
 """ Run tests for the Lexicon Boundary Model class """
 
-from segmenter import phonestats
+from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
 from segmenter.lexicon import Lexicon
 from segmenter.lexicon import LexiconBoundaryModel
@@ -123,6 +123,16 @@ def test_previously_seen_utterances_used_as_words():
             assert(list(model._lexicon) == ["car", "pool"])
             assert(model._phonestats.ntokens[1] == 22)
 
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = LexiconBoundaryModel(increase=True, right=False)
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))
+
+
 """
 ----------------------------------------------
             SCORE TESTS
@@ -131,10 +141,10 @@ def test_previously_seen_utterances_used_as_words():
 
 def test_score_right_context():
 
-    utterance = "c a r p o o l".split(' ')
+    utterance = PhoneSequence("c a r p o o l".split(' '))
     phonestats = PhoneStats(2, use_boundary_tokens=True)
-    phonestats.add_utterance(["c", "a", "r"])
-    phonestats.add_utterance(["p", "a", "r", "k"])
+    phonestats.add_phones(["c", "a", "r"])
+    phonestats.add_phones(["p", "a", "r", "k"])
     lexicon = Lexicon({"car" : 1, "park" : 1})
 
     model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=True)
@@ -151,10 +161,10 @@ def test_score_right_context():
 
 def test_score_left_context():
 
-    utterance = "c a r p o o l".split(' ')
+    utterance = PhoneSequence("c a r p o o l".split(' '))
     phonestats = PhoneStats(2, use_boundary_tokens=True)
-    phonestats.add_utterance(["c", "a", "r"])
-    phonestats.add_utterance(["p", "a", "r", "k"])
+    phonestats.add_phones(["c", "a", "r"])
+    phonestats.add_phones(["p", "a", "r", "k"])
     lexicon = Lexicon({"car" : 1, "park" : 1})
 
     model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=False)

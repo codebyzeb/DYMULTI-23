@@ -1,20 +1,26 @@
 """ Run tests for the PeakModel abstract class """
 
-import pytest
-
 from segmenter.model import PeakModel
+from segmenter.phonesequence import PhoneSequence
 
 # Create subclass with implementation of score() for testing
 class ExamplePeakModel(PeakModel):
 
+    def __init__(self, increase=True):
+        self.a = 1
+        super().__init__(increase)
+
     def score(self, utterance, position):
         if position < 0:
             return None
-        if utterance[position] == "a":
+        if utterance.phones[position] == "a":
             return 1
-        if utterance[position] == "b":
+        if utterance.phones[position] == "b":
             return 2
         return 0
+
+    def update(self, segmented):
+        self.a = 2
 
 """
 ----------------------------------------------
@@ -75,3 +81,38 @@ def test_segment_at_decrease():
     segmentation = list(model.segment(utt))[0]
 
     assert(segmentation == "abb ca c")
+
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = ExamplePeakModel()
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))
+
+"""
+----------------------------------------------
+            UPDATE TESTS
+----------------------------------------------
+"""
+
+def test_update_true_update_model():
+
+    utt = ["a b b c a c"]
+    model = ExamplePeakModel()
+
+    list(model.segment(utt, update_model=True))
+
+    assert(model.a == 2)
+
+def test_update_false_does_not_update_model():
+
+    utt = ["a b b c a c"]
+    model = ExamplePeakModel()
+
+    list(model.segment(utt, update_model=False))
+
+    assert(model.a == 1)
+
+    

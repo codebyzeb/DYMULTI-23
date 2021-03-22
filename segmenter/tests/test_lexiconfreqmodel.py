@@ -1,5 +1,6 @@
 """ Run tests for the LexiconFrequencyModel class """
 
+from segmenter.phonesequence import PhoneSequence
 from segmenter.lexicon import Lexicon
 from segmenter.lexicon import LexiconFrequencyModel
 
@@ -121,6 +122,16 @@ def test_previously_seen_utterances_used_as_words_increase_false():
     assert(model._lexicon["pool"] == 1)
     assert(list(model._lexicon) == ["car", "park", "pool"])
 
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = LexiconFrequencyModel(increase=False)
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))
+
+
 """
 ----------------------------------------------
             SCORE TESTS
@@ -129,7 +140,7 @@ def test_previously_seen_utterances_used_as_words_increase_false():
 
 def test_score():
 
-    utterance = "i t s a b a b y".split(" ")
+    utterance = PhoneSequence("i t s a b a b y".split(" "))
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
     model = LexiconFrequencyModel(lexicon=lexicon)
 

@@ -11,7 +11,11 @@ import numpy as np
 BOUNDARY_TOKEN = "BOUND"
 
 class PhoneStats:
-    """ Stores phoneme n-gram counts and provides methods for calculating information-theoretic measures
+    """ Stores phoneme n-gram counts and provides methods for calculating information-theoretic measures.
+    
+    Stores n-grams as strings, making the assumption than a sequence of characters representing phonemes
+    can be uniquely translated list of n phonemes. E.g. the phoneme alphabet can not contain
+    'a*', '*a' and '*' as then '*a*' can be decomposed as bi-phones ['*a', '*'] and ['*', 'a*'].
 
     Parameters
     ----------
@@ -19,6 +23,8 @@ class PhoneStats:
         The maximum length of ngrams to keep track of.
     smoothing : float, optional
         If non-zero, use add-k smoothing for probabilities.
+    use_boundary_tokens : bool, optional
+        If True, uses boundary tokens to help calculate probabilities at utterance boundaries.
 
     Raises
     ------
@@ -27,7 +33,7 @@ class PhoneStats:
 
     """
 
-    def __init__(self, max_ngram=1, smoothing=0, use_boundary_tokens=False):
+    def __init__(self, max_ngram=1, smoothing=0, use_boundary_tokens=True):
 
         if max_ngram < 1:
             raise(ValueError(str(max_ngram) + " is not a valid ngram length, cannot initialise PhoneStats object."))
@@ -40,26 +46,27 @@ class PhoneStats:
         self.smoothing = smoothing
         self.use_boundary_tokens = use_boundary_tokens
 
-    def add_utterance(self, utterance):
+    def add_phones(self, phones):
         """ Update ngram counts given an utterance.
         
         Parameters
         ----------
-        utterance : list of str
-            An utterance represented by a list of phonemes.
+        phones : list of str
+            A sequence of phones representing the utterance.
         
         """
 
-        if utterance is None or len(utterance) == 0:
+        if len(phones) == 0:
             return
 
         # If using boundary tokens, pad the utterance with bondary tokens
+        phones = list(phones)
         if self.use_boundary_tokens:
-            utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
+            phones = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + phones + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
 
         for n in range(1, self.max_ngram+1):
             # collapse ngrams to strings
-            ngrams = [utterance[i:i+n] for i in range(len(utterance)-(n-1))]
+            ngrams = [phones[i:i+n] for i in range(len(phones)-(n-1))]
             self.ngrams.update([''.join(ngram) for ngram in ngrams])
             self.ntokens[n] += len(ngrams)
             for ngram in ngrams:
@@ -70,7 +77,7 @@ class PhoneStats:
             raise(ValueError("Ngrams of length " + str(n) + " not stored in this PhoneStats object."))
     
     def _types(self, n=1):
-        """ Returns a list of ngram types of length n """
+        """ Returns a list of ngram types of length n. """
 
         self._check_n(n)
         return [list(ngram) for ngram in self.types[n]]
@@ -178,7 +185,7 @@ class PhoneStats:
             return 0
         return np.log2(self.probability(ngram_A + ngram_B) / prod)
 
-    def get_unpredictability(self, utterance, position, measure, reverse, ngram_length):
+    def get_unpredictability(self, phones, position, measure, reverse, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
 
         For example, for utterance "abcd", get_predictability(['a','b','c','d'], 1)
@@ -187,8 +194,8 @@ class PhoneStats:
 
         Parameters
         ----------
-        utterance : list of str
-            An utterance represented by a list of phonemes.
+        phones : list of str
+            A list of phones.
         position : int
             The index in the utterance of the phoneme after which we are considering a boundary.
         measure : str
@@ -217,24 +224,25 @@ class PhoneStats:
         boundary = position + 1 # makes ranged indexing neater
 
         # Pad utterance with boundary tokens and shift boundary index accordingly
+        phones = list(phones)
         if self.use_boundary_tokens:
-            utterance = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + utterance + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
+            phones = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + phones + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
             boundary += self.max_ngram - 1
 
         if reverse:
-            if not self.use_boundary_tokens and boundary + ngram_length > len(utterance):
+            if not self.use_boundary_tokens and boundary + ngram_length > len(phones):
                 return None
-            right_context = utterance[boundary:boundary+ngram_length]
-            left_context = [utterance[boundary-1]]
+            right_context = phones[boundary:boundary+ngram_length]
+            left_context = [phones[boundary-1]]
         else:
             if not self.use_boundary_tokens and boundary < ngram_length:
                 return None
             if measure in ["tp", "mi"]:
-                if not self.use_boundary_tokens and boundary >= len(utterance):
+                if not self.use_boundary_tokens and boundary >= len(phones):
                     return None
                 else:
-                    right_context = [utterance[boundary]]
-            left_context = utterance[boundary-ngram_length:boundary]
+                    right_context = [phones[boundary]]
+            left_context = phones[boundary-ngram_length:boundary]
 
         # Large boundary entropy = high unpredictability
         if measure == "ent" and reverse:
@@ -267,4 +275,3 @@ class PhoneStats:
 
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))
-

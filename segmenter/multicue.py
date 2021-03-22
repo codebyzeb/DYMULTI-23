@@ -11,7 +11,7 @@ from wordseg import utils
 
 from segmenter.model import Model
 from segmenter.baseline import BaselineModel
-from segmenter import utils as utilities
+from segmenter.phonesequence import PhoneSequence
 
 class MultiCueModel(Model):
     """ Train and segment using multiple models as individual cues
@@ -59,13 +59,14 @@ class MultiCueModel(Model):
     def __str__(self):
         return "MultiCue({})".format(", ".join([str(model) for model in self.models]))
 
+    # Overrides Model.segment_utterance()
     def segment_utterance(self, utterance, update_model=True):
         """ Segment a single utterance using weighted majority voting.
 
         Parameters
         ----------
-        utterance : str
-            An utterance consisting of space-separated phonemes.
+        utterance : PhoneSequence
+            A sequence of phones representing the utterance.
         update_model : bool
             When True (default), updates the model online during segmentation.
 
@@ -77,7 +78,7 @@ class MultiCueModel(Model):
 
         # Get suggested segmentations from each model
         segmentations = [model.segment_utterance(utterance, update_model) for model in self.models]
-        boundaries = np.array([utilities.segmented_utterance_to_boundaries(segmentation) for segmentation in segmentations])
+        boundaries = np.array([segmentation.boundaries for segmentation in segmentations])
 
         # Use weighted majority voting at each boundary position to find best segmentation
         # We don't do majority voting for the last boundary (we assume all algorithms can
@@ -88,14 +89,15 @@ class MultiCueModel(Model):
         # Appending utterance boundary (not a word boundary)
         best_boundaries.append(False)
 
-        segmented = utilities.boundaries_to_segmented_utterance(utterance, best_boundaries)
+        segmented = PhoneSequence(utterance.phones)
+        segmented.boundaries = best_boundaries
 
-        self._log.debug("Segmented utterance '{}' as '{}".format(''.join(utterance.strip().split(' ')), segmented))
+        self._log.debug("Segmented utterance '{}' as '{}".format(utterance, segmented))
         self._log.debug("Current errors: {} out of {}".format(self.errors, self.num_boundaries))
         self._log.debug("Current weights: {}".format(self.weights))
 
         if update_model:
-            self.update(utterance.strip().split(' '), segmented)
+            self.update(segmented)
 
         return segmented
 
@@ -135,6 +137,18 @@ class MultiCueModel(Model):
             self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
 
         return boundary
+
+    def update(self, segmented):
+        """ A method that is called at the end of segment_utterance. Child classes should
+        implement this if they wish to update any internal state based on the segmentation
+        voted for by the weighted majority vote.
+
+        Parameters
+        ----------
+        segmented : PhoneSequence
+            A sequence of phones representing the segmented utterance.
+        """
+        pass
 
 def segment(text, log=utils.null_logger()):
     """ Segment using a Multicue segmenter model """

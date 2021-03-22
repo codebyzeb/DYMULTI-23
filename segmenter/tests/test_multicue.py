@@ -1,5 +1,6 @@
 """ Run tests for the MultieCueModel class """
 
+from segmenter.phonesequence import PhoneSequence
 import pytest
 import numpy as np
 
@@ -68,10 +69,9 @@ def test_segment_update_model_true_updates_model():
     Ensure that when update_model is True, that the weights, errors and number of boundaries seen update.
     """
     model = MultiCueModel(models=[BaselineModel(1), BaselineModel(0)])
-    text = "a b c d"
-    update = True
+    utterance = PhoneSequence("a b c d".split(' '))
 
-    model.segment_utterance(text, update_model=update)
+    model.segment_utterance(utterance, update_model=True)
 
     assert((model.weights != np.ones(model.num_models)).any())
     assert((model.errors != np.zeros(model.num_models)).any())
@@ -83,11 +83,20 @@ def test_segment_update_model_false_does_not_update_model():
     """
 
     model = MultiCueModel(models=[BaselineModel(1), BaselineModel(0)])
-    text = "a b c d"
-    update = False
+    utterance = PhoneSequence("a b c d".split(' '))
 
-    model.segment_utterance(text, update_model=update)
+    model.segment_utterance(utterance, update_model=False)
 
     assert((model.weights == np.ones(model.num_models)).all())
     assert((model.errors == np.zeros(model.num_models)).all())
     assert(model.num_boundaries == 0)
+
+def test_segmented_utterance_has_correct_number_of_boundaries():
+    
+    model = MultiCueModel(models=[BaselineModel(1), BaselineModel(0)])
+    utterance = PhoneSequence("a b c d".split(' '))
+
+    segmented = model.segment_utterance(utterance, update_model=False)
+
+    assert(len(segmented.boundaries) == len(utterance.boundaries))
+

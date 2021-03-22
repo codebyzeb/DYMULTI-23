@@ -7,7 +7,7 @@ class SimpleModel(Model):
     """ To test segment() method from Model class, need to implement segment_utterance() in a subclass """
 
     def segment_utterance(self, utterance, update_model=True):
-        return ''.join(utterance.strip().split(' '))
+        return str(utterance)
 
 def test_model_segments_each_utterance():
 
@@ -23,4 +23,4 @@ def test_model_segments_each_utterance():
 def test_model_to_string():
     
     model = SimpleModel()
-    assert(str(model) == "Abstract")
+    assert(str(model) == "AbstractModel")
