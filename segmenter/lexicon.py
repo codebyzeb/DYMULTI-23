@@ -63,11 +63,12 @@ class LexiconFrequencyModel(PeakModel):
 
     """
 
-    def __init__(self, increase=True, use_presence=False, lexicon=None, log=utils.null_logger()):
+    def __init__(self, increase=True, right=True, use_presence=False, lexicon=None, log=utils.null_logger()):
         super().__init__(increase, log)
 
         # Initialise model parameters
         self.use_presence = use_presence
+        self.right = right
 
         # Initialise lexicon if not provided
         if lexicon is None:
@@ -78,9 +79,10 @@ class LexiconFrequencyModel(PeakModel):
             self._updatelexicon = False
 
     def __str__(self):
-        return "LexiconFreqModel({},{})".format(
+        return "LexiconFreqModel({},{},{})".format(
             "Increase" if self.increase else "Decrease",
-            "Type Frequency" if self.use_presence else "Token Frequency")
+            "Type Frequency" if self.use_presence else "Token Frequency",
+            "Right Context" if self.right else "Left Context")
 
     # Overrides PeakModel.score()
     def score(self, utterance, position):
@@ -89,8 +91,10 @@ class LexiconFrequencyModel(PeakModel):
         according to the words in the lexicon found in the utterance that start or end at that boundary.
         """
 
-        candidate_words = ([''.join(utterance.phones[j:position+1]) for j in range(0, position+1)] +
-                            [''.join(utterance.phones[position+1:j]) for j in range(position+2, len(utterance)+1)])
+        if self.right:
+            candidate_words = [''.join(utterance.phones[position+1:j]) for j in range(position+2, len(utterance)+1)]
+        else:
+            candidate_words = [''.join(utterance.phones[j:position+1]) for j in range(0, position+1)]
 
         if self.use_presence:
             word_count = sum([1 for word in candidate_words if self._lexicon[word] > 0])

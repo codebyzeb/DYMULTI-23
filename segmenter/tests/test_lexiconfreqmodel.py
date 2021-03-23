@@ -12,9 +12,10 @@ from segmenter.lexicon import LexiconFrequencyModel
 
 def test_init_without_lexicon_sets_correct_properties():
     
-    model = LexiconFrequencyModel(increase=False, use_presence=True, lexicon=None)
+    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=None)
 
     assert(model.increase == False)
+    assert(model.right == True)
     assert(model.use_presence == True)
     assert(model._updatelexicon == True)
     assert(model._lexicon == Lexicon())
@@ -23,9 +24,10 @@ def test_init_with_lexicon_sets_correct_properties():
     
     lexicon = Lexicon()
     lexicon.increase_count("word", 10)
-    model = LexiconFrequencyModel(increase=False, use_presence=True, lexicon=lexicon)
+    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=lexicon)
 
     assert(model.increase == False)
+    assert(model.right == True)
     assert(model.use_presence == True)
     assert(model._updatelexicon == False)
     assert(model._lexicon == lexicon)
@@ -38,11 +40,11 @@ def test_init_with_lexicon_sets_correct_properties():
 
 def test_to_string():
 
-    model = LexiconFrequencyModel(increase=False, use_presence=True, lexicon=None)
+    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=None)
 
     s = str(model)
 
-    assert(s == "LexiconFreqModel(Decrease,Type Frequency)")
+    assert(s == "LexiconFreqModel(Decrease,Type Frequency,Right Context)")
 
 """
 ----------------------------------------------
@@ -94,7 +96,7 @@ def test_previously_seen_utterances_used_as_words_increase_true():
     """ Previously seen utterances are saved as words and later used to segment """
 
     text = ["c a r", "p a r k", "c a r p o o l"]
-    model = LexiconFrequencyModel(increase=True)
+    model = LexiconFrequencyModel(increase=True, right=False)
 
     segmentations = list(model.segment(text, update_model=True))
 
@@ -110,7 +112,7 @@ def test_previously_seen_utterances_used_as_words_increase_false():
     """ Previously seen utterances are saved as words and later used to segment """
 
     text = ["c a r", "p a r k", "c a r p o o l"]
-    model = LexiconFrequencyModel(increase=False)
+    model = LexiconFrequencyModel(increase=False, right=False)
 
     segmentations = list(model.segment(text, update_model=True))
 
@@ -138,18 +140,34 @@ def test_segmented_utterance_has_correct_number_of_boundaries():
 ----------------------------------------------
 """
 
-def test_score():
+def test_score_right_true():
 
     utterance = PhoneSequence("i t s a b a b y".split(" "))
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
-    model = LexiconFrequencyModel(lexicon=lexicon)
+    model = LexiconFrequencyModel(lexicon=lexicon, right=True)
 
     assert(model.score(utterance, -1) == 3) # | i, it, its
+    assert(model.score(utterance, 0) == 0)
+    assert(model.score(utterance, 1) == 0)
+    assert(model.score(utterance, 2) == 1) # | a
+    assert(model.score(utterance, 3) == 1) # | baby
+    assert(model.score(utterance, 4) == 1) # | a
+    assert(model.score(utterance, 5) == 1) # | by
+    assert(model.score(utterance, 6) == 0)
+    assert(model.score(utterance, 7) == 0) 
+
+def test_score_right_false():
+
+    utterance = PhoneSequence("i t s a b a b y".split(" "))
+    lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
+    model = LexiconFrequencyModel(lexicon=lexicon, right=False)
+
+    assert(model.score(utterance, -1) == 0)
     assert(model.score(utterance, 0) == 1) # i |
     assert(model.score(utterance, 1) == 1) # it |
-    assert(model.score(utterance, 2) == 2) # its | a
-    assert(model.score(utterance, 3) == 2) # a | baby
-    assert(model.score(utterance, 4) == 1) # | a
-    assert(model.score(utterance, 5) == 2) # a | by
+    assert(model.score(utterance, 2) == 1) # its |
+    assert(model.score(utterance, 3) == 1) # a |
+    assert(model.score(utterance, 4) == 0)
+    assert(model.score(utterance, 5) == 1) # a |
     assert(model.score(utterance, 6) == 0)
     assert(model.score(utterance, 7) == 2) # baby, by |
