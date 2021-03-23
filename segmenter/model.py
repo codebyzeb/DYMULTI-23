@@ -104,7 +104,7 @@ class PeakModel(Model):
         last_score = None
         
         # The boundary 'after' phoneme -1 is the boundary before phoneme 0, the utterance boundary
-        for i in range(0, len(utterance)):
+        for i in range(-1, len(utterance)):
             score = self.score(utterance, i)
 
             # Either place word boundaries when the score increases at candidate boundary

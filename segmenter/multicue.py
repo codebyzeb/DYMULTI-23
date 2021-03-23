@@ -174,7 +174,7 @@ def prepare_predictability_models(args, phonestats, log):
     # For each measure and for each direction and for each ngram length up to max_ngram,
     # create a pair of peak-based predictability models (an increase model and a decrease model). 
     models = []
-    for measure in args.measure.split(','):
+    for measure in args.predictability_models.split(','):
         log.info('Setting up Predictability Cues for measure: {}'.format(measure))
         for n in range(1, args.max_ngram+1):
             if args.direction != "right":
@@ -191,13 +191,15 @@ def prepare_lexicon_models(args, phonestats, lexicon, log):
     # Also create a pair of frequency lexicon models for each direction. 
     models = []
     if args.lexicon_models != "boundary":
+        log.info('Setting up Lexicon Frequency Cues')
         if args.direction != "right":
-            models.append(LexiconFrequencyModel(increase=True, use_presence=False, right=False, lexicon=lexicon, log=log))
-            models.append(LexiconFrequencyModel(increase=False, use_presence=False, right=False, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=True, use_presence=True, right=False, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=False, use_presence=True, right=False, lexicon=lexicon, log=log))
         if args.direction != "left":
-            models.append(LexiconFrequencyModel(increase=True, use_presence=False, right=True, lexicon=lexicon, log=log))
-            models.append(LexiconFrequencyModel(increase=False, use_presence=False, right=True, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=True, use_presence=True, right=True, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=False, use_presence=True, right=True, lexicon=lexicon, log=log))
     if args.lexicon_models != "frequency":
+        log.info('Setting up Lexicon Boundary Cues')
         for n in range(1, args.max_ngram+1):
             if args.direction != "right":
                 models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
@@ -221,7 +223,7 @@ def segment(text, args, log=utils.null_logger()):
     if args.predictability_models != "none":
         log.info('Setting up Predictability Models')
         models.extend(prepare_predictability_models(args, corpus_phonestats, log))
-    if args.lexicon_models != "lexicon_models":
+    if args.lexicon_models != "none":
         log.info('Setting up Lexicon Models')
         models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
     model = MultiCueModel(models=models, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
@@ -241,7 +243,7 @@ def _add_arguments(parser):
         help='Select whether to use "left" context, "right" or "both" when creating models.'
         ' Default is %(default)s')
     multi_options.add_argument(
-        '-S', '--smooth', type=float, default=0.0, metavar='<float>',
+        '-S', '--smoothing', type=float, default=0.0, metavar='<float>',
         help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
     predictability_options = parser.add_argument_group('Predictability Model Options')
     predictability_options.add_argument(
@@ -251,7 +253,7 @@ def _add_arguments(parser):
         'Can also select multiple measures using comma-separation. Default is %(default)s')
     lexicon_options = parser.add_argument_group('Lexicon Model Options')
     lexicon_options.add_argument(
-        'L', '--lexicon_models', type=str, default="none", metavar='<float>',
+        '-L', '--lexicon_models', type=str, default="none", metavar='<float>',
         help='Select which lexicon models to include. Select the "frequency" model, the '
         '"boundary" model, "both" or "none". Default is %(default)s')
 

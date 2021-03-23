@@ -180,10 +180,11 @@ class PhoneStats:
         """ Calculates the mutual information of ngram_A and ngram_B, assuming that B follows A """
 
         prod = (self.probability(ngram_A) * self.probability(ngram_B))
+        prob = self.probability(ngram_A + ngram_B)
         # TODO: Check if this assumption is ok
-        if prod == 0:
+        if prod == 0 or prob == 0:
             return 0
-        return np.log2(self.probability(ngram_A + ngram_B) / prod)
+        return np.log2(prob / prod)
 
     def get_unpredictability(self, phones, position, measure, right, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
