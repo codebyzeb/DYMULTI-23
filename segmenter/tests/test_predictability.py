@@ -14,12 +14,12 @@ from segmenter.phonesequence import PhoneSequence
 
 def test_init_without_phonestats_sets_correct_properties():
 
-    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", reverse=True, phonestats=None)
+    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
 
     assert(model.ngram_length == 2)
     assert(model.increase == False)
     assert(model.measure == "ent")
-    assert(model.reverse == True)
+    assert(model.right == True)
     assert(model._updatephonestats)
     assert(not model._phonestats is None)
     assert(model._phonestats.max_ngram == 3)
@@ -51,11 +51,11 @@ def test_init_with_invalid_measure_raises_value_error():
 
 def test_to_string():
 
-    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", reverse=True, phonestats=None)
+    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
 
     s = str(model)
 
-    assert(s == "Predictability(N: 2,Decrease of Reverse Boundary Entropy)")
+    assert(s == "Predictability(N: 2,Decrease of Right Context Boundary Entropy)")
 
 """
 ----------------------------------------------

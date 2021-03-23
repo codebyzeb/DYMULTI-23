@@ -10,38 +10,51 @@ import numpy as np
 from wordseg import utils
 
 from segmenter.model import Model
-from segmenter.baseline import BaselineModel
+from segmenter.lexicon import Lexicon, LexiconBoundaryModel, LexiconFrequencyModel
 from segmenter.phonesequence import PhoneSequence
+from segmenter.phonestats import PhoneStats
+from segmenter.predictability import PredictabilityModel
 
 class MultiCueModel(Model):
     """ Train and segment using multiple models as individual cues
 
     Parameters
     ----------
-    models : list of Model
+    models : list of Model, optional
         A list of Model objects used for segmentation, whose suggestions are combined 
         using weighted majority voting to produce a final segmentation.
+    corpus_phonestats : PhoneStats, optional
+        Phoneme statistics updated with each utterance from the corpus.
+    lexicon_phonestats : PhoneStats, optional
+        Phoneme statistics updated with each word in the segmented utterance
+        (each segmented word is treated as an utterance).
+    lexicon : Lexicon, optional
+        Lexicon updated with each word in the segmented utterance.
     log : logging.Logger, optional
         Where to send log messages
 
     Raises
     ------
     ValueError
-        If any model in `models` is not an instance of Model
+        If any model in `models` is not an instance of Model or if `models` is empty.
 
     """
 
-    def __init__(self, models=[], log=utils.null_logger()):
+    def __init__(self, models=[], corpus_phonestats=None, lexicon_phonestats=None, lexicon=None, log=utils.null_logger()):
         super().__init__(log)
 
-        # Default implementation - use a baseline model if no others provided
+        # Check models
         if len(models) == 0:
-            models = [BaselineModel(probability=0.5, log=log)]
-
+            raise ValueError("Cannot initialise MultiCueModel without any sub models.")
         for model in models:
             if not isinstance(model, Model):
                 raise ValueError("Object provided to MultiCueModel is not an instance of Model:"
                     + str(model))
+
+        # Initialise phonestats and lexicon
+        self.corpus_phonestats = corpus_phonestats
+        self.lexicon_phonestats = lexicon_phonestats
+        self.lexicon = lexicon
 
         # Initialise models
         self.models = models
@@ -139,34 +152,103 @@ class MultiCueModel(Model):
         return boundary
 
     def update(self, segmented):
-        """ A method that is called at the end of segment_utterance. Child classes should
-        implement this if they wish to update any internal state based on the segmentation
-        voted for by the weighted majority vote.
+        """ A method that is called at the end of segment_utterance. Updates 
+        self.corpus_phonestats, self.lexicon_phonestats and self.lexicon using
+        the segmented utterance.
 
         Parameters
         ----------
         segmented : PhoneSequence
             A sequence of phones representing the segmented utterance.
         """
-        pass
+        if not self.corpus_phonestats is None:
+            self.corpus_phonestats.add_phones(segmented.phones)
+        if not self.lexicon_phonestats is None:
+            for word in segmented.get_words():
+                self.lexicon_phonestats.add_phones(word)
+        if not self.lexicon is None:
+            for word in segmented.get_words():
+                self.lexicon.increase_count(''.join(word))   
 
-def segment(text, log=utils.null_logger()):
-    """ Segment using a Multicue segmenter model """
+def prepare_predictability_models(args, phonestats, log):
+
+    # For each measure and for each direction and for each ngram length up to max_ngram,
+    # create a peak-based predictability model (an increase model and a decrease model). 
+    models = []
+    for measure in args.measure.split(','):
+        log.info('Setting up Predictability Cues for measure: {}'.format(measure))
+        for n in range(1, args.max_ngram+1):
+            if args.direction != "right":
+                models.append(PredictabilityModel(ngram_length=n, increase=True, measure=measure, right=False, phonestats=phonestats, log=log))
+                models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=False, phonestats=phonestats, log=log))
+            if args.direction != "left":
+                models.append(PredictabilityModel(ngram_length=n, increase=True, measure=measure, right=True, phonestats=phonestats, log=log))
+                models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=True, phonestats=phonestats, log=log))
+    return models
+
+def prepare_lexicon_models(args, phonestats, lexicon, log):
+    # Create models
+    models = []
+    if args.lexicon_models != "boundary":
+        models.append(LexiconFrequencyModel(increase=True, use_presence=False, lexicon=lexicon, log=log))
+        models.append(LexiconFrequencyModel(increase=False, use_presence=False, lexicon=lexicon, log=log))
+    if args.lexicon_models != "frequency":
+        for n in range(1, args.max_ngram+1):
+            if args.direction != "right":
+                models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
+                models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
+            if args.direction != "left":
+                models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
+                models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
+    return models
+
+def segment(text, args, log=utils.null_logger()):
+    """ Segment using a Multi Cue segmenter model composed of a collection of models using a variety of cues. """
 
     log.info('Using a Multiple Cue model to segment text.')
+    log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
 
-    # TODO: Add better parameters here, instead of this default behaviour
-    model = MultiCueModel(models=[BaselineModel(1), BaselineModel(0)], log=log)
+    # Create multi-cue model
+    corpus_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    lexicon = Lexicon()
+    lexicon_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    models = []
+    if args.predictability_models != "none":
+        log.info('Setting up Predictability Models')
+        models.extend(prepare_predictability_models(args, corpus_phonestats, log))
+    if args.lexicon_models != "lexicon_models":
+        log.info('Setting up Lexicon Models')
+        models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
+    model = MultiCueModel(models=models, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
+    
     return model.segment(text)
 
 def _add_arguments(parser):
     """ Add algorithm specific options to the parser """
 
-    # TODO: Add arguments here for submodel selection
-    parser.add_argument(
-        '-r', '--random', type=int, default=None, metavar='<int>',
-        help='the seed for initializing the random number generator, '
-        'default is based on system time')
+    multi_options = parser.add_argument_group('Multicue Model Options')
+    multi_options.add_argument(
+        '-n', '--max_ngram', type=int, default=1, metavar='<int>',
+        help='the maximum length of ngram to use to calculate predictability, '
+        'default is %(default)s')
+    multi_options.add_argument(
+        '-d', '--direction', type=str, default="left", metavar='<str>',
+        help='Select whether to use "left" context, "right" or "both" when creating models.'
+        ' Default is %(default)s')
+    multi_options.add_argument(
+        '-S', '--smooth', type=float, default=0.0, metavar='<float>',
+        help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
+    predictability_options = parser.add_argument_group('Predictability Model Options')
+    predictability_options.add_argument(
+        '-P', '--predictability_models', type=str, default="none", metavar='<str>',
+        help='The measure of predictability to use. Select "ent" for Boundary Entropy, "tp" for Transitional Probability, '
+        '"bp" for Boundary Probability, "mi" for Mutual Information and "sv" for Successor Variety or "none" for no predictability model. '
+        'Can also select multiple measures using comma-separation. Default is %(default)s')
+    lexicon_options = parser.add_argument_group('Lexicon Model Options')
+    lexicon_options.add_argument(
+        'L', '--lexicon_models', type=str, default="none", metavar='<float>',
+        help='Select which lexicon models to include. Select the "frequency" model, the '
+        '"boundary" model, "both" or "none". Default is %(default)s')
 
 def main():
     """ Entry point """
@@ -174,13 +256,8 @@ def main():
         name='segmenter-multicue',
         description=__doc__,
         add_arguments=_add_arguments)
-    
-    # setup seed for random number generator
-    if args.random:
-        log.info('setup random seed to %s', args.random)
-    random.seed(args.random)
 
-    segmented = segment(streamin, log=log)
+    segmented = segment(streamin, args, log=log)
     streamout.write('\n'.join(segmented) + '\n')
 
 if __name__ == '__main__':

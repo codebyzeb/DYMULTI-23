@@ -185,7 +185,7 @@ class PhoneStats:
             return 0
         return np.log2(self.probability(ngram_A + ngram_B) / prod)
 
-    def get_unpredictability(self, phones, position, measure, reverse, ngram_length):
+    def get_unpredictability(self, phones, position, measure, right, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
 
         For example, for utterance "abcd", get_predictability(['a','b','c','d'], 1)
@@ -200,8 +200,8 @@ class PhoneStats:
             The index in the utterance of the phoneme after which we are considering a boundary.
         measure : str
             The name of the measure to use to calculate predictability.
-        reverse : bool
-            Whether to use the reverse unpredictabilty measure.
+        right : bool
+            Whether to use the right context for the calculation. If False, use the left context.
         ngram_length : int
             The length of ngram to use in the calculation.
 
@@ -229,7 +229,7 @@ class PhoneStats:
             phones = [BOUNDARY_TOKEN] * (self.max_ngram - 1) + phones + [BOUNDARY_TOKEN] * (self.max_ngram - 1)
             boundary += self.max_ngram - 1
 
-        if reverse:
+        if right:
             if not self.use_boundary_tokens and boundary + ngram_length > len(phones):
                 return None
             right_context = phones[boundary:boundary+ngram_length]
@@ -245,32 +245,32 @@ class PhoneStats:
             left_context = phones[boundary-ngram_length:boundary]
 
         # Large boundary entropy = high unpredictability
-        if measure == "ent" and reverse:
+        if measure == "ent" and right:
             return self._boundary_entropy_reverse(right_context)
-        elif measure == "ent" and not reverse:
+        elif measure == "ent" and not right:
             return self._boundary_entropy(left_context)
 
         # Large transitional probability = low unpredictability (so return negative)
-        elif measure == "tp" and reverse:
+        elif measure == "tp" and right:
             return - self._conditional_probability(left_context, right_context)
-        elif measure == "tp" and not reverse:
+        elif measure == "tp" and not right:
             return - self._conditional_probability_reverse(left_context, right_context)
 
         # Large successor variety indicates the end of a word (used like high unpredictability)
-        elif measure == "sv" and reverse:
+        elif measure == "sv" and right:
             return self._successor_variety_reverse(right_context)
-        elif measure == "sv" and not reverse:
+        elif measure == "sv" and not right:
             return self._successor_variety(left_context)
 
         # Large mutual information = low unpredictability (so return negative)
-        elif measure == "mi" and reverse:
+        elif measure == "mi" and right:
             return - self._mutual_information(left_context, right_context)
-        elif measure == "mi" and not reverse:
+        elif measure == "mi" and not right:
             return - self._mutual_information(left_context, right_context)
 
-        elif measure == "bp" and reverse:
+        elif measure == "bp" and right:
             return self._conditional_probability([BOUNDARY_TOKEN], right_context)
-        elif measure =="bp" and not reverse:
+        elif measure =="bp" and not right:
             return self._conditional_probability_reverse(left_context, [BOUNDARY_TOKEN])
 
         else:

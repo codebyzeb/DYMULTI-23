@@ -9,7 +9,6 @@ from sortedcontainers import SortedDict
 from wordseg import utils
 
 from segmenter.phonestats import PhoneStats
-from segmenter.multicue import MultiCueModel
 from segmenter.model import PeakModel
 
 class Lexicon(SortedDict):
@@ -178,7 +177,7 @@ class LexiconBoundaryModel(PeakModel):
         """
         return self._phonestats.get_unpredictability(
             phones=utterance.phones, position=position, measure="bp",
-            reverse=self.right, ngram_length=self.ngram_length)
+            right=self.right, ngram_length=self.ngram_length)
 
     # Overrides PeakModel.update()
     def update(self, segmented):
@@ -188,112 +187,3 @@ class LexiconBoundaryModel(PeakModel):
                 self._lexicon.increase_count(''.join(word))
             if self._updatephonestats:
                 self._phonestats.add_phones(word)
-
-class MultiLexiconModel(MultiCueModel):
-    """ Train and segment using multiple lexicon-based cues .
-
-    Uses a Multiple Cue model for majority voting of each weak lexicon-based model.
-    Creates a LexiconFrequencyModel for each direction and a LexiconBoundaryModel
-    for each direction and each ngram length up to the maximum.
-
-    Parameters
-    ----------
-    ngram_length : int, optional
-        The maximum length of n-grams used to calculate predictability. A model is created for
-        each ngram length from 1 to this value.
-    direction : str, optional
-        When "Forwards", only the forwards cues are used.
-        When "Reverse", only the backwards cues are used. Otherwise,
-        uses both measures.
-    smoothing : float, optional
-        If non-zero, use add-k smoothing for probabilities.
-    log : logging.Logger, optional
-        Where to send log messages
-
-    Raises
-    ------
-    ValueError
-        If `ngram` is less than 1.
-
-    """
-
-    def __init__(self, max_ngram=1, direction="forwards", smoothing=0, model_selection="both", log=utils.null_logger()):
-        
-        # Initialise model parameters
-        if max_ngram < 1:
-            raise ValueError("Cannot initialise a Multi Predictability Model with non-positive n-gram length.")
-
-        self.max_ngram = max_ngram
-        self._phonestats = PhoneStats(max_ngram+1, use_boundary_tokens=True, smoothing=smoothing)
-        self._lexicon = Lexicon()
-
-        # Create models
-        models = []
-        if model_selection != "boundary":
-            models.append(LexiconFrequencyModel(increase=True, use_presence=False, lexicon=self._lexicon, log=log))
-            models.append(LexiconFrequencyModel(increase=False, use_presence=False, lexicon=self._lexicon, log=log))
-        if model_selection != "frequency":
-            for n in range(1, max_ngram+1):
-                if direction != "reverse":
-                    models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=False, lexicon=self._lexicon, phonestats=self._phonestats, log=log))
-                    models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=False, lexicon=self._lexicon, phonestats=self._phonestats, log=log))
-                if direction != "forwards":
-                    models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=True, lexicon=self._lexicon, phonestats=self._phonestats, log=log))
-                    models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=True, lexicon=self._lexicon, phonestats=self._phonestats, log=log))
-
-        # Give all predictability models to multicue model
-        super().__init__(models=models, log=log)
-
-    def __str__(self):
-        return "MultiLexiconModel({})".format(", ".join([str(model) for model in self.models]))
-
-    # Overrides PeakModel.update()
-    def update(self, segmented):
-        for word in segmented.get_words():
-            self._lexicon.increase_count(''.join(word))
-            self._phonestats.add_phones(word)
-
-def segment(text, max_ngram=1, direction="forwards", smoothing=0, model_selection="both", log=utils.null_logger()):
-    """ Segment using a Multi Cue segmenter model composed of a collection of Predictability models. """
-
-    log.info('Using a Multi Lexicon model to segment text.')
-
-    # TODO: Check the input is valid
-    log.info('{} smoothing for probability estimates'.format("Using add-"+str(smoothing) if smoothing else "Not using"))
-
-    model = MultiLexiconModel(max_ngram=max_ngram, direction=direction, smoothing=smoothing, model_selection=model_selection, log=log)
-    
-    return model.segment(text)
-
-def _add_arguments(parser):
-    """ Add algorithm specific options to the parser """
-
-    group = parser.add_argument_group('Multi Lexicon Model Options')
-    group.add_argument(
-        '-n', '--max_ngram', type=int, default=1, metavar='<int>',
-        help='the maximum length of ngram to use to calculate predictability, '
-        'default is %(default)s')
-    group.add_argument(
-        '-d', '--direction', type=str, default="forwards", metavar='<str>',
-        help='Select whether to use "forwards" context, "backwards" context or "both". '
-        'default is %(default)s')
-    group.add_argument(
-        '-S', '--smooth', type=float, default=0.0, metavar='<float>',
-        help='What value of k to use for add-k smoothing for probability calculations.')
-    group.add_argument(
-        '-M', '--models', type=str, default="both", metavar='<float>',
-        help='Whether to use the "frequency" model, the "boundary" model or "both".')
-
-def main():
-    """ Entry point """
-    streamin, streamout, _, log, args = utils.prepare_main(
-        name='segmenter-multilexicon',
-        description=__doc__,
-        add_arguments=_add_arguments)
-
-    segmented = segment(streamin, max_ngram=args.max_ngram, smoothing=args.smooth,
-                        direction=args.direction, model_selection=args.models, log=log)
-    streamout.write('\n'.join(segmented) + '\n')
-
-if __name__ == '__main__':
-    main()
