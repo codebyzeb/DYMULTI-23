@@ -171,9 +171,8 @@ class MultiCueModel(Model):
                 self.lexicon.increase_count(''.join(word))   
 
 def prepare_predictability_models(args, phonestats, log):
-
     # For each measure and for each direction and for each ngram length up to max_ngram,
-    # create a peak-based predictability model (an increase model and a decrease model). 
+    # create a pair of peak-based predictability models (an increase model and a decrease model). 
     models = []
     for measure in args.measure.split(','):
         log.info('Setting up Predictability Cues for measure: {}'.format(measure))
@@ -187,11 +186,17 @@ def prepare_predictability_models(args, phonestats, log):
     return models
 
 def prepare_lexicon_models(args, phonestats, lexicon, log):
-    # Create models
+    # For each direction and for each ngram length up to max_ngram, create
+    # a pair of lexicon models (an increase and a decrease model). 
+    # Also create a pair of frequency lexicon models for each direction. 
     models = []
     if args.lexicon_models != "boundary":
-        models.append(LexiconFrequencyModel(increase=True, use_presence=False, lexicon=lexicon, log=log))
-        models.append(LexiconFrequencyModel(increase=False, use_presence=False, lexicon=lexicon, log=log))
+        if args.direction != "right":
+            models.append(LexiconFrequencyModel(increase=True, use_presence=False, right=False, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=False, use_presence=False, right=False, lexicon=lexicon, log=log))
+        if args.direction != "left":
+            models.append(LexiconFrequencyModel(increase=True, use_presence=False, right=True, lexicon=lexicon, log=log))
+            models.append(LexiconFrequencyModel(increase=False, use_presence=False, right=True, lexicon=lexicon, log=log))
     if args.lexicon_models != "frequency":
         for n in range(1, args.max_ngram+1):
             if args.direction != "right":
