@@ -4,7 +4,6 @@ TODO: Add documentation
 
 """
 
-import random
 import numpy as np
 
 from wordseg import utils
@@ -148,6 +147,8 @@ class MultiCueModel(Model):
             self.num_boundaries += 1
             self.errors += votes_for_no_boundary if boundary else votes_for_boundary
             self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
+            #self.weights[self.weights < 0] = self.weights[self.weights < 0] * -self.weights[self.weights < 0]
+            #self.weights[self.weights >= 0] = self.weights[self.weights >= 0] * self.weights[self.weights >= 0]
 
         return boundary
 
@@ -228,7 +229,13 @@ def segment(text, args, log=utils.null_logger()):
         models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
     model = MultiCueModel(models=models, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
     
-    return model.segment(text)
+    segmented = list(model.segment(text))
+
+    log.info('Final weights:')
+    for m, weight in zip(model.models, model.weights):
+        log.info('\t{}\t{}'.format(m, '%.4g' % weight))
+
+    return segmented
 
 def _add_arguments(parser):
     """ Add algorithm specific options to the parser """

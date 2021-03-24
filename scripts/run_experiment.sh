@@ -29,5 +29,7 @@ python -m segmenter.$SEGMENTER -o $EXPERIMENT_DIR/segmented.txt ${@:3} $EXPERIME
 
 # Evaluate segmentation using wordseg
 echo "Calculating statistics"
-wordseg-eval $EXPERIMENT_DIR/segmented.txt $EXPERIMENT_DIR/gold.txt > $EXPERIMENT_DIR/eval.txt
+wordseg-eval -r $EXPERIMENT_DIR/prepared.txt -s $EXPERIMENT_DIR/seg_errors.json $EXPERIMENT_DIR/segmented.txt $EXPERIMENT_DIR/gold.txt > $EXPERIMENT_DIR/eval.txt
+python -m segmenter.evaluation $EXPERIMENT_DIR/segmented.txt $EXPERIMENT_DIR/gold.txt $EXPERIMENT_DIR/prepared.txt >> $EXPERIMENT_DIR/eval.txt
 less $EXPERIMENT_DIR/eval.txt | column -t
+echo "Written error summary to $EXPERIMENT_DIR/seg_errors.json"
