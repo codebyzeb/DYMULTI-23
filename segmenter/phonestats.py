@@ -276,3 +276,35 @@ class PhoneStats:
 
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))
+
+    def get_log_word_probability(self, word, ngram_length):
+        """ Returns the negative log probability of a word.
+
+        The probability is calculated as the sum of the negative log conditional probabilities of each phone.
+        If ngram_length=0, this assumes no context, so the probabilities are used instead of the conditional probabilities.
+
+        E.g. for ngram_length = 1, P('abbc') = P('a'|boundary) * P('b'|'a') * P('b'|'b') * P('c'|'b') (but as log sum)
+        For ngram_length = 0, P('abbc') = P('a') * P('b') * P('b') * P('c')
+
+        Parameters
+        ----------
+        word : list of str
+            A list of phones in the word.
+        ngram_length : int
+            The length of ngram context to use in the calculation.
+
+        Returns
+        -------
+        probability : float
+            The negative log probability of the word (non-negative).
+        """
+
+        prob = 0
+        word = [BOUNDARY_TOKEN] * ngram_length + word
+        for i in range(ngram_length, len(word)):
+            if ngram_length == 0:
+                p_phone = self.probability([word[i]])
+            else:
+                p_phone = self._conditional_probability_reverse(word[i-ngram_length:i], [word[i]])
+            prob -= np.log2(p_phone) if p_phone > 0 else -10000
+        return prob
