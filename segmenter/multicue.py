@@ -13,6 +13,7 @@ from segmenter.lexicon import Lexicon, LexiconBoundaryModel, LexiconFrequencyMod
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
 from segmenter.predictability import PredictabilityModel
+from segmenter.probabilistic import ProbabilisticModel
 
 class MultiCueModel(Model):
     """ Train and segment using multiple models as individual cues
@@ -93,13 +94,10 @@ class MultiCueModel(Model):
         boundaries = np.array([segmentation.boundaries for segmentation in segmentations])
 
         # Use weighted majority voting at each boundary position to find best segmentation
-        # We don't do majority voting for the last boundary (we assume all algorithms can
+        # We don't do majority voting for the first boundary (we assume all algorithms can
         # correctly place utterance boundaries)
-        best_boundaries = [self._make_boundary_decision(boundary_votes, update_model)
-                           for boundary_votes in boundaries.T[:-1]]
-
-        # Appending utterance boundary (not a word boundary)
-        best_boundaries.append(False)
+        best_boundaries = [False] + [self._make_boundary_decision(boundary_votes, update_model)
+                           for boundary_votes in boundaries.T[1:]]
 
         segmented = PhoneSequence(utterance.phones)
         segmented.boundaries = best_boundaries
@@ -227,6 +225,7 @@ def segment(text, args, log=utils.null_logger()):
     if args.lexicon_models != "none":
         log.info('Setting up Lexicon Models')
         models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
+    # models.append(ProbabilisticModel(ngram_length=0, model_type="venk", phonestats=corpus_phonestats, lexicon=lexicon, log=log))
     model = MultiCueModel(models=models, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
     
     segmented = list(model.segment(text))

@@ -121,14 +121,14 @@ class ProbabilisticModel(Model):
             best_segpoints.append(best_segpoint)
 
         # Reconstruct best split.
-        segpoint = best_segpoints[n]
-        while segpoint != -1:
-            #print('placing segpoint at {}'.format(segpoint))
-            segmented.boundaries[segpoint-1] = True
-            new_segpoint = best_segpoints[segpoint]
+        segpoint = n
+        while segpoint != 0:
             # If best_segpoints[i] == i then the best way to segment utt[:i] is with no segmentation
+            new_segpoint = best_segpoints[segpoint]
             if new_segpoint == segpoint:
                 break
+            #print('placing segpoint at {}'.format(segpoint))
+            segmented.boundaries[new_segpoint] = True
             segpoint = new_segpoint
 
         if update_model:

@@ -146,15 +146,15 @@ def test_score_right_true():
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
     model = LexiconFrequencyModel(lexicon=lexicon, right=True)
 
-    assert(model.score(utterance, -1) == 3) # | i, it, its
-    assert(model.score(utterance, 0) == 0)
+    assert(model.score(utterance, 0) == 3) # | i, it, its
     assert(model.score(utterance, 1) == 0)
-    assert(model.score(utterance, 2) == 1) # | a
-    assert(model.score(utterance, 3) == 1) # | baby
-    assert(model.score(utterance, 4) == 1) # | a
-    assert(model.score(utterance, 5) == 1) # | by
-    assert(model.score(utterance, 6) == 0)
-    assert(model.score(utterance, 7) == 0) 
+    assert(model.score(utterance, 2) == 0)
+    assert(model.score(utterance, 3) == 1) # | a
+    assert(model.score(utterance, 4) == 1) # | baby
+    assert(model.score(utterance, 5) == 1) # | a
+    assert(model.score(utterance, 6) == 1) # | by
+    assert(model.score(utterance, 7) == 0)
+    assert(model.score(utterance, 8) == 0) 
 
 def test_score_right_false():
 
@@ -162,12 +162,12 @@ def test_score_right_false():
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
     model = LexiconFrequencyModel(lexicon=lexicon, right=False)
 
-    assert(model.score(utterance, -1) == 0)
-    assert(model.score(utterance, 0) == 1) # i |
-    assert(model.score(utterance, 1) == 1) # it |
-    assert(model.score(utterance, 2) == 1) # its |
-    assert(model.score(utterance, 3) == 1) # a |
-    assert(model.score(utterance, 4) == 0)
-    assert(model.score(utterance, 5) == 1) # a |
-    assert(model.score(utterance, 6) == 0)
-    assert(model.score(utterance, 7) == 2) # baby, by |
+    assert(model.score(utterance, 0) == 0)
+    assert(model.score(utterance, 1) == 1) # i |
+    assert(model.score(utterance, 2) == 1) # it |
+    assert(model.score(utterance, 3) == 1) # its |
+    assert(model.score(utterance, 4) == 1) # a |
+    assert(model.score(utterance, 5) == 0)
+    assert(model.score(utterance, 6) == 1) # a |
+    assert(model.score(utterance, 7) == 0)
+    assert(model.score(utterance, 8) == 2) # baby, by |

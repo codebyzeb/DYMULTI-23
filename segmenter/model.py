@@ -103,16 +103,16 @@ class PeakModel(Model):
 
         last_score = None
         
-        # The boundary 'after' phoneme -1 is the boundary before phoneme 0, the utterance boundary
-        for i in range(-1, len(utterance)):
+        # i = 0 is the utterance boundary (the candidate position before phoneme 0)
+        for i in range(len(utterance)+1):
             score = self.score(utterance, i)
 
             # Either place word boundaries when the score increases at candidate boundary
             # or when the score decreases after a candidate boundary
             if not score is None and not last_score is None:
-                if self.increase and score > last_score:
+                if self.increase and score > last_score and i < len(utterance):
                     segmented.boundaries[i] = True
-                elif not self.increase and score < last_score and i > 0:
+                elif not self.increase and score < last_score:
                     segmented.boundaries[i-1] = True
 
             last_score = score

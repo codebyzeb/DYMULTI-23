@@ -77,7 +77,7 @@ class PredictabilityModel(PeakModel):
     # Overrides PeakModel.update()
     def score(self, utterance, position):
         """
-        Returns a score for the candidate boundary after utterance.phones[i], calculated
+        Returns a score for the candidate boundary before utterance.phones[i], calculated
         using some measure of (un)predictability at the boundary.
         """
         return self._phonestats.get_unpredictability(

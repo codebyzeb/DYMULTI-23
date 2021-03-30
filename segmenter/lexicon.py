@@ -114,14 +114,14 @@ class LexiconFrequencyModel(PeakModel):
     # Overrides PeakModel.score()
     def score(self, utterance, position):
         """
-        Returns a score for the candidate boundary after utterance.phones[i], calculated
+        Returns a score for the candidate boundary before utterance.phones[i], calculated
         according to the words in the lexicon found in the utterance that start or end at that boundary.
         """
 
         if self.right:
-            candidate_words = [''.join(utterance.phones[position+1:j]) for j in range(position+2, len(utterance)+1)]
+            candidate_words = [''.join(utterance.phones[position:j]) for j in range(position+1, len(utterance)+1)]
         else:
-            candidate_words = [''.join(utterance.phones[j:position+1]) for j in range(0, position+1)]
+            candidate_words = [''.join(utterance.phones[j:position]) for j in range(0, position)]
 
         if self.use_presence:
             word_count = sum([1 for word in candidate_words if self._lexicon[word] > 0])

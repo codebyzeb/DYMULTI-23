@@ -150,14 +150,14 @@ def test_score_right_context():
     model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=True)
 
     # Right context used for scoring
-    assert(model.score(utterance, -1) == 1) # P(boundary | 'c' == 1)
-    assert(model.score(utterance, 0) == 0) # P(boundary | 'a' == 0)
-    assert(model.score(utterance, 1) == 0) # P(boundary | 'r' == 0)
-    assert(model.score(utterance, 2) == 1) # P(boundary | 'p' == 1)
-    assert(model.score(utterance, 3) == 0) # P(boundary | 'o' == 0)
+    assert(model.score(utterance, 0) == 1) # P(boundary | 'c' == 1)
+    assert(model.score(utterance, 1) == 0) # P(boundary | 'a' == 0)
+    assert(model.score(utterance, 2) == 0) # P(boundary | 'r' == 0)
+    assert(model.score(utterance, 3) == 1) # P(boundary | 'p' == 1)
     assert(model.score(utterance, 4) == 0) # P(boundary | 'o' == 0)
-    assert(model.score(utterance, 5) == 0) # P(boundary | 'l' == 0)
-    assert(model.score(utterance, 6) == 0) # P(boundary | boundary == 0)
+    assert(model.score(utterance, 5) == 0) # P(boundary | 'o' == 0)
+    assert(model.score(utterance, 6) == 0) # P(boundary | 'l' == 0)
+    assert(model.score(utterance, 7) == 0) # P(boundary | boundary == 0)
 
 def test_score_left_context():
 
@@ -170,11 +170,11 @@ def test_score_left_context():
     model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=False)
 
     # Left context used for scoring
-    assert(model.score(utterance, -1) == 0) # P(boundary | boundary == 0) -> problem?
-    assert(model.score(utterance, 0) == 0) # P(boundary | 'c' == 0)
-    assert(model.score(utterance, 1) == 0) # P(boundary | 'a' == 0)
-    assert(model.score(utterance, 2) == 0.5) # P(boundary | 'r' == 0.5)
-    assert(model.score(utterance, 3) == 0) # P(boundary | 'p' == 0)
-    assert(model.score(utterance, 4) == 0) # P(boundary | 'o' == 0)
+    assert(model.score(utterance, 0) == 0) # P(boundary | boundary == 0) -> problem?
+    assert(model.score(utterance, 1) == 0) # P(boundary | 'c' == 0)
+    assert(model.score(utterance, 2) == 0) # P(boundary | 'a' == 0)
+    assert(model.score(utterance, 3) == 0.5) # P(boundary | 'r' == 0.5)
+    assert(model.score(utterance, 4) == 0) # P(boundary | 'p' == 0)
     assert(model.score(utterance, 5) == 0) # P(boundary | 'o' == 0)
-    assert(model.score(utterance, 6) == 0) # P(boundary | 'l' == 0)
+    assert(model.score(utterance, 6) == 0) # P(boundary | 'o' == 0)
+    assert(model.score(utterance, 7) == 0) # P(boundary | 'l' == 0)

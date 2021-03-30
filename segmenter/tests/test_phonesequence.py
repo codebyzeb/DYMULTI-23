@@ -4,7 +4,7 @@ from segmenter.phonesequence import PhoneSequence
 
 def test_init():
     phones = ['a', 'b']
-    boundaries = [False, True]
+    boundaries = [True, False]
 
     seq = PhoneSequence(phones)
 
@@ -13,7 +13,7 @@ def test_init():
 
 def test_get_words():
     phones = ['a', 'b', 'c', 'd']
-    boundaries = [False, True, True, True]
+    boundaries = [False, False, True, True]
 
     seq = PhoneSequence(phones)
     seq.boundaries = boundaries
@@ -23,7 +23,7 @@ def test_get_words():
 
 def test_str():
     phones = ['a', 'b', 'c', 'd']
-    boundaries = [False, True, True, True]
+    boundaries = [False, False, True, True]
 
     seq = PhoneSequence(phones)
     seq.boundaries = boundaries

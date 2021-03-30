@@ -78,5 +78,5 @@ def test_half_probability_segments_some():
     segmented = list(model.segment(text))
 
     assert(len(segmented) == 2)
-    assert(segmented[0] == "abc d")
-    assert(segmented[1] == "ef gh")
+    assert(segmented[0] == "ab c d")
+    assert(segmented[1] == "e fg h")

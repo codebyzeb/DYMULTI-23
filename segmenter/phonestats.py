@@ -222,7 +222,7 @@ class PhoneStats:
             raise ValueError("Cannot calculate boundary probability if boundary tokens are not used. Try using -B.")
 
         self._check_n(ngram_length)
-        boundary = position + 1 # makes ranged indexing neater
+        boundary = position
 
         # Pad utterance with boundary tokens and shift boundary index accordingly
         phones = list(phones)

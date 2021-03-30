@@ -433,7 +433,7 @@ def test_get_boundary_entropy_in_utterance_uses_correct_ngram():
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
-        position = ngram_length - 1
+        position = ngram_length
         unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
         ngram_entropy = phonestats._boundary_entropy(phones[:ngram_length])
 
@@ -453,7 +453,7 @@ def test_get_boundary_entropy_at_bad_position_returns_none():
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
-        position = ngram_length - 2
+        position = ngram_length - 1
         unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
 
         assert(unpredictability == None)
@@ -472,7 +472,7 @@ def test_get_reverse_boundary_entropy_in_utterance_uses_correct_ngram():
     reverse = True # forward measure
 
     for ngram_length in range(1, 5):
-        position = 5 - ngram_length - 1
+        position = 5 - ngram_length
         unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
         ngram_entropy = phonestats._boundary_entropy_reverse(phones[5-ngram_length:])
 
@@ -492,7 +492,7 @@ def test_get_reverse_boundary_entropy_at_late_position_returns_none():
     reverse = True # reverse measure
 
     for ngram_length in range(1, 5):
-        position = 5 - ngram_length
+        position = 5 - ngram_length + 1
         unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
 
         assert(unpredictability == None)
@@ -511,7 +511,7 @@ def test_get_transitional_probability_computes_conditional_entropy():
     reverse = False # forward measure
 
     for ngram_length in range(1, 5):
-        position = ngram_length - 1
+        position = ngram_length
         unpredictability = phonestats.get_unpredictability(phones, position, measure, reverse, ngram_length)
         ngram_cond_prob = phonestats._conditional_probability_reverse(phones[:ngram_length], [phones[ngram_length]])
 

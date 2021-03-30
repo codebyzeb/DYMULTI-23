@@ -11,7 +11,7 @@ class ExamplePeakModel(PeakModel):
         super().__init__(increase)
 
     def score(self, utterance, position):
-        if position < 0:
+        if position == len(utterance):
             return None
         if utterance.phones[position] == "a":
             return 1
@@ -64,23 +64,23 @@ def test_segment_empty_text():
 
 def test_segment_at_increase():
 
-    # scores are Xa1b2b2c0a1c0, so the increase model will segment between "bb" and between "ac"
+    # scores are 1a2b2b0c1a0cX, so the increase model will segment between "ab" and between "ca"
     utt = ["a b b c a c"]
     model = ExamplePeakModel(increase=True)
 
     segmentation = list(model.segment(utt))[0]
 
-    assert(segmentation == "ab bca c")
+    assert(segmentation == "a bbc ac")
 
 def test_segment_at_decrease():
 
-    # scores are Xa1b2b2c0a1c0, so the decrease model will segment between "bc" and "ac"
+    # scores are 1a2b2b0c1a0cX, so the decrease model will segment between "bb" and "acac"
     utt = ["a b b c a c"]
     model = ExamplePeakModel(increase=False)
 
     segmentation = list(model.segment(utt))[0]
 
-    assert(segmentation == "abb ca c")
+    assert(segmentation == "ab bc ac")
 
 def test_segmented_utterance_has_correct_number_of_boundaries():
     
