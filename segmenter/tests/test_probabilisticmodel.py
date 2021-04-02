@@ -72,7 +72,7 @@ def test_word_score_lm_unseen_words():
 
     phonestats = PhoneStats(max_ngram=2, smoothing=0, use_boundary_tokens=True)
     phones = ['a', 'a', 'b', 'c']
-    alpha, ngram_length = 0.2, 1
+    alpha, ngram_length = 0.2, 0
     word = ['a', 'b']
     model = ProbabilisticModel(alpha=alpha, ngram_length=ngram_length, model_type="lm", phonestats=phonestats)
 
@@ -85,7 +85,7 @@ def test_word_score_lm_unseen_words():
 def test_word_score_lm_seen_words():
 
     lexicon = Lexicon({"ab" : 2, "bc" : 3})
-    alpha, ngram_length = 0.2, 1
+    alpha, ngram_length = 0.2, 0
     word = ['a', 'b']
     model = ProbabilisticModel(alpha=alpha, ngram_length=ngram_length, model_type="lm", lexicon=lexicon)
 
@@ -100,7 +100,7 @@ def test_word_score_venk_unseen_words():
     phonestats = PhoneStats(max_ngram=2, smoothing=0, use_boundary_tokens=True)
     lexicon = Lexicon({"dc" : 1, "ba" : 1, "ce" : 1})
     phones = ['d', 'c', 'b', 'a', 'c', 'e']
-    ngram_length = 1
+    ngram_length = 0
     word = ['a', 'b']
     model = ProbabilisticModel(ngram_length=ngram_length, model_type="venk", phonestats=phonestats, lexicon=lexicon)
 
@@ -115,7 +115,7 @@ def test_word_score_venk_unseen_words():
 def test_word_score_venk_seen_words():
 
     lexicon = Lexicon({"ab" : 2, "bc" : 3})
-    ngram_length = 1
+    ngram_length = 0
     word = ['a', 'b']
     model = ProbabilisticModel(ngram_length=ngram_length, model_type="venk", lexicon=lexicon)
 
@@ -124,6 +124,40 @@ def test_word_score_venk_seen_words():
     # For seen words, P(word) is the negative log probability of the relative frequency
     # of the word in the lexicon, smoothing for unseen words
     assert(prob == -log2(lexicon.relative_freq(''.join(word), consider_unseen=True)))
+
+def test_word_score_blanch_unseen_words_syllabic():
+
+    phonestats = PhoneStats(max_ngram=2, smoothing=0, use_boundary_tokens=True)
+    lexicon = Lexicon({"dc" : 1, "ba" : 1, "ce" : 1})
+    phones = ['d', 'c', 'b', 'a', 'c', 'e']
+    ngram_length = 0
+    word = ['a', 'b']
+    model = ProbabilisticModel(ngram_length=ngram_length, model_type="blanch", phonestats=phonestats, lexicon=lexicon)
+
+    phonestats.add_phones(phones)
+    prob = model.word_score(word)
+
+    # For unseen words, P(word) is given by phonestats and multiplied by the estimate unseen word probability and the boundary token probability
+    # 'a' is a vowel in the BR corpus so this is identical to the "venk" model
+    bound_prob = 3/8 # seen three words out of 8 phonemes
+    unseen_prob = lexicon.unseen_freq()
+    assert(prob == -log2(bound_prob / (1 - bound_prob)) -log2(unseen_prob) + phonestats.get_log_word_probability(word, ngram_length=ngram_length))
+
+def test_word_score_blanch_unseen_words_non_syllabic():
+
+    phonestats = PhoneStats(max_ngram=2, smoothing=0, use_boundary_tokens=True)
+    lexicon = Lexicon({"dc" : 1, "ba" : 1, "ce" : 1})
+    phones = ['d', 'c', 'b', 'a', 'c', 'e']
+    ngram_length = 0
+    word = ['b', 'b']
+    model = ProbabilisticModel(ngram_length=ngram_length, model_type="blanch", phonestats=phonestats, lexicon=lexicon)
+
+    phonestats.add_phones(phones)
+    prob = model.word_score(word)
+
+    # For unseen words, P(word) is given by phonestats and multiplied by the estimate unseen word probability and the boundary token probability
+    # 'b' is not a vowel in the BR corpus so this is given a probability of 0 using the blanchard require-syllable constraint
+    assert(prob == 10000)
 
 """
 ----------------------------------------------

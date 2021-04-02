@@ -8,7 +8,7 @@ import collections
 import sortedcontainers
 import numpy as np
 
-BOUNDARY_TOKEN = "BOUND"
+BOUNDARY_TOKEN = "{"
 
 class PhoneStats:
     """ Stores phoneme n-gram counts and provides methods for calculating information-theoretic measures.
@@ -300,7 +300,7 @@ class PhoneStats:
         """
 
         prob = 0
-        word = [BOUNDARY_TOKEN] * ngram_length + word
+        word = [BOUNDARY_TOKEN] * ngram_length + word + [BOUNDARY_TOKEN] * ngram_length
         for i in range(ngram_length, len(word)):
             if ngram_length == 0:
                 p_phone = self.probability([word[i]])

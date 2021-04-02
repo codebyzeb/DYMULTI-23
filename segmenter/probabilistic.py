@@ -9,7 +9,9 @@ from segmenter.lexicon import Lexicon
 from segmenter.phonestats import PhoneStats
 from segmenter.phonesequence import PhoneSequence
 
-MODEL_TYPES = ["lm", "venk"]
+MODEL_TYPES = ["lm", "venk", "blanch"]
+BR_CORPUS_SYLLABIC_SOUNDS = ['I', 'E', '&', 'A', 'a', 'O', 'U', '6', 'i', 'e', 'u', 'o', '9', 'Q', '7', '3', 'R', '#', '%', '*', '(', ')', 'L', '~']
+
 
 class ProbabilisticModel(Model):
 
@@ -24,7 +26,13 @@ class ProbabilisticModel(Model):
         (Çöltekin et al, 2014). P(w) is either the relative probability from the lexicon
         or if w is unknown, the joint probability of the phonemes in the word.
 
-        venk:   
+        venk:   Based on Venkararaman's model in "A Statistical Model for Word Discovery in Transcribed Speech" (Venkararaman, 2001).
+        P(w) is either the relative probability from the lexicon, multiplied by the probability of seeing a previously-seen word, or 
+        if w is unknown, the joint probability of the phonemes in the word, multiplied by the probability of seeing a new word.
+
+        blanch: Based on Blanchard et al's model in "Modeling the contribution of phonotactic cues to the problem of word segmentation"
+        (Blanchard et al, 2010). Is a direct extension of venk, adding the "require syllabic sound" constraint in unseen words.
+        The phoneme n-gram extension also in this paper is available for all models via the `ngram_length` option.
     
     Parameters
     ----------
@@ -130,6 +138,7 @@ class ProbabilisticModel(Model):
             #print('placing segpoint at {}'.format(segpoint))
             segmented.boundaries[new_segpoint] = True
             segpoint = new_segpoint
+        self._log.debug("Segmenting as {} with score {}".format(segmented, best_scores[n]))
 
         if update_model:
             self.update(segmented)
@@ -160,7 +169,7 @@ class ProbabilisticModel(Model):
             p_w = self._phonestats.get_log_word_probability(word, self.ngram_length)
             return -log2(self.alpha) + p_w
 
-        elif self.type == "venk":
+        elif self.type == "venk" or self.type == "blanch":
             # If the word is in the lexicon, return the relative frequency, scaled
             # by the probability of seeing a known word
             word_str = ''.join(word)
@@ -168,15 +177,27 @@ class ProbabilisticModel(Model):
                 p_w = self._lexicon.relative_freq(word_str, consider_unseen=True)
                 return -log2(p_w)
             
+            # If using the blanchard model, reject unseen words without syllabic sounds (require-syllabic-sound constraint).
+            if self.type == "blanch":
+                has_syllabic_sound = False
+                for phoneme in word:
+                    if phoneme in BR_CORPUS_SYLLABIC_SOUNDS:
+                        has_syllabic_sound = True
+                        break
+                if not has_syllabic_sound:
+                    return 10000 # approximation for log(0), made much higher than those below
+
             # Otherwise, return the probability given by the phonemes in the word, scaled by 
             # the probability of seeing an unknown word. Also considers the probability of a boundary, 
             # calculated as the number of words segmented (tokens) divided by the number of phonemes seen (tokens).
             p_w = self._phonestats.get_log_word_probability(word, self.ngram_length)
             unseen_prob = self._lexicon.unseen_freq()
             boundary_prob = self._lexicon.token_count / self._phonestats.ntokens[1] if self._phonestats.ntokens[1] != 0 else 0
-            unseen_prob_log = -log2(unseen_prob) if unseen_prob != 0 else 10000
-            boundary_factor_log = -log2(boundary_prob/(1-boundary_prob)) if boundary_prob != 0 and boundary_prob != 1 else 10000
-            return unseen_prob_log + boundary_factor_log + p_w
+            if p_w >= 10000 or boundary_prob == 0 or boundary_prob == 1 or unseen_prob == 0:
+                print(p_w, boundary_prob, unseen_prob)
+                return 10000 # approximation for log(0)
+            boundary_factor = boundary_prob/(1-boundary_prob)
+            return -log2(unseen_prob) - log2(boundary_factor) + p_w
 
         else:
             # Shouldn't happen, should be caught by initialisation
