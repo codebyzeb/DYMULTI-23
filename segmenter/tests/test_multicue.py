@@ -26,11 +26,11 @@ def test_init_with_not_a_model_raises_value_error():
     with pytest.raises(ValueError, match=".*not an instance.*"):
         MultiCueModel(models=[5])
 
-def test_init_assigns_correct_initial_values():
+def test_init_with_accuracy_weights_assigns_correct_initial_values():
 
     model = MultiCueModel(models=[BaselineModel(), BaselineModel()])
 
-    assert(not model.precision_weights)
+    assert(model.weight_type == "accuracy")
     assert(model.num_models == 2)
     assert((model.weights == np.ones(model.num_models)).all())
     assert((model.errors == np.zeros(model.num_models)).all())
@@ -38,9 +38,9 @@ def test_init_assigns_correct_initial_values():
 
 def init_with_precision_weights_assigns_correct_initial_values():
 
-    model = MultiCueModel(models=[BaselineModel(), BaselineModel()], precision_weights=True)
+    model = MultiCueModel(models=[BaselineModel(), BaselineModel()], weight_type="precision")
 
-    assert(model.precision_weights)
+    assert(model.weight_type == "precision")
     assert(model.num_models == 2)
     assert((model.weights_positive == np.ones(model.num_models)).all())
     assert((model.weights_negative == np.ones(model.num_models)).all())
@@ -48,6 +48,13 @@ def init_with_precision_weights_assigns_correct_initial_values():
     assert((model.errors_negative == np.zeros(model.num_models)).all())
     assert(model.num_boundaries_not_placed == 0)
     assert(model.num_boundaries_placed == 0)
+
+def init_with_no_weights_assigns_correct_initial_values():
+
+    model = MultiCueModel(models=[BaselineModel(), BaselineModel()], weight_type="none")
+
+    assert(model.weight_type == "none")
+    assert(model.num_models == 2)
 
 """
 ----------------------------------------------
@@ -71,7 +78,7 @@ def test_to_string():
 ----------------------------------------------
 """
 
-# TODO: Add tests for when precision_weights is True
+# TODO: Add tests for when weight_type is precision or none
 
 def test_segment_empty_text():
 
