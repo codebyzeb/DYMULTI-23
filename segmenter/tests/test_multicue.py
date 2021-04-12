@@ -30,10 +30,24 @@ def test_init_assigns_correct_initial_values():
 
     model = MultiCueModel(models=[BaselineModel(), BaselineModel()])
 
+    assert(not model.precision_weights)
     assert(model.num_models == 2)
     assert((model.weights == np.ones(model.num_models)).all())
     assert((model.errors == np.zeros(model.num_models)).all())
     assert(model.num_boundaries == 0)
+
+def init_with_precision_weights_assigns_correct_initial_values():
+
+    model = MultiCueModel(models=[BaselineModel(), BaselineModel()], precision_weights=True)
+
+    assert(model.precision_weights)
+    assert(model.num_models == 2)
+    assert((model.weights_positive == np.ones(model.num_models)).all())
+    assert((model.weights_negative == np.ones(model.num_models)).all())
+    assert((model.errors_positive == np.zeros(model.num_models)).all())
+    assert((model.errors_negative == np.zeros(model.num_models)).all())
+    assert(model.num_boundaries_not_placed == 0)
+    assert(model.num_boundaries_placed == 0)
 
 """
 ----------------------------------------------
@@ -56,6 +70,8 @@ def test_to_string():
             SEGMENTATION TESTS
 ----------------------------------------------
 """
+
+# TODO: Add tests for when precision_weights is True
 
 def test_segment_empty_text():
 

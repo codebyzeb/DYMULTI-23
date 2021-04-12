@@ -13,7 +13,6 @@ from segmenter.lexicon import Lexicon, LexiconBoundaryModel, LexiconFrequencyMod
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
 from segmenter.predictability import PredictabilityModel
-from segmenter.probabilistic import ProbabilisticModel
 
 class MultiCueModel(Model):
     """ Train and segment using multiple models as individual cues
@@ -23,6 +22,10 @@ class MultiCueModel(Model):
     models : list of Model, optional
         A list of Model objects used for segmentation, whose suggestions are combined 
         using weighted majority voting to produce a final segmentation.
+    precision_weights : bool, optional
+        If False, the weight of each cue is based on the accuracy of that cue. If True, a pair of weights
+        is stored for each cue, based on the precision and recall of that cue. This allows the multicue model
+        to learn which cues are very precise at placing boundaries and weigh votes from these models higher.
     corpus_phonestats : PhoneStats, optional
         Phoneme statistics updated with each utterance from the corpus.
     lexicon_phonestats : PhoneStats, optional
@@ -40,7 +43,7 @@ class MultiCueModel(Model):
 
     """
 
-    def __init__(self, models=[], corpus_phonestats=None, lexicon_phonestats=None, lexicon=None, log=utils.null_logger()):
+    def __init__(self, models=[], precision_weights=False, corpus_phonestats=None, lexicon_phonestats=None, lexicon=None, log=utils.null_logger()):
         super().__init__(log)
 
         # Check models
@@ -50,6 +53,8 @@ class MultiCueModel(Model):
             if not isinstance(model, Model):
                 raise ValueError("Object provided to MultiCueModel is not an instance of Model:"
                     + str(model))
+
+        self.precision_weights = precision_weights
 
         # Initialise phonestats and lexicon
         self.corpus_phonestats = corpus_phonestats
@@ -63,11 +68,17 @@ class MultiCueModel(Model):
             self.num_models, ", ".join([str(model) for model in models])))
 
         # Weights and error counts associated with each model
-        self.weights = np.ones(self.num_models)
-        self.errors = np.zeros(self.num_models)
-
-        # Total number of boundaries seen (used to calculate errors)
-        self.num_boundaries = 0
+        if precision_weights:
+            self.num_boundaries_not_placed = 0
+            self.num_boundaries_placed = 0
+            self.weights_positive = np.ones(self.num_models)
+            self.weights_negative = np.ones(self.num_models)
+            self.errors_positive = np.zeros(self.num_models)
+            self.errors_negative = np.zeros(self.num_models)
+        else:
+            self.num_boundaries = 0
+            self.weights = np.ones(self.num_models)
+            self.errors = np.zeros(self.num_models)
 
     def __str__(self):
         return "MultiCue({})".format(", ".join([str(model) for model in self.models]))
@@ -103,8 +114,6 @@ class MultiCueModel(Model):
         segmented.boundaries = best_boundaries
 
         self._log.debug("Segmented utterance '{}' as '{}".format(utterance, segmented))
-        self._log.debug("Current errors: {} out of {}".format(self.errors, self.num_boundaries))
-        self._log.debug("Current weights: {}".format(self.weights))
 
         if update_model:
             self.update(segmented)
@@ -133,20 +142,35 @@ class MultiCueModel(Model):
         votes_for_boundary = boundary_votes.astype(int)
         votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
 
-        # Find the weighted vote for a boundary vs no boundary
-        weighted_vote_for_boundary = votes_for_boundary.dot(self.weights)
-        weighted_vote_for_no_boundary = votes_for_no_boundary.dot(self.weights)
+        if self.precision_weights:
+            # Find the weighted vote for a boundary vs no boundary
+            weighted_vote_for_boundary = votes_for_boundary.dot(self.weights_positive)
+            weighted_vote_for_no_boundary = votes_for_no_boundary.dot(self.weights_negative)
 
-        # Set boundary accordingly, setting no boundary for ties
-        boundary = weighted_vote_for_boundary > weighted_vote_for_no_boundary
+            # Set boundary accordingly, setting no boundary for ties
+            boundary = weighted_vote_for_boundary * sum(self.weights_negative) > weighted_vote_for_no_boundary * sum(self.weights_positive)
 
-        # Update weights according to errors made by each model
-        if update_model:
-            self.num_boundaries += 1
-            self.errors += votes_for_no_boundary if boundary else votes_for_boundary
-            self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
-            #self.weights[self.weights < 0] = self.weights[self.weights < 0] * -self.weights[self.weights < 0]
-            #self.weights[self.weights >= 0] = self.weights[self.weights >= 0] * self.weights[self.weights >= 0]
+            # Update weights according to errors made by each model
+            if update_model:
+                if not boundary:
+                    self.num_boundaries_not_placed += 1
+                    self.errors_positive += votes_for_boundary
+                    self.weights_positive = (1 - self.errors_positive / self.num_boundaries_not_placed)
+                else:
+                    self.num_boundaries_placed += 1
+                    self.errors_negative += votes_for_no_boundary
+                    self.weights_negative = (1 - self.errors_negative / self.num_boundaries_placed)
+
+        else:
+            # Find the weighted vote for a boundary and set boundary accordingly
+            weighted_vote_for_boundary = votes_for_boundary.dot(self.weights)
+            boundary = weighted_vote_for_boundary > 0.5 * sum(self.weights)
+
+            # Update weights according to errors made by each model
+            if update_model:
+                self.num_boundaries += 1
+                self.errors += votes_for_no_boundary if boundary else votes_for_boundary
+                self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
 
         return boundary
 
@@ -213,6 +237,8 @@ def segment(text, args, log=utils.null_logger()):
 
     log.info('Using a Multiple Cue model to segment text.')
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
+    if args.precision_weights:
+        log.info('Using precision-based weights for weighted majority algorithm.')
 
     # Create multi-cue model
     corpus_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
@@ -226,13 +252,17 @@ def segment(text, args, log=utils.null_logger()):
         log.info('Setting up Lexicon Models')
         models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
     # models.append(ProbabilisticModel(ngram_length=0, model_type="venk", phonestats=corpus_phonestats, lexicon=lexicon, log=log))
-    model = MultiCueModel(models=models, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
+    model = MultiCueModel(models=models, precision_weights=args.precision_weights, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
     
     segmented = list(model.segment(text))
 
     log.info('Final weights:')
-    for m, weight in zip(model.models, model.weights):
-        log.info('\t{}\t{}'.format(m, '%.4g' % weight))
+    if model.precision_weights:
+        for m, weight_p, weight_n in zip(model.models, model.weights_positive, model.weights_negative):
+            log.info('\t{}\t{}\t{}'.format(m, '%.4g' % weight_p, '%.4g' % weight_n))
+    else:
+        for m, weight in zip(model.models, model.weights):
+            log.info('\t{}\t{}'.format(m, '%.4g' % weight))
 
     return segmented
 
@@ -251,6 +281,9 @@ def _add_arguments(parser):
     multi_options.add_argument(
         '-S', '--smoothing', type=float, default=0.0, metavar='<float>',
         help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
+    multi_options.add_argument(
+        '-W', '--precision_weights', action='store_true',
+        help='Use precision-based weights for each model rather than accuracy-based weights.')
     predictability_options = parser.add_argument_group('Predictability Model Options')
     predictability_options.add_argument(
         '-P', '--predictability_models', type=str, default="none", metavar='<str>',
