@@ -131,6 +131,6 @@ def test_segment_update_model_true_updates_model():
     assert((model.weights != np.ones(model.num_models)).any())
     assert((model.errors != np.zeros(model.num_models)).any())
     assert(model.num_boundaries == 8)
-    assert(len(lexicon) == 3)
+    assert(len(lexicon) == 2)
     assert(corpus_phonestats.ntokens[1] == 14)
-    assert(lexicon_phonestats.ntokens[1] == 16)
+    assert(lexicon_phonestats.ntokens[1] == 14)

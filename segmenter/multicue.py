@@ -109,8 +109,7 @@ class MultiCueModel(Model):
         # Use weighted majority voting at each boundary position to find best segmentation
         # We don't do majority voting for the first boundary (we assume all algorithms can
         # correctly place utterance boundaries)
-        best_boundaries = [False] + [self._make_boundary_decision(boundary_votes, update_model)
-                           for boundary_votes in boundaries.T[1:]]
+        best_boundaries = [False] + [self._make_boundary_decision(boundary_votes, update_model)[0] for boundary_votes in boundaries.T[1:]]
 
         segmented = PhoneSequence(utterance.phones)
         segmented.boundaries = best_boundaries
@@ -118,7 +117,7 @@ class MultiCueModel(Model):
         self._log.debug("Segmented utterance '{}' as '{}".format(utterance, segmented))
 
         if update_model:
-            self.update(segmented)
+            self.update(segmented, boundaries)
 
         return segmented
 
@@ -138,6 +137,8 @@ class MultiCueModel(Model):
         -------
         boundary : bool
             A decision whether or not to place a boundary.
+        weighted_vote_for_boundary : float
+            The final vote for the boundary.
         """
 
         # Get each model's boundary decision
@@ -145,48 +146,27 @@ class MultiCueModel(Model):
         votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
 
         if self.weight_type == "precision":
-            # Find the weighted vote for a boundary vs no boundary, storing seperate weights for each
             weighted_vote_for_boundary = votes_for_boundary.dot(self.weights_positive)
             weighted_vote_for_no_boundary = votes_for_no_boundary.dot(self.weights_negative)
-
-            # Set boundary accordingly, setting no boundary for ties
             boundary = weighted_vote_for_boundary * sum(self.weights_negative) > weighted_vote_for_no_boundary * sum(self.weights_positive)
-
-            # Update weights according to precision and recall for each model
-            if update_model:
-                if not boundary:
-                    self.num_boundaries_not_placed += 1
-                    self.errors_positive += votes_for_boundary
-                    self.weights_positive = (1 - self.errors_positive / self.num_boundaries_not_placed)
-                else:
-                    self.num_boundaries_placed += 1
-                    self.errors_negative += votes_for_no_boundary
-                    self.weights_negative = (1 - self.errors_negative / self.num_boundaries_placed)
-        elif self.weight_type == "accuracy":
-            # Find the weighted vote for a boundary and set boundary accordingly
+        else:
             weighted_vote_for_boundary = votes_for_boundary.dot(self.weights)
             boundary = weighted_vote_for_boundary > 0.5 * sum(self.weights)
 
-            # Update weights according to boundary-placing accuracy for each model
-            if update_model:
-                self.num_boundaries += 1
-                self.errors += votes_for_no_boundary if boundary else votes_for_boundary
-                self.weights = 2 * (0.5 - self.errors / self.num_boundaries)
-        else:
-            # Don't use any weights (treat all indicators equally)
-            boundary = sum(votes_for_boundary) > sum(votes_for_no_boundary)
+        return boundary, weighted_vote_for_boundary
 
-        return boundary
-
-    def update(self, segmented):
+    def update(self, segmented, boundaries):
         """ A method that is called at the end of segment_utterance. Updates 
         self.corpus_phonestats, self.lexicon_phonestats and self.lexicon using
-        the segmented utterance.
+        the segmented utterance. Also updates the weights of each model, based on the difference
+        between their suggestions and the final segmentation.
 
         Parameters
         ----------
         segmented : PhoneSequence
             A sequence of phones representing the segmented utterance.
+        boundaries : list of list of bool
+            The boundaries suggested by each model.
         """
         if not self.corpus_phonestats is None:
             self.corpus_phonestats.add_phones(segmented.phones)
@@ -195,7 +175,27 @@ class MultiCueModel(Model):
                 self.lexicon_phonestats.add_phones(word)
         if not self.lexicon is None:
             for word in segmented.get_words():
-                self.lexicon.increase_count(''.join(word))   
+                self.lexicon.increase_count(''.join(word))  
+
+        # Don't update weights based on placement of the first utterance boundary
+        for boundary_votes, true_boundary in zip(boundaries.T[1:], segmented.boundaries[1:]):
+            votes_for_boundary = boundary_votes.astype(int)
+            votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
+            if self.weight_type == "accuracy":
+                # Update weights according to boundary-placing accuracy for each model
+                self.num_boundaries += 1
+                self.errors += votes_for_no_boundary if true_boundary else votes_for_boundary
+                self.weights = 2 * (0.5 - self.errors / self.num_boundaries) 
+            elif self.weight_type == "precision":
+                # Update weights according to precision and recall for each model
+                if not true_boundary:
+                    self.num_boundaries_not_placed += 1
+                    self.errors_positive += votes_for_boundary
+                    self.weights_positive = (1 - self.errors_positive / self.num_boundaries_not_placed)
+                else:
+                    self.num_boundaries_placed += 1
+                    self.errors_negative += votes_for_no_boundary
+                    self.weights_negative = (1 - self.errors_negative / self.num_boundaries_placed)
 
 def prepare_predictability_models(args, phonestats, log):
     # For each measure and for each direction and for each ngram length up to max_ngram,
