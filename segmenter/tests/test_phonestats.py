@@ -255,6 +255,38 @@ def test_reverse_conditional_probability_of_ngram_smoothed():
 
 """
 ----------------------------------------------
+            BOUNDARY PROBABILITY TESTS
+----------------------------------------------
+"""
+
+def test_boundary_probability():
+    phonestats = PhoneStats(3, smoothing=0, use_boundary_tokens=True)
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
+
+    probability_uni = phonestats._boundary_probability(['b'])
+    probability_bi = phonestats._boundary_probability(['b', 'b'])
+
+    # Out of five 'b's, one comes before a boundary
+    assert(probability_uni == (1/5))
+    # Out of three 'bb's, one comes before a boundary
+    assert(probability_bi == (1/3))
+
+def test_boundary_probability_reverse():
+    phonestats = PhoneStats(3, smoothing=0, use_boundary_tokens=True)
+    phonestats.add_phones(['a', 'b', 'b', 'b'])
+    phonestats.add_phones(['b', 'b', 'c', 'a'])
+
+    probability_uni = phonestats._boundary_probability_reverse(['a'])
+    probability_bi = phonestats._boundary_probability_reverse(['b', 'b'])
+
+    # Out of two 'a's, one comes after a boundary
+    assert(probability_uni == (1/2))
+    # Out of three 'bb's, one comes before a boundary
+    assert(probability_bi == (1/3))
+
+"""
+----------------------------------------------
             ENTROPY TESTS
 ----------------------------------------------
 """

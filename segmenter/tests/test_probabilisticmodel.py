@@ -110,7 +110,8 @@ def test_word_score_venk_unseen_words():
     # For unseen words, P(word) is given by phonestats and multiplied by the estimate unseen word probability and the boundary token probability
     bound_prob = 3/8 # seen three words out of 8 phonemes
     unseen_prob = lexicon.unseen_freq()
-    assert(prob == -log2(bound_prob / (1 - bound_prob)) -log2(unseen_prob) + phonestats.get_log_word_probability(word, ngram_length=ngram_length))
+    correct_prob = -log2(bound_prob / (1 - bound_prob)) -log2(unseen_prob) + phonestats.get_log_word_probability(word, ngram_length=ngram_length)
+    assert(abs(prob - correct_prob) < 1e-10)
 
 def test_word_score_venk_seen_words():
 
@@ -141,7 +142,8 @@ def test_word_score_blanch_unseen_words_syllabic():
     # 'a' is a vowel in the BR corpus so this is identical to the "venk" model
     bound_prob = 3/8 # seen three words out of 8 phonemes
     unseen_prob = lexicon.unseen_freq()
-    assert(prob == -log2(bound_prob / (1 - bound_prob)) -log2(unseen_prob) + phonestats.get_log_word_probability(word, ngram_length=ngram_length))
+    correct_prob = -log2(bound_prob / (1 - bound_prob)) -log2(unseen_prob) + phonestats.get_log_word_probability(word, ngram_length=ngram_length)
+    assert(abs(prob - correct_prob) < 1e-10)
 
 def test_word_score_blanch_unseen_words_non_syllabic():
 

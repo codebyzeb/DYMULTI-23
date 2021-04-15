@@ -12,10 +12,9 @@ from segmenter.phonesequence import PhoneSequence
 MODEL_TYPES = ["lm", "venk", "blanch"]
 BR_CORPUS_SYLLABIC_SOUNDS = ['I', 'E', '&', 'A', 'a', 'O', 'U', '6', 'i', 'e', 'u', 'o', '9', 'Q', '7', '3', 'R', '#', '%', '*', '(', ')', 'L', '~']
 
-
 class ProbabilisticModel(Model):
 
-    """ A simple lexicon-based model for word segmentation.
+    """ A variety of lexicon-based probabilistic models for word segmentation.
 
     Based various models that find the most-likely probability for segmenting an utterance using the Viterbi
     algorithm, calculated by multiplying together the probability of each word in the segmentation. 
@@ -134,7 +133,9 @@ class ProbabilisticModel(Model):
             # If best_segpoints[i] == i then the best way to segment utt[:i] is with no segmentation
             new_segpoint = best_segpoints[segpoint]
             if new_segpoint == segpoint:
+                self._log.debug("Probability for {} is {}".format(''.join(segmented.phones[0:segpoint]), pow(2, -self.word_score(segmented.phones[0:segpoint]))))
                 break
+            self._log.debug("Probability for {} is {}".format(''.join(segmented.phones[new_segpoint:segpoint]), pow(2, -self.word_score(segmented.phones[new_segpoint:segpoint]))))
             #print('placing segpoint at {}'.format(segpoint))
             segmented.boundaries[new_segpoint] = True
             segpoint = new_segpoint
@@ -194,15 +195,14 @@ class ProbabilisticModel(Model):
             unseen_prob = self._lexicon.unseen_freq()
             boundary_prob = self._lexicon.token_count / self._phonestats.ntokens[1] if self._phonestats.ntokens[1] != 0 else 0
             if p_w >= 10000 or boundary_prob == 0 or boundary_prob == 1 or unseen_prob == 0:
-                print(p_w, boundary_prob, unseen_prob)
+                # print(p_w, boundary_prob, unseen_prob)
                 return 10000 # approximation for log(0)
             boundary_factor = boundary_prob/(1-boundary_prob)
-            return -log2(unseen_prob) - log2(boundary_factor) + p_w
+            return + p_w - log2(unseen_prob) - log2(boundary_factor)
 
         else:
             # Shouldn't happen, should be caught by initialisation
             raise ValueError("Unknown model type: '{}'".format(self.type))
-
 
     def update(self, segmented):
         """ A method that is called at the end of segment_utterance. Child classes should
@@ -218,8 +218,8 @@ class ProbabilisticModel(Model):
         for word in segmented.get_words():
             if self._updatelexicon:
                 self._lexicon.increase_count(''.join(word))
-        if self._updatephonestats:
-            self._phonestats.add_phones(segmented.phones)
+            if self._updatephonestats:
+                self._phonestats.add_phones(word)
 
 def _add_arguments(parser):
     """ Add algorithm specific options to the parser """
@@ -241,7 +241,7 @@ def _add_arguments(parser):
 def main():
     """ Entry point """
     streamin, streamout, _, log, args = utils.prepare_main(
-        name='segmenter-baseline',
+        name='segmenter-probabilistic',
         description=__doc__,
         add_arguments=_add_arguments)
 

@@ -186,6 +186,14 @@ class PhoneStats:
             return 0
         return np.log2(prob / prod)
 
+    def _boundary_probability(self, ngram):
+        """ Calculate boundary probability as the conditional probability that a boundary token follows """
+        return self._conditional_probability_reverse(ngram, [BOUNDARY_TOKEN])
+
+    def _boundary_probability_reverse(self, ngram):
+        """ Calculate boundary probability as the conditional probability that a boundary token precedes """
+        return self._conditional_probability([BOUNDARY_TOKEN], ngram)
+
     def get_unpredictability(self, phones, position, measure, right, ngram_length):
         """ Returns the unpredictability calculated at a particular position in the utterance.
 
@@ -270,9 +278,9 @@ class PhoneStats:
             return - self._mutual_information(left_context, right_context)
 
         elif measure == "bp" and right:
-            return self._conditional_probability([BOUNDARY_TOKEN], right_context)
+            return self._boundary_probability_reverse(right_context)
         elif measure =="bp" and not right:
-            return self._conditional_probability_reverse(left_context, [BOUNDARY_TOKEN])
+            return self._boundary_probability(left_context)
 
         else:
             raise ValueError("Unknown predictability measure: '{}'".format(measure))
