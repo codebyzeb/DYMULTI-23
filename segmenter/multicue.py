@@ -70,14 +70,16 @@ class MultiCueModel(Model):
             self.num_models, ", ".join([str(model) for model in models])))
 
         # Weights and error counts associated with each model
-        if weight_type == "precision":
-            self.num_boundaries_not_placed = 0
-            self.num_boundaries_placed = 0
+        if weight_type in ["precision", "recall", "f1"]:
+            self.num_boundaries_not_placed = 1
+            self.num_boundaries_placed = 1
             self.weights_positive = np.ones(self.num_models)
             self.weights_negative = np.ones(self.num_models)
-            self.errors_positive = np.zeros(self.num_models)
-            self.errors_negative = np.zeros(self.num_models)
-        elif weight_type == "accuracy":
+            self.correct_positive = np.ones(self.num_models)
+            self.correct_negative = np.ones(self.num_models)
+            self.total_positive = np.ones(self.num_models)
+            self.total_negative = np.ones(self.num_models)
+        else:
             self.num_boundaries = 0
             self.weights = np.ones(self.num_models)
             self.errors = np.zeros(self.num_models)
@@ -145,7 +147,7 @@ class MultiCueModel(Model):
         votes_for_boundary = boundary_votes.astype(int)
         votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
 
-        if self.weight_type == "precision":
+        if self.weight_type in ["precision", "recall", "f1"]:
             weighted_vote_for_boundary = votes_for_boundary.dot(self.weights_positive)
             weighted_vote_for_no_boundary = votes_for_no_boundary.dot(self.weights_negative)
             boundary = weighted_vote_for_boundary * sum(self.weights_negative) > weighted_vote_for_no_boundary * sum(self.weights_positive)
@@ -181,21 +183,34 @@ class MultiCueModel(Model):
         for boundary_votes, true_boundary in zip(boundaries.T[1:], segmented.boundaries[1:]):
             votes_for_boundary = boundary_votes.astype(int)
             votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
+            
             if self.weight_type == "accuracy":
-                # Update weights according to boundary-placing accuracy for each model
                 self.num_boundaries += 1
                 self.errors += votes_for_no_boundary if true_boundary else votes_for_boundary
                 self.weights = 2 * (0.5 - self.errors / self.num_boundaries) 
-            elif self.weight_type == "precision":
-                # Update weights according to precision and recall for each model
-                if not true_boundary:
-                    self.num_boundaries_not_placed += 1
-                    self.errors_positive += votes_for_boundary
-                    self.weights_positive = (1 - self.errors_positive / self.num_boundaries_not_placed)
-                else:
+            
+            elif self.weight_type in ["precision", "recall", "f1"]:
+                self.total_positive += votes_for_boundary
+                self.total_negative += votes_for_no_boundary
+                if true_boundary:
                     self.num_boundaries_placed += 1
-                    self.errors_negative += votes_for_no_boundary
-                    self.weights_negative = (1 - self.errors_negative / self.num_boundaries_placed)
+                    self.correct_positive += votes_for_boundary
+                else:
+                    self.num_boundaries_not_placed += 1
+                    self.correct_negative += votes_for_no_boundary
+                precision_positive = self.correct_positive / self.total_positive
+                precision_negative = self.correct_negative / self.total_negative
+                recall_positive = self.correct_positive / self.num_boundaries_placed
+                recall_negative = self.correct_negative / self.num_boundaries_not_placed
+                if self.weight_type == "precision":
+                    self.weights_positive = precision_positive
+                    self.weights_negative = precision_negative
+                elif self.weight_type == "recall":
+                    self.weights_positive = recall_positive
+                    self.weights_negative = recall_negative
+                else:
+                    self.weights_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
+                    self.weights_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)                
 
 def prepare_predictability_models(args, phonestats, log):
     # For each measure and for each direction and for each ngram length up to max_ngram,
@@ -260,7 +275,7 @@ def segment(text, args, log=utils.null_logger()):
     segmented = list(model.segment(text))
 
     log.info('Final weights:')
-    if model.weight_type == "precision":
+    if model.weight_type in ["precision", "recall", "f1"]:
         for m, weight_p, weight_n in zip(model.models, model.weights_positive, model.weights_negative):
             log.info('\t{}\t{}\t{}'.format(m, '%.4g' % weight_p, '%.4g' % weight_n))
     elif model.weight_type == "accuracy":
@@ -288,8 +303,8 @@ def _add_arguments(parser):
         help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
     multi_options.add_argument(
         '-W', '--weight_type', type=str, default="accuracy", metavar='<str>',
-        help='Type of weights to use for the majority vote algorithm. Select "precision" for weights based '
-        'on precision and recall, "accuracy" for weights based on accuracy and "none" for no weights. Default is %(default)s.')
+        help='Type of weights to use for the majority vote algorithm. Select "precision", "recall", "f1" or '
+        '"accuracy" for weights based on those measures and "none" for no weights. Default is %(default)s.')
     predictability_options = parser.add_argument_group('Predictability Model Options')
     predictability_options.add_argument(
         '-P', '--predictability_models', type=str, default="none", metavar='<str>',
