@@ -1,6 +1,6 @@
 """ Run tests for the PeakModel abstract class """
 
-from segmenter.model import PeakModel
+from segmenter.peakmodels import PeakModel
 from segmenter.phonesequence import PhoneSequence
 
 # Create subclass with implementation of score() for testing

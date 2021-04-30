@@ -9,10 +9,10 @@ import numpy as np
 from wordseg import utils
 
 from segmenter.model import Model
-from segmenter.lexicon import Lexicon, LexiconBoundaryModel, LexiconFrequencyModel
+from segmenter.lexicon import Lexicon
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
-from segmenter.predictability import PredictabilityModel
+from segmenter.peakmodels import PredictabilityModel, LexiconBoundaryModel, LexiconFrequencyModel
 from segmenter.probabilistic import ProbabilisticModel
 
 class MultiCueModel(Model):

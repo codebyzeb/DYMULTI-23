@@ -8,7 +8,7 @@ from segmenter.baseline import BaselineModel
 from segmenter.multicue import MultiCueModel
 from segmenter.phonestats import PhoneStats
 from segmenter.lexicon import Lexicon
-from segmenter.predictability import PredictabilityModel
+from segmenter.peakmodels import PredictabilityModel
 
 """
 ----------------------------------------------

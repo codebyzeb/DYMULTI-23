@@ -3,7 +3,7 @@
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
 from segmenter.lexicon import Lexicon
-from segmenter.lexicon import LexiconBoundaryModel
+from segmenter.peakmodels import LexiconBoundaryModel
 
 """
 ----------------------------------------------

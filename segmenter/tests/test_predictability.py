@@ -2,7 +2,7 @@
 
 import pytest
 
-from segmenter.predictability import PredictabilityModel
+from segmenter.peakmodels import PredictabilityModel
 from segmenter.phonestats import PhoneStats
 from segmenter.phonesequence import PhoneSequence
 
