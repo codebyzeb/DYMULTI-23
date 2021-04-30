@@ -111,7 +111,7 @@ class MultiCueModel(Model):
         # Use weighted majority voting at each boundary position to find best segmentation
         # We don't do majority voting for the first boundary (we assume all algorithms can
         # correctly place utterance boundaries)
-        best_boundaries = [False] + [self._make_boundary_decision(boundary_votes, update_model)[0] for boundary_votes in boundaries.T[1:]]
+        best_boundaries = [False] + [self._make_boundary_decision(boundary_votes)[0] for boundary_votes in boundaries.T[1:]]
 
         segmented = PhoneSequence(utterance.phones)
         segmented.boundaries = best_boundaries
@@ -123,7 +123,7 @@ class MultiCueModel(Model):
 
         return segmented
 
-    def _make_boundary_decision(self, boundary_votes, update_model):
+    def _make_boundary_decision(self, boundary_votes):
         """ Given votes cast by each model, determines whether a boundary should be placed.
 
         Uses the weighted majority algorithm to make a decision.
@@ -141,6 +141,8 @@ class MultiCueModel(Model):
             A decision whether or not to place a boundary.
         weighted_vote_for_boundary : float
             The final vote for the boundary.
+        weighted_vote_for_no_boundary : float
+            The final vote for no boundary.
         """
 
         # Get each model's boundary decision
@@ -153,9 +155,10 @@ class MultiCueModel(Model):
             boundary = weighted_vote_for_boundary * sum(self.weights_negative) > weighted_vote_for_no_boundary * sum(self.weights_positive)
         else:
             weighted_vote_for_boundary = votes_for_boundary.dot(self.weights)
+            weighted_vote_for_no_boundary = votes_for_no_boundary.dot(self.weights)
             boundary = weighted_vote_for_boundary > 0.5 * sum(self.weights)
 
-        return boundary, weighted_vote_for_boundary
+        return boundary, weighted_vote_for_boundary, weighted_vote_for_no_boundary
 
     def update(self, segmented, boundaries):
         """ A method that is called at the end of segment_utterance. Updates 
