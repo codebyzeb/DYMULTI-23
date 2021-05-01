@@ -56,7 +56,7 @@ class PeakModel(Model):
             A sequence of phones with word boundaries.
         """
 
-        segmented = PhoneSequence(utterance.phones)
+        segmented = PhoneSequence(utterance.phones, utterance.stress)
 
         last_score = None
         
@@ -331,3 +331,70 @@ class LexiconBoundaryModel(PeakModel):
                 self._lexicon.increase_count(''.join(word))
             if self._updatephonestats:
                 self._phonestats.add_phones(word)
+
+class StressModel(PeakModel):
+    """ A simple lexicon-based model for word segmentation.
+
+    Based on "An explicit statistical model of learning lexical segmentation using multiple cues"
+    (Çöltekin et al, 2014). Collects statistics about stress alignments on previously-segmented
+    utterances to estimate boundaries given word-initial or word-final stress alignments.
+
+    Operates essentially the same as the Predictability Model with the Boundary Probability measure,
+    but keeps track and uses stress alignment information instead of phonemes.
+
+    Parameters
+    ----------
+    ngram_length : int, optional
+        The length of n-grams used to calculate boundary probability.
+    increase : bool, optional
+        When true, place word boundaries when the unpredictability increases before a candidate boundary.
+        When false, place word boundaries when the unpredictability decreases after a candidate boundary.
+    right : bool, optional
+        When True, use the right context for predictability calculations, otherwise use the left context.
+    stressstats : phonestats.PhoneStats, optional
+        If not provided, a PhoneStats object will be created and updated to keep track of stress ngram counts.
+        Otherwise, the provided object will be used, but not updated.
+    log : logging.Logger, optional
+        Where to send log messages
+    """
+
+    def __init__(self, ngram_length=1, increase=True, right=False, stressstats=None, log=utils.null_logger()):
+        super().__init__(increase, log)
+
+        # Initialise model parameters
+        if ngram_length < 1:
+            raise ValueError("Cannot initialise a Stress Model with non-positive n-gram length.")
+        self.ngram_length = ngram_length
+        self.right = right
+
+        # Initialise phoneme statistics if not provided
+        # (usually need to store ngrams one larger than those queried for calculations)
+        if stressstats is None:
+            self._stressstats = PhoneStats(ngram_length+1)
+            self._updatestress = True
+        else:
+            self._stressstats = stressstats
+            self._updatestress = False
+
+    def __str__(self):
+        return "StressModel({},{}{})".format(
+            "N: " + str(self.ngram_length),
+            "Increase of " if self.increase else "Decrease of ",
+            "Right Stress" if self.right else "Left Stress")
+
+    # Overrides PeakModel.update()
+    def score(self, utterance, position):
+        """
+        Returns a score for the candidate boundary before utterance.stress[i], calculated
+        using boundary probability.
+        """
+        return self._stressstats.get_unpredictability(
+            phones=utterance.stress, position=position, measure="bp",
+            right=self.right, ngram_length=self.ngram_length)
+
+    # Overrides PeakModel.update()
+    def update(self, segmented):
+        """ Updates stress phonestats with stress information from each word """
+        if self._updatestress:
+            for word_stress in segmented.get_word_stress():
+                self._stressstats.add_phones(word_stress)

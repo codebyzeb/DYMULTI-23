@@ -12,7 +12,7 @@ from segmenter.model import Model
 from segmenter.lexicon import Lexicon
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
-from segmenter.peakmodels import PredictabilityModel, LexiconBoundaryModel, LexiconFrequencyModel
+from segmenter.peakmodels import PredictabilityModel, LexiconBoundaryModel, LexiconFrequencyModel, StressModel
 from segmenter.probabilistic import ProbabilisticModel
 
 class MultiCueModel(Model):
@@ -33,6 +33,8 @@ class MultiCueModel(Model):
     lexicon_phonestats : PhoneStats, optional
         Phoneme statistics updated with each word in the segmented utterance
         (each segmented word is treated as an utterance).
+    stressstats : PhoneStats, optional
+        Stress statistics updated with each word in the segmented utterance
     lexicon : Lexicon, optional
         Lexicon updated with each word in the segmented utterance.
     log : logging.Logger, optional
@@ -45,7 +47,7 @@ class MultiCueModel(Model):
 
     """
 
-    def __init__(self, models=[], weight_type="accuracy", corpus_phonestats=None, lexicon_phonestats=None, lexicon=None, log=utils.null_logger()):
+    def __init__(self, models=[], weight_type="accuracy", corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
         super().__init__(log)
 
         # Check models
@@ -61,6 +63,7 @@ class MultiCueModel(Model):
         # Initialise phonestats and lexicon
         self.corpus_phonestats = corpus_phonestats
         self.lexicon_phonestats = lexicon_phonestats
+        self.stressstats = stressstats
         self.lexicon = lexicon
 
         # Initialise models
@@ -113,7 +116,7 @@ class MultiCueModel(Model):
         # correctly place utterance boundaries)
         best_boundaries = [False] + [self._make_boundary_decision(boundary_votes)[0] for boundary_votes in boundaries.T[1:]]
 
-        segmented = PhoneSequence(utterance.phones)
+        segmented = PhoneSequence(utterance.phones, utterance.stress)
         segmented.boundaries = best_boundaries
 
         self._log.debug("Segmented utterance '{}' as '{}".format(utterance, segmented))
@@ -178,6 +181,9 @@ class MultiCueModel(Model):
         if not self.lexicon_phonestats is None:
             for word in segmented.get_words():
                 self.lexicon_phonestats.add_phones(word)
+        if not self.stressstats is None:
+            for word_stress in segmented.get_word_stress():
+                self.stressstats.add_phones(word_stress)
         if not self.lexicon is None:
             for word in segmented.get_words():
                 self.lexicon.increase_count(''.join(word))  
@@ -254,6 +260,20 @@ def prepare_lexicon_models(args, phonestats, lexicon, log):
                 models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
     return models
 
+def prepare_stress_models(args, stressstats, log):
+    # For each direction and for each ngram length up to max_ngram,
+    # create a pair of peak-based stress models (an increase model and a decrease model). 
+    models = []
+    log.info('Setting up Stress Cues')
+    for n in range(1, args.max_ngram+1):
+        if args.direction != "right":
+            models.append(StressModel(ngram_length=n, increase=True, right=False, stressstats=stressstats, log=log))
+            models.append(StressModel(ngram_length=n, increase=False, right=False, stressstats=stressstats, log=log))
+        if args.direction != "left":
+            models.append(StressModel(ngram_length=n, increase=True, right=True, stressstats=stressstats, log=log))
+            models.append(StressModel(ngram_length=n, increase=False, right=True, stressstats=stressstats, log=log))
+    return models
+
 def segment(text, args, log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of models using a variety of cues. """
 
@@ -265,6 +285,9 @@ def segment(text, args, log=utils.null_logger()):
     corpus_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
     lexicon = Lexicon()
     lexicon_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    stressstats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    
+    # Set up submodels for predictability, lexicon and stress
     models = []
     if args.predictability_models != "none":
         log.info('Setting up Predictability Models')
@@ -272,10 +295,14 @@ def segment(text, args, log=utils.null_logger()):
     if args.lexicon_models != "none":
         log.info('Setting up Lexicon Models')
         models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
+    if args.stress_file:
+        log.info('Loading stress alignment information at {}'.format(args.stress_file))
+        models.extend(prepare_stress_models(args, stressstats, log))
+
     # models.append(ProbabilisticModel(ngram_length=0, model_type="blanch", phonestats=corpus_phonestats, lexicon=lexicon, log=log))
-    model = MultiCueModel(models=models, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
+    model = MultiCueModel(models=models, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
     
-    segmented = list(model.segment(text))
+    segmented = list(model.segment(text, stress_lines=list(open(args.stress_file, 'r')) if args.stress_file else None))
 
     log.info('Final weights:')
     if model.weight_type in ["precision", "recall", "f1"]:
@@ -304,6 +331,9 @@ def _add_arguments(parser):
     multi_options.add_argument(
         '-S', '--smoothing', type=float, default=0.0, metavar='<float>',
         help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
+    multi_options.add_argument(
+        '-X', '--stress_file', type=str, metavar='<str>',
+        help='If a stress alignment file is provided, stress models will be added to the model.')
     multi_options.add_argument(
         '-W', '--weight_type', type=str, default="accuracy", metavar='<str>',
         help='Type of weights to use for the majority vote algorithm. Select "precision", "recall", "f1" or '

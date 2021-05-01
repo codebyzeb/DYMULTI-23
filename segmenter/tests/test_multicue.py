@@ -78,7 +78,7 @@ def test_to_string():
 ----------------------------------------------
 """
 
-# TODO: Add tests for when weight_type is precision or none
+# TODO: Add tests for when weight_type is precision or recall or f1 or none
 
 def test_segment_empty_text():
 

@@ -15,13 +15,22 @@ class PhoneSequence:
 
     """
 
-    def __init__(self, phones=[]):
+    def __init__(self, phones=[], stress=[], boundaries=[]):
         self.phones = []
         for phone in phones:
             if phone != ' ':
                 self.phones.append(phone)
-        # Assume there is a boundary before the first phone
-        self.boundaries = [True] + [False] * (len(phones) - 1)
+
+        # Assign stress
+        self.stress = stress
+        if stress == []:
+            self.stress = ['0'] * len(phones)
+
+        # Assign boundaries
+        self.boundaries = boundaries
+        if self.boundaries == []:
+            # Assume there is a boundary before the first phone
+            self.boundaries = [True] + [False] * (len(phones) - 1)
 
     def get_words(self):
         """ Returns the words in the PhoneSequence, split according to the boundaries """
@@ -32,6 +41,17 @@ class PhoneSequence:
                 words.append(self.phones[i:j])
                 i = j
         words.append(self.phones[i:])
+        return words
+
+    def get_word_stress(self):
+        """ Returns the stress alignment in the PhoneSequence, split according to the boundaries """
+        words = []
+        i = 0
+        for j in range(len(self.stress)):
+            if self.boundaries[j]:
+                words.append(self.stress[i:j])
+                i = j
+        words.append(self.stress[i:])
         return words
 
     def __str__(self):

@@ -14,7 +14,7 @@ class Model(ABC):
     def __str__(self):
         return "AbstractModel"
 
-    def segment(self, text, update_model=True):
+    def segment(self, text, update_model=True, stress_lines=None):
         """ Segment some text using the model.
         
         Default implementation is to call segment_utterance for each utterance in the text,
@@ -26,6 +26,8 @@ class Model(ABC):
             A sequence of strings, each of which is considered an utterance and consists of space-separated phonemes.
         update_model : bool
             When True (default), updates the model online during segmentation.
+        stress_lines: list of str
+            A sequence of strings, each of which represents the stress aligned with the utterance.
 
         Yields
         ------
@@ -37,9 +39,15 @@ class Model(ABC):
         t = time.time()
 
         for i, utterance in enumerate(text):
-            if i % 100 == 0:
+            if i % 1000 == 0:
                 self._log.info("Utterances segmented: " + str(i))
-            segmented = str(self.segment_utterance(PhoneSequence(utterance.strip().split(' ')), update_model))
+            phones = utterance.strip().split(' ')
+            if stress_lines:
+                stress = list(''.join(stress_lines[i].strip().split(' ')))
+                phone_sequence = PhoneSequence(phones=phones, stress=stress)
+            else:
+                phone_sequence = PhoneSequence(phones=phones)
+            segmented = str(self.segment_utterance(phone_sequence, update_model))
             yield segmented
 
         self._log.info("Total time to segment: " + str(time.time() - t))
