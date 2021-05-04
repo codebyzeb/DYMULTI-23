@@ -97,10 +97,6 @@ class ProbabilisticModel(Model):
         segmented = PhoneSequence(utterance.phones)
         n = len(segmented)
         
-        # Initial best score is for no segmentation
-        best_score = self.word_score(segmented.phones)
-        best_segpoint = n
-
         # Memoisation grids where best_scores[i] stores the best score for utterance[0:i]
         # and best_segpoints[i] scores the best place to split utterance[0:i] (best_segpoint[3] == 1 means the best way
         # to split utterance[0:3] is as utterance[0:1] | utterance[1:3].)
@@ -186,7 +182,7 @@ class ProbabilisticModel(Model):
                         has_syllabic_sound = True
                         break
                 if not has_syllabic_sound:
-                    return 10000 # approximation for log(0), made much higher than those below
+                    return 10000 # approximation for log(0)
 
             # Otherwise, return the probability given by the phonemes in the word, scaled by 
             # the probability of seeing an unknown word. Also considers the probability of a boundary, 
@@ -194,11 +190,11 @@ class ProbabilisticModel(Model):
             p_w = self._phonestats.get_log_word_probability(word, self.ngram_length)
             unseen_prob = self._lexicon.unseen_freq()
             boundary_prob = self._lexicon.token_count / self._phonestats.ntokens[1] if self._phonestats.ntokens[1] != 0 else 0
-            if p_w >= 10000 or boundary_prob == 0 or boundary_prob == 1 or unseen_prob == 0:
+            if boundary_prob == 0 or boundary_prob == 1 or unseen_prob == 0:
                 # print(p_w, boundary_prob, unseen_prob)
                 return 10000 # approximation for log(0)
-            boundary_factor = boundary_prob/(1-boundary_prob)
-            return + p_w - log2(unseen_prob) - log2(boundary_factor)
+            boundary_factor = boundary_prob/(1-boundary_prob) if self.ngram_length == 0 else 1
+            return min(p_w - log2(unseen_prob) - log2(boundary_factor), 10000)
 
         else:
             # Shouldn't happen, should be caught by initialisation

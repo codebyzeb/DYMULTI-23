@@ -3,8 +3,10 @@
 
 EXPERIMENT_DIR=$2
 TRANSCRIPT="/Users/zebulon/Documents/UniDocs/Year4/Project/Repository/data/br-phonemes.txt"
+STRESS="/Users/zebulon/Documents/UniDocs/Year4/Project/Repository/data/br-phono-modified.txt.stress"
 CLEAN=TRUE
 SEGMENTER=$1
+LAST_1000=FALSE
 
 if $CLEAN
 then
@@ -12,6 +14,7 @@ then
     echo "Cleaning directory '$EXPERIMENT_DIR'"
     rm -r $EXPERIMENT_DIR
     mkdir $EXPERIMENT_DIR
+    cp $STRESS $EXPERIMENT_DIR/stress.txt
 
     # Prepare transcript for segmentation using wordseg
     echo "Preparing transcript for segmentation in '$EXPERIMENT_DIR'"
@@ -26,6 +29,15 @@ else
 	echo "Running '$SEGMENTER' segmenter with additional arguments '${@:3}'"
 fi
 python -m segmenter.$SEGMENTER -o $EXPERIMENT_DIR/segmented.txt ${@:3} $EXPERIMENT_DIR/prepared.txt
+
+# Evaluate excluding first 1000 lines
+if $LAST_1000
+then
+	echo "Removing first 1000 lines for evaluation"
+	sed -ie 1,1000d $EXPERIMENT_DIR/gold.txt
+	sed -ie 1,1000d $EXPERIMENT_DIR/prepared.txt
+	sed -ie 1,1000d $EXPERIMENT_DIR/segmented.txt
+fi
 
 # Evaluate segmentation using wordseg
 echo "Calculating statistics"

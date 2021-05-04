@@ -291,8 +291,8 @@ class PhoneStats:
         The probability is calculated as the sum of the negative log conditional probabilities of each phone.
         If ngram_length=0, this assumes no context, so the probabilities are used instead of the conditional probabilities.
 
-        E.g. for ngram_length = 1, P('abbc') = P('a'|boundary) * P('b'|'a') * P('b'|'b') * P('c'|'b') (but as log sum)
-        For ngram_length = 0, P('abbc') = P('a') * P('b') * P('b') * P('c')
+        E.g. for ngram_length = 1, P('abbc') = P('a'|boundary) * P('b'|'a') * P('b'|'b') * P('c'|'b') * P(boundary|'c') (but as neg log sum)
+        For ngram_length = 0, P('abbc') = P('a') * P('b') * P('b') * P('c') (but as neg log sum)
 
         Parameters
         ----------
