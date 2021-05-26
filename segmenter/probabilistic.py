@@ -10,7 +10,13 @@ from segmenter.phonestats import PhoneStats
 from segmenter.phonesequence import PhoneSequence
 
 MODEL_TYPES = ["lm", "venk", "blanch"]
-BR_CORPUS_SYLLABIC_SOUNDS = ['I', 'E', '&', 'A', 'a', 'O', 'U', '6', 'i', 'e', 'u', 'o', '9', 'Q', '7', '3', 'R', '#', '%', '*', '(', ')', 'L', '~']
+BR_CORPUS_SYLLABIC_SOUNDS = ['I','E','&','A','a','O','U','6','i','e','u','o','9','Q','7','3','R','#','%','*','(',')','L','~']
+IPA_SYLLABIC_SOUNDS = ['ɪ','ɐ','ʊ','i','ĩ','ĭ','ɨ','y','ỹ','ȳ','u','ʉ','ɯ','u','ʏ','ũ','ŭ','ʌ','ɞ','ü',
+                        'ø','ɵ','ɤ','o','œ','œ','ö','œ','ɔ','ọ','õ','ŏ','ɵ','e','ɘ','ə','ɜ','ẹ','ɛ','ε','ɚ','ẽ','ĕ',
+                        'æ','ɐ','a','ä','ɑ','ɒ','ã','ă','α']
+BUCKEYE_SYLLABIC_SOUNDS = ['aa','aan','ae','aen','ah','ahn','ao','aon','aw','awn','ay','ayn','eh','ehn','el','em','en',
+                            'er','ern','ey','eyn','ih','ihn','iy','iyn','ow','own','oy','oyn','uh','uhn','uw','uwn']
+SYLLABIC_SOUNDS = BR_CORPUS_SYLLABIC_SOUNDS
 
 class ProbabilisticModel(Model):
 
@@ -177,8 +183,8 @@ class ProbabilisticModel(Model):
             # If using the blanchard model, reject unseen words without syllabic sounds (require-syllabic-sound constraint).
             if self.type == "blanch":
                 has_syllabic_sound = False
-                for phoneme in word:
-                    if phoneme in BR_CORPUS_SYLLABIC_SOUNDS:
+                for phoneme in SYLLABIC_SOUNDS:
+                    if phoneme in word_str:
                         has_syllabic_sound = True
                         break
                 if not has_syllabic_sound:
