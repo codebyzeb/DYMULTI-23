@@ -196,7 +196,7 @@ class MultiCueModel(Model):
             if self.weight_type == "accuracy":
                 self.num_boundaries += 1
                 self.errors += votes_for_no_boundary if true_boundary else votes_for_boundary
-                self.weights = 2 * (0.5 - self.errors / self.num_boundaries) 
+                self.weights = (1 - self.errors / self.num_boundaries) 
             
             elif self.weight_type in ["precision", "recall", "f1"]:
                 self.total_positive += votes_for_boundary
@@ -221,13 +221,13 @@ class MultiCueModel(Model):
                     self.weights_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
                     self.weights_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)                
 
-def prepare_predictability_models(args, phonestats, log):
+def prepare_predictability_models(args, ngrams, phonestats, log):
     # For each measure and for each direction and for each ngram length up to max_ngram,
     # create a pair of peak-based predictability models (an increase model and a decrease model). 
     models = []
     for measure in args.predictability_models.split(','):
         log.info('Setting up Predictability Cues for measure: {}'.format(measure))
-        for n in range(1, args.max_ngram+1):
+        for n in ngrams:
             if args.direction != "right":
                 models.append(PredictabilityModel(ngram_length=n, increase=True, measure=measure, right=False, phonestats=phonestats, log=log))
                 models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=False, phonestats=phonestats, log=log))
@@ -236,7 +236,7 @@ def prepare_predictability_models(args, phonestats, log):
                 models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=True, phonestats=phonestats, log=log))
     return models
 
-def prepare_lexicon_models(args, phonestats, lexicon, log):
+def prepare_lexicon_models(args, ngrams, phonestats, lexicon, log):
     # For each direction and for each ngram length up to max_ngram, create
     # a pair of lexicon models (an increase and a decrease model). 
     # Also create a pair of frequency lexicon models for each direction. 
@@ -251,7 +251,7 @@ def prepare_lexicon_models(args, phonestats, lexicon, log):
             models.append(LexiconFrequencyModel(increase=False, use_presence=True, right=True, lexicon=lexicon, log=log))
     if args.lexicon_models != "frequency":
         log.info('Setting up Lexicon Boundary Cues')
-        for n in range(1, args.max_ngram+1):
+        for n in ngrams:
             if args.direction != "right":
                 models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
                 models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
@@ -260,12 +260,12 @@ def prepare_lexicon_models(args, phonestats, lexicon, log):
                 models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
     return models
 
-def prepare_stress_models(args, stressstats, log):
+def prepare_stress_models(args, ngrams, stressstats, log):
     # For each direction and for each ngram length up to max_ngram,
     # create a pair of peak-based stress models (an increase model and a decrease model). 
     models = []
     log.info('Setting up Stress Cues')
-    for n in range(1, args.max_ngram+1):
+    for n in ngrams:
         if args.direction != "right":
             models.append(StressModel(ngram_length=n, increase=True, right=False, stressstats=stressstats, log=log))
             models.append(StressModel(ngram_length=n, increase=False, right=False, stressstats=stressstats, log=log))
@@ -281,23 +281,26 @@ def segment(text, args, log=utils.null_logger()):
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
     log.info('Using "{}" weight type for weighted majority algorithm.'.format(args.weight_type))
 
+    ngrams = [int(ngram) for ngram in args.ngrams.strip().split(',')]
+    ngrams.sort()
+
     # Create multi-cue model
-    corpus_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    corpus_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     lexicon = Lexicon()
-    lexicon_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
-    stressstats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    lexicon_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    stressstats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     
     # Set up submodels for predictability, lexicon and stress
     models = []
     if args.predictability_models != "none":
         log.info('Setting up Predictability Models')
-        models.extend(prepare_predictability_models(args, corpus_phonestats, log))
+        models.extend(prepare_predictability_models(args, ngrams, corpus_phonestats, log))
     if args.lexicon_models != "none":
         log.info('Setting up Lexicon Models')
-        models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
+        models.extend(prepare_lexicon_models(args, ngrams, lexicon_phonestats, lexicon, log))
     if args.stress_file:
         log.info('Loading stress alignment information at {}'.format(args.stress_file))
-        models.extend(prepare_stress_models(args, stressstats, log))
+        models.extend(prepare_stress_models(args, ngrams, stressstats, log))
 
     # models.append(ProbabilisticModel(ngram_length=0, model_type="blanch", phonestats=corpus_phonestats, lexicon=lexicon, log=log))
     model = MultiCueModel(models=models, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
@@ -321,8 +324,8 @@ def _add_arguments(parser):
 
     multi_options = parser.add_argument_group('Multicue Model Options')
     multi_options.add_argument(
-        '-n', '--max_ngram', type=int, default=1, metavar='<int>',
-        help='the maximum length of ngram to use to calculate predictability, '
+        '-n', '--ngrams', type=str, default=1, metavar='<str>',
+        help='the ngram sizes used to use to calculate measures, '
         'default is %(default)s')
     multi_options.add_argument(
         '-d', '--direction', type=str, default="left", metavar='<str>',
