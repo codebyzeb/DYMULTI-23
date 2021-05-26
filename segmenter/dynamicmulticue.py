@@ -7,7 +7,7 @@ from wordseg import utils
 from segmenter.phonestats import PhoneStats
 from segmenter.lexicon import Lexicon
 from segmenter.phonesequence import PhoneSequence
-from segmenter.probabilistic import BR_CORPUS_SYLLABIC_SOUNDS
+from segmenter.probabilistic import SYLLABIC_SOUNDS
 from segmenter.multicue import MultiCueModel
 
 class DynamicMultiCueModel(MultiCueModel):
@@ -29,6 +29,9 @@ class DynamicMultiCueModel(MultiCueModel):
         is assigned for each cue, based on the precision and recall of that cue. This allows the multicue model
         to learn which cues are very precise at placing boundaries and weigh votes from these models higher. If "none",
         no weights are used.
+    recognition_weight : float, optional
+        The weight to assign previously-seen words. If set to 1, the model will always try to place boundaries around
+        previously-seen words. If set to 0, no lexical recognition will take place.
     corpus_phonestats : PhoneStats, optional
         Phoneme statistics updated with each utterance from the corpus.
     lexicon_phonestats : PhoneStats, optional
@@ -41,11 +44,12 @@ class DynamicMultiCueModel(MultiCueModel):
 
     """
 
-    def __init__(self, models=[], weight_type="accuracy", corpus_phonestats=None, lexicon_phonestats=None, lexicon=None, log=utils.null_logger()):
-        super().__init__(models=models, weight_type=weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
-        
+    def __init__(self, models=[], weight_type="accuracy", recognition_weight=0, corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
+        super().__init__(models=models, weight_type=weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
+        self.recognition_weight = recognition_weight
+
     def __str__(self):
-        return "Probabilistic"+super().__str__()
+        return "Dynamic"+super().__str__()
 
     # Overrides MultiCueModel.segment_utterance()
     def segment_utterance(self, utterance, update_model=True):
@@ -75,7 +79,8 @@ class DynamicMultiCueModel(MultiCueModel):
 
         # Normalise votes around 0, such that votes greater than 0 represent where the MultiCueModel would have placed a boundary
         if self.weight_type in ["precision", "recall", "f1"]:
-            normalised_votes = [boundary_vote/sum(self.weights_positive) - no_boundary_vote/sum(self.weights_negative) for (boundary_vote, no_boundary_vote) in zip(boundary_votes, no_boundary_votes)]
+            normalised_votes = [boundary_vote/sum(self.weights_positive) - no_boundary_vote/sum(self.weights_negative)
+                                for (boundary_vote, no_boundary_vote) in zip(boundary_votes, no_boundary_votes)]
         else:
             normalised_votes = [2 * (vote/sum(self.weights) - 0.5) for vote in boundary_votes]
         normalised_votes[0] = 1 # Always vote for utterance boundaries
@@ -123,6 +128,9 @@ class DynamicMultiCueModel(MultiCueModel):
             self.update(segmented, boundaries)
         return segmented
 
+    def update(self, segmented, boundaries):
+        super().update(segmented, boundaries)
+
     def word_score(self, word, boundary_scores):
         """ Return a score for the word.
 
@@ -139,19 +147,27 @@ class DynamicMultiCueModel(MultiCueModel):
 
         # Score for familiar words
         word_str = ''.join(word)
-        lexicon_score = 0 if word_str in self.lexicon else 0
+        lexicon_score = self.recognition_weight if word_str in self.lexicon else 0
 
         # The score as just the boundary score at the start of the word
         boundary_score = boundary_scores[0]
 
         # Strongly reject words that don't contain a syllabic sound
-        syllabic = sum([phoneme in BR_CORPUS_SYLLABIC_SOUNDS for phoneme in word]) > 0 
+        syllabic = sum([phoneme in word_str for phoneme in SYLLABIC_SOUNDS]) > 0 
         if not syllabic:
             return -100
 
         return (boundary_score + lexicon_score)
 
-from segmenter.multicue import _add_arguments, prepare_predictability_models, prepare_lexicon_models
+from segmenter.multicue import _add_arguments as _add_arguments_multicue, prepare_predictability_models, prepare_lexicon_models, prepare_stress_models
+
+def _add_arguments(parser):
+    _add_arguments_multicue(parser)
+    dymulti_options = parser.add_argument_group('Dynamic Multicue Model Options')
+    dymulti_options.add_argument(
+        '-a', '--alpha', type=float, default=0.0, metavar='<float>',
+        help='the weight to give previously-seen words, '
+        'default is %(default)s')
 
 def segment(text, args, log=utils.null_logger()):
     """ Segment using a Multi Cue segmenter model composed of a collection of models using a variety of cues. """
@@ -159,19 +175,30 @@ def segment(text, args, log=utils.null_logger()):
     log.info('Using a Dynamic Multiple Cue model to segment text.')
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
     log.info('Using "{}" weight type for weighted majority algorithm.'.format(args.weight_type))
+    log.info('Using lexical recognition with weight {}'.format(args.alpha) if args.alpha else 'Not using lexical recognition.')
+
+    ngrams = [int(ngram) for ngram in args.ngrams.strip().split(',')]
+    ngrams.sort()
 
     # Create multi-cue model
-    corpus_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    corpus_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     lexicon = Lexicon()
-    lexicon_phonestats = PhoneStats(max_ngram=args.max_ngram+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    lexicon_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
+    stressstats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
+
+    # Set up submodels for predictability, lexicon and stress
     models = []
     if args.predictability_models != "none":
         log.info('Setting up Predictability Models')
-        models.extend(prepare_predictability_models(args, corpus_phonestats, log))
+        models.extend(prepare_predictability_models(args, ngrams, corpus_phonestats, log))
     if args.lexicon_models != "none":
         log.info('Setting up Lexicon Models')
-        models.extend(prepare_lexicon_models(args, lexicon_phonestats, lexicon, log))
-    model = DynamicMultiCueModel(models=models, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, lexicon=lexicon, log=log)
+        models.extend(prepare_lexicon_models(args, ngrams, lexicon_phonestats, lexicon, log))
+    if args.stress_file:
+        log.info('Loading stress alignment information at {}'.format(args.stress_file))
+        models.extend(prepare_stress_models(args, ngrams, stressstats, log))
+
+    model = DynamicMultiCueModel(models=models, weight_type=args.weight_type, recognition_weight=args.alpha, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
     
     segmented = list(model.segment(text))
 
