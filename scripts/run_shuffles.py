@@ -9,7 +9,9 @@ import numpy as np
 languages = ["Basque", "Cantonese", "Croatian", "Danish", "Dutch", "English", "Estonian", "Farsi", "French", "German", "Greek", "Hungarian", "Icelandic", "Indonesian", "Irish", "Italian", "Japanese", "Korean", "Mandarin", "Norwegian", "Portuguese", "Romanian", "Serbian", "Spanish", "Swedish", "Turkish"]
 
 #for experiment_dir in ["experiments/L-{}-M".format(language) for language in languages[20:]]:
-for experiment_dir in ["experiments/DM14A0"]:
+#for experiment_dir in ["experiments/DM14A0"]:
+
+for experiment_dir in ["experiments/E"]:
 
 	stress = "{}/stress.txt".format(experiment_dir)
 	gold = "{}/gold.txt".format(experiment_dir)
@@ -23,9 +25,9 @@ for experiment_dir in ["experiments/DM14A0"]:
 		prepared2 = "{}/prepared{}.txt".format(experiment_dir, i)
 		gold2 = "{}/gold{}.txt".format(experiment_dir, i)
 
-		command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -n 3 -d both -P ent,mi,bp -L both -X {}/stress{}.txt -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i)
-		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4 -d both -P sv -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
-		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4 -d both -P sv,bp -L both -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
+		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -n 3,1 -d both -P ent,mi,bp -L both -X {}/stress{}.txt -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i)
+		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4,3,2,1 -d both -P sv -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
+		command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4,3,2,1 -d both -P sv,bp -L both -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
 		#command = "python -m segmenter.probabilistic -o {}/segmented{}.txt -v -n 0 -m blanch {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
 
 		evall = "{}/eval{}.txt".format(experiment_dir, i)
