@@ -1,8 +1,8 @@
-""" Run tests for the LexiconFrequencyModel class """
+""" Run tests for the LexiconFrequencyIndicator class """
 
 from segmenter.phonesequence import PhoneSequence
 from segmenter.lexicon import Lexicon
-from segmenter.peakmodels import LexiconFrequencyModel
+from segmenter.partialpeakindicators import LexiconFrequencyIndicator
 
 """
 ----------------------------------------------
@@ -12,7 +12,7 @@ from segmenter.peakmodels import LexiconFrequencyModel
 
 def test_init_without_lexicon_sets_correct_properties():
     
-    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=None)
+    model = LexiconFrequencyIndicator(increase=False, right=True, use_presence=True, lexicon=None)
 
     assert(model.increase == False)
     assert(model.right == True)
@@ -24,7 +24,7 @@ def test_init_with_lexicon_sets_correct_properties():
     
     lexicon = Lexicon()
     lexicon.increase_count("word", 10)
-    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=lexicon)
+    model = LexiconFrequencyIndicator(increase=False, right=True, use_presence=True, lexicon=lexicon)
 
     assert(model.increase == False)
     assert(model.right == True)
@@ -40,11 +40,11 @@ def test_init_with_lexicon_sets_correct_properties():
 
 def test_to_string():
 
-    model = LexiconFrequencyModel(increase=False, right=True, use_presence=True, lexicon=None)
+    model = LexiconFrequencyIndicator(increase=False, right=True, use_presence=True, lexicon=None)
 
     s = str(model)
 
-    assert(s == "LexiconFreqModel(Decrease,Type Frequency,Right Context)")
+    assert(s == "LexiconFreqIndicator(Decrease,Type Frequency,Right Context)")
 
 """
 ----------------------------------------------
@@ -54,7 +54,7 @@ def test_to_string():
 
 def test_segment_empty_text():
 
-    model = LexiconFrequencyModel()
+    model = LexiconFrequencyIndicator()
 
     segmented = list(model.segment(""))
 
@@ -63,7 +63,7 @@ def test_segment_empty_text():
 def test_segment_update_model_false_does_not_update_model():
 
     text = ["a b b c", "b a c b"]
-    model = LexiconFrequencyModel()
+    model = LexiconFrequencyIndicator()
 
     list(model.segment(text, update_model=False))
 
@@ -73,7 +73,7 @@ def test_segment_update_model_false_does_not_update_model():
 def test_segment_update_model_true_updates_model():
 
     text = ["a b b c", "b a c b"]
-    model = LexiconFrequencyModel()
+    model = LexiconFrequencyIndicator()
 
     list(model.segment(text, update_model=True))
 
@@ -85,7 +85,7 @@ def test_segment_does_not_update_lexicon_when_provided():
 
     text = ["a b b c", "b a c b"]
     lexicon = Lexicon()
-    model = LexiconFrequencyModel(lexicon=lexicon)
+    model = LexiconFrequencyIndicator(lexicon=lexicon)
 
     list(model.segment(text, update_model=True))
 
@@ -96,7 +96,7 @@ def test_previously_seen_utterances_used_as_words_increase_true():
     """ Previously seen utterances are saved as words and later used to segment """
 
     text = ["c a r", "p a r k", "c a r p o o l"]
-    model = LexiconFrequencyModel(increase=True, right=False)
+    model = LexiconFrequencyIndicator(increase=True, right=False)
 
     segmentations = list(model.segment(text, update_model=True))
 
@@ -112,7 +112,7 @@ def test_previously_seen_utterances_used_as_words_increase_false():
     """ Previously seen utterances are saved as words and later used to segment """
 
     text = ["c a r", "p a r k", "c a r p o o l"]
-    model = LexiconFrequencyModel(increase=False, right=False)
+    model = LexiconFrequencyIndicator(increase=False, right=False)
 
     segmentations = list(model.segment(text, update_model=True))
 
@@ -126,7 +126,7 @@ def test_previously_seen_utterances_used_as_words_increase_false():
 
 def test_segmented_utterance_has_correct_number_of_boundaries():
     
-    model = LexiconFrequencyModel(increase=False)
+    model = LexiconFrequencyIndicator(increase=False)
     utterance = PhoneSequence("a b c d".split(' '))
 
     segmented = model.segment_utterance(utterance, update_model=False)
@@ -144,7 +144,7 @@ def test_score_right_true():
 
     utterance = PhoneSequence("i t s a b a b y".split(" "))
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
-    model = LexiconFrequencyModel(lexicon=lexicon, right=True)
+    model = LexiconFrequencyIndicator(lexicon=lexicon, right=True)
 
     assert(model.score(utterance, 0) == 3) # | i, it, its
     assert(model.score(utterance, 1) == 0)
@@ -160,7 +160,7 @@ def test_score_right_false():
 
     utterance = PhoneSequence("i t s a b a b y".split(" "))
     lexicon = Lexicon({"it" : 1, "i" : 1, "its" : 1, "a" : 1, "baby": 1, "by" : 1})
-    model = LexiconFrequencyModel(lexicon=lexicon, right=False)
+    model = LexiconFrequencyIndicator(lexicon=lexicon, right=False)
 
     assert(model.score(utterance, 0) == 0)
     assert(model.score(utterance, 1) == 1) # i |

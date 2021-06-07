@@ -1,7 +1,5 @@
 """ A mulitple-cue algorithm for word segmentation.
 
-TODO: Add documentation
-
 """
 
 import numpy as np
@@ -12,21 +10,20 @@ from segmenter.model import Model
 from segmenter.lexicon import Lexicon
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
-from segmenter.peakmodels import PredictabilityModel, LexiconBoundaryModel, LexiconFrequencyModel, StressModel
-from segmenter.probabilistic import ProbabilisticModel
+from segmenter.partialpeakindicators import PredictabilityIndicator, LexiconBoundaryIndicator, LexiconFrequencyIndicator, StressIndicator
 
 class MultiCueModel(Model):
-    """ Train and segment using multiple models as individual cues
+    """ Train and segment using multiple indicators as individual cues
 
     Parameters
     ----------
-    models : list of Model, optional
+    indicators : list of Model, optional
         A list of Model objects used for segmentation, whose suggestions are combined 
         using weighted majority voting to produce a final segmentation.
     weight_type : str, optional
         If "accuracy", the weight of each cue is based on the accuracy of that cue. If "precision", a pair of weights
         is assigned for each cue, based on the precision and recall of that cue. This allows the multicue model
-        to learn which cues are very precise at placing boundaries and weigh votes from these models higher. If "none",
+        to learn which cues are very precise at placing boundaries and weigh votes from these indicators higher. If "none",
         no weights are used.
     corpus_phonestats : PhoneStats, optional
         Phoneme statistics updated with each utterance from the corpus.
@@ -43,20 +40,20 @@ class MultiCueModel(Model):
     Raises
     ------
     ValueError
-        If any model in `models` is not an instance of Model or if `models` is empty.
+        If any indicator in `indicators` is not an instance of Model or if `indicators` is empty.
 
     """
 
-    def __init__(self, models=[], weight_type="accuracy", corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
+    def __init__(self, indicators=[], weight_type="accuracy", corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
         super().__init__(log)
 
-        # Check models
-        if len(models) == 0:
-            raise ValueError("Cannot initialise MultiCueModel without any sub models.")
-        for model in models:
-            if not isinstance(model, Model):
+        # Check indicators
+        if len(indicators) == 0:
+            raise ValueError("Cannot initialise MultiCueModel without any indicators.")
+        for indicator in indicators:
+            if not isinstance(indicator, Model):
                 raise ValueError("Object provided to MultiCueModel is not an instance of Model:"
-                    + str(model))
+                    + str(indicator))
 
         self.weight_type = weight_type
 
@@ -66,29 +63,29 @@ class MultiCueModel(Model):
         self.stressstats = stressstats
         self.lexicon = lexicon
 
-        # Initialise models
-        self.models = models
-        self.num_models = len(models)
+        # Initialise indicators
+        self.indicators = indicators
+        self.num_indicators = len(indicators)
         self._log.info("Initialising MultiCueModel with {} models: \n{}".format(
-            self.num_models, ", ".join([str(model) for model in models])))
+            self.num_indicators, ", ".join([str(indicator) for indicator in indicators])))
 
-        # Weights and error counts associated with each model
+        # Weights and error counts associated with each indicator
         if weight_type in ["precision", "recall", "f1"]:
             self.num_boundaries_not_placed = 1
             self.num_boundaries_placed = 1
-            self.weights_positive = np.ones(self.num_models)
-            self.weights_negative = np.ones(self.num_models)
-            self.correct_positive = np.ones(self.num_models)
-            self.correct_negative = np.ones(self.num_models)
-            self.total_positive = np.ones(self.num_models)
-            self.total_negative = np.ones(self.num_models)
+            self.weights_positive = np.ones(self.num_indicators)
+            self.weights_negative = np.ones(self.num_indicators)
+            self.correct_positive = np.ones(self.num_indicators)
+            self.correct_negative = np.ones(self.num_indicators)
+            self.total_positive = np.ones(self.num_indicators)
+            self.total_negative = np.ones(self.num_indicators)
         else:
             self.num_boundaries = 0
-            self.weights = np.ones(self.num_models)
-            self.errors = np.zeros(self.num_models)
+            self.weights = np.ones(self.num_indicators)
+            self.errors = np.zeros(self.num_indicators)
 
     def __str__(self):
-        return "MultiCue({})".format(", ".join([str(model) for model in self.models]))
+        return "MultiCue({})".format(", ".join([str(indicator) for indicator in self.indicators]))
 
     # Overrides Model.segment_utterance()
     def segment_utterance(self, utterance, update_model=True):
@@ -107,8 +104,8 @@ class MultiCueModel(Model):
             The segmented utterance as a list of phonemes and spaces for word boundaries.
         """
 
-        # Get suggested segmentations from each model
-        segmentations = [model.segment_utterance(utterance, update_model) for model in self.models]
+        # Get suggested segmentations from each indicator
+        segmentations = [indicator.segment_utterance(utterance, update_model) for indicator in self.indicators]
         boundaries = np.array([segmentation.boundaries for segmentation in segmentations])
 
         # Use weighted majority voting at each boundary position to find best segmentation
@@ -127,16 +124,16 @@ class MultiCueModel(Model):
         return segmented
 
     def _make_boundary_decision(self, boundary_votes):
-        """ Given votes cast by each model, determines whether a boundary should be placed.
+        """ Given votes cast by each indicator, determines whether a boundary should be placed.
 
         Uses the weighted majority algorithm to make a decision.
 
         Parameters
         ----------
         boundary_votes : array of bool
-            An array of votes from each model where True represents a vote for a boundary, False otherwise.
+            An array of votes from each indicator where True represents a vote for a boundary, False otherwise.
         update_model : bool
-            If true, updates the weights and error counts for each model according to the decision made.
+            If true, updates the weights and error counts for each indicator according to the decision made.
         
         Returns
         -------
@@ -148,9 +145,9 @@ class MultiCueModel(Model):
             The final vote for no boundary.
         """
 
-        # Get each model's boundary decision
+        # Get each indicator's boundary decision
         votes_for_boundary = boundary_votes.astype(int)
-        votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
+        votes_for_no_boundary = np.ones(self.num_indicators) - votes_for_boundary
 
         if self.weight_type in ["precision", "recall", "f1"]:
             weighted_vote_for_boundary = votes_for_boundary.dot(self.weights_positive)
@@ -166,7 +163,7 @@ class MultiCueModel(Model):
     def update(self, segmented, boundaries):
         """ A method that is called at the end of segment_utterance. Updates 
         self.corpus_phonestats, self.lexicon_phonestats and self.lexicon using
-        the segmented utterance. Also updates the weights of each model, based on the difference
+        the segmented utterance. Also updates the weights of each indicator, based on the difference
         between their suggestions and the final segmentation.
 
         Parameters
@@ -174,7 +171,7 @@ class MultiCueModel(Model):
         segmented : PhoneSequence
             A sequence of phones representing the segmented utterance.
         boundaries : list of list of bool
-            The boundaries suggested by each model.
+            The boundaries suggested by each indicator.
         """
         if not self.corpus_phonestats is None:
             self.corpus_phonestats.add_phones(segmented.phones)
@@ -191,7 +188,7 @@ class MultiCueModel(Model):
         # Don't update weights based on placement of the first utterance boundary
         for boundary_votes, true_boundary in zip(boundaries.T[1:], segmented.boundaries[1:]):
             votes_for_boundary = boundary_votes.astype(int)
-            votes_for_no_boundary = np.ones(self.num_models) - votes_for_boundary
+            votes_for_no_boundary = np.ones(self.num_indicators) - votes_for_boundary
             
             if self.weight_type == "accuracy":
                 self.num_boundaries += 1
@@ -221,61 +218,61 @@ class MultiCueModel(Model):
                     self.weights_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
                     self.weights_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)                
 
-def prepare_predictability_models(args, ngrams, phonestats, log):
+def prepare_predictability_indicators(args, ngrams, phonestats, log):
     # For each measure and for each direction and for each ngram length up to max_ngram,
-    # create a pair of peak-based predictability models (an increase model and a decrease model). 
-    models = []
-    for measure in args.predictability_models.split(','):
+    # create a pair of peak-based predictability indicators (an increase indicator and a decrease indicator). 
+    indicators = []
+    for measure in args.predictability_indicators.split(','):
         log.info('Setting up Predictability Cues for measure: {}'.format(measure))
         for n in ngrams:
             if args.direction != "right":
-                models.append(PredictabilityModel(ngram_length=n, increase=True, measure=measure, right=False, phonestats=phonestats, log=log))
-                models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=False, phonestats=phonestats, log=log))
+                indicators.append(PredictabilityIndicator(ngram_length=n, increase=True, measure=measure, right=False, phonestats=phonestats, log=log))
+                indicators.append(PredictabilityIndicator(ngram_length=n, increase=False, measure=measure, right=False, phonestats=phonestats, log=log))
             if args.direction != "left":
-                models.append(PredictabilityModel(ngram_length=n, increase=True, measure=measure, right=True, phonestats=phonestats, log=log))
-                models.append(PredictabilityModel(ngram_length=n, increase=False, measure=measure, right=True, phonestats=phonestats, log=log))
-    return models
+                indicators.append(PredictabilityIndicator(ngram_length=n, increase=True, measure=measure, right=True, phonestats=phonestats, log=log))
+                indicators.append(PredictabilityIndicator(ngram_length=n, increase=False, measure=measure, right=True, phonestats=phonestats, log=log))
+    return indicators
 
-def prepare_lexicon_models(args, ngrams, phonestats, lexicon, log):
+def prepare_lexicon_indicators(args, ngrams, phonestats, lexicon, log):
     # For each direction and for each ngram length up to max_ngram, create
-    # a pair of lexicon models (an increase and a decrease model). 
-    # Also create a pair of frequency lexicon models for each direction. 
-    models = []
-    if args.lexicon_models != "boundary":
+    # a pair of lexicon indicators (an increase and a decrease indicator). 
+    # Also create a pair of frequency lexicon indicators for each direction. 
+    indicators = []
+    if args.lexicon_indicators != "boundary":
         log.info('Setting up Lexicon Frequency Cues')
         if args.direction != "right":
-            models.append(LexiconFrequencyModel(increase=True, use_presence=True, right=False, lexicon=lexicon, log=log))
-            models.append(LexiconFrequencyModel(increase=False, use_presence=True, right=False, lexicon=lexicon, log=log))
+            indicators.append(LexiconFrequencyIndicator(increase=True, use_presence=True, right=False, lexicon=lexicon, log=log))
+            indicators.append(LexiconFrequencyIndicator(increase=False, use_presence=True, right=False, lexicon=lexicon, log=log))
         if args.direction != "left":
-            models.append(LexiconFrequencyModel(increase=True, use_presence=True, right=True, lexicon=lexicon, log=log))
-            models.append(LexiconFrequencyModel(increase=False, use_presence=True, right=True, lexicon=lexicon, log=log))
-    if args.lexicon_models != "frequency":
+            indicators.append(LexiconFrequencyIndicator(increase=True, use_presence=True, right=True, lexicon=lexicon, log=log))
+            indicators.append(LexiconFrequencyIndicator(increase=False, use_presence=True, right=True, lexicon=lexicon, log=log))
+    if args.lexicon_indicators != "frequency":
         log.info('Setting up Lexicon Boundary Cues')
         for n in ngrams:
             if args.direction != "right":
-                models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
-                models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
+                indicators.append(LexiconBoundaryIndicator(ngram_length=n, increase=True, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
+                indicators.append(LexiconBoundaryIndicator(ngram_length=n, increase=False, right=False, lexicon=lexicon, phonestats=phonestats, log=log))
             if args.direction != "left":
-                models.append(LexiconBoundaryModel(ngram_length=n, increase=True, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
-                models.append(LexiconBoundaryModel(ngram_length=n, increase=False, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
-    return models
+                indicators.append(LexiconBoundaryIndicator(ngram_length=n, increase=True, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
+                indicators.append(LexiconBoundaryIndicator(ngram_length=n, increase=False, right=True, lexicon=lexicon, phonestats=phonestats, log=log))
+    return indicators
 
-def prepare_stress_models(args, ngrams, stressstats, log):
+def prepare_stress_indicators(args, ngrams, stressstats, log):
     # For each direction and for each ngram length up to max_ngram,
-    # create a pair of peak-based stress models (an increase model and a decrease model). 
-    models = []
+    # create a pair of peak-based stress indicators (an increase indicator and a decrease indicator). 
+    indicators = []
     log.info('Setting up Stress Cues')
     for n in ngrams:
         if args.direction != "right":
-            models.append(StressModel(ngram_length=n, increase=True, right=False, stressstats=stressstats, log=log))
-            models.append(StressModel(ngram_length=n, increase=False, right=False, stressstats=stressstats, log=log))
+            indicators.append(StressIndicator(ngram_length=n, increase=True, right=False, stressstats=stressstats, log=log))
+            indicators.append(StressIndicator(ngram_length=n, increase=False, right=False, stressstats=stressstats, log=log))
         if args.direction != "left":
-            models.append(StressModel(ngram_length=n, increase=True, right=True, stressstats=stressstats, log=log))
-            models.append(StressModel(ngram_length=n, increase=False, right=True, stressstats=stressstats, log=log))
-    return models
+            indicators.append(StressIndicator(ngram_length=n, increase=True, right=True, stressstats=stressstats, log=log))
+            indicators.append(StressIndicator(ngram_length=n, increase=False, right=True, stressstats=stressstats, log=log))
+    return indicators
 
 def segment(text, args, log=utils.null_logger()):
-    """ Segment using a Multi Cue segmenter model composed of a collection of models using a variety of cues. """
+    """ Segment using a Multi Cue segmenter model composed of a collection of indicators using a variety of cues. """
 
     log.info('Using a Multiple Cue model to segment text.')
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
@@ -290,20 +287,19 @@ def segment(text, args, log=utils.null_logger()):
     lexicon_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     stressstats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     
-    # Set up submodels for predictability, lexicon and stress
-    models = []
-    if args.predictability_models != "none":
-        log.info('Setting up Predictability Models')
-        models.extend(prepare_predictability_models(args, ngrams, corpus_phonestats, log))
-    if args.lexicon_models != "none":
-        log.info('Setting up Lexicon Models')
-        models.extend(prepare_lexicon_models(args, ngrams, lexicon_phonestats, lexicon, log))
+    # Set up indicators for predictability, lexicon and stress
+    indicators = []
+    if args.predictability_indicators != "none":
+        log.info('Setting up Predictability Indicators')
+        indicators.extend(prepare_predictability_indicators(args, ngrams, corpus_phonestats, log))
+    if args.lexicon_indicators != "none":
+        log.info('Setting up Lexicon Indicators')
+        indicators.extend(prepare_lexicon_indicators(args, ngrams, lexicon_phonestats, lexicon, log))
     if args.stress_file:
         log.info('Loading stress alignment information at {}'.format(args.stress_file))
-        models.extend(prepare_stress_models(args, ngrams, stressstats, log))
+        indicators.extend(prepare_stress_indicators(args, ngrams, stressstats, log))
 
-    # models.append(ProbabilisticModel(ngram_length=0, model_type="blanch", phonestats=corpus_phonestats, lexicon=lexicon, log=log))
-    model = MultiCueModel(models=models, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
+    model = MultiCueModel(indicators=indicators, weight_type=args.weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
     
     segmented = list(model.segment(text, stress_lines=list(open(args.stress_file, 'r')) if args.stress_file else None))
 
@@ -329,29 +325,29 @@ def _add_arguments(parser):
         'default is %(default)s')
     multi_options.add_argument(
         '-d', '--direction', type=str, default="left", metavar='<str>',
-        help='Select whether to use "left" context, "right" or "both" when creating models.'
+        help='Select whether to use "left" context, "right" or "both" when creating indicators.'
         ' Default is %(default)s')
     multi_options.add_argument(
         '-S', '--smoothing', type=float, default=0.0, metavar='<float>',
         help='What value of k to use for add-k smoothing for probability calculations. Default is %(default)s')
     multi_options.add_argument(
         '-X', '--stress_file', type=str, metavar='<str>',
-        help='If a stress alignment file is provided, stress models will be added to the model.')
+        help='If a stress alignment file is provided, stress indicators will be added to the model.')
     multi_options.add_argument(
         '-W', '--weight_type', type=str, default="accuracy", metavar='<str>',
         help='Type of weights to use for the majority vote algorithm. Select "precision", "recall", "f1" or '
         '"accuracy" for weights based on those measures and "none" for no weights. Default is %(default)s.')
-    predictability_options = parser.add_argument_group('Predictability Model Options')
+    predictability_options = parser.add_argument_group('Predictability Indicator Options')
     predictability_options.add_argument(
-        '-P', '--predictability_models', type=str, default="none", metavar='<str>',
+        '-P', '--predictability_indicators', type=str, default="none", metavar='<str>',
         help='The measure of predictability to use. Select "ent" for Boundary Entropy, "tp" for Transitional Probability, '
-        '"bp" for Boundary Probability, "mi" for Mutual Information and "sv" for Successor Variety or "none" for no predictability model. '
+        '"bp" for Boundary Probability, "mi" for Mutual Information and "sv" for Successor Variety or "none" for no predictability indicator. '
         'Can also select multiple measures using comma-separation. Default is %(default)s')
-    lexicon_options = parser.add_argument_group('Lexicon Model Options')
+    lexicon_options = parser.add_argument_group('Lexicon Indicator Options')
     lexicon_options.add_argument(
-        '-L', '--lexicon_models', type=str, default="none", metavar='<float>',
-        help='Select which lexicon models to include. Select the "frequency" model, the '
-        '"boundary" model, "both" or "none". Default is %(default)s')
+        '-L', '--lexicon_indicators', type=str, default="none", metavar='<float>',
+        help='Select which lexicon indicators to include. Select the "frequency" indicators, the '
+        '"boundary" indicators, "both" or "none". Default is %(default)s')
 
 def main():
     """ Entry point """

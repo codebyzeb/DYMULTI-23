@@ -2,7 +2,7 @@
 
 import pytest
 
-from segmenter.peakmodels import StressModel
+from segmenter.partialpeakindicators import StressIndicator
 from segmenter.phonestats import PhoneStats
 from segmenter.phonesequence import PhoneSequence
 
@@ -14,7 +14,7 @@ from segmenter.phonesequence import PhoneSequence
 
 def test_init_without_stressstats_sets_correct_properties():
 
-    model = StressModel(ngram_length=2, increase=False, right=True, stressstats=None)
+    model = StressIndicator(ngram_length=2, increase=False, right=True, stressstats=None)
 
     assert(model.ngram_length == 2)
     assert(model.increase == False)
@@ -27,7 +27,7 @@ def test_init_with_stressstats_saves_reference():
 
     stressstats = PhoneStats(2)
 
-    model = StressModel(stressstats=stressstats)
+    model = StressIndicator(stressstats=stressstats)
 
     assert(not model._updatestress)
     assert(model._stressstats == stressstats)
@@ -35,7 +35,7 @@ def test_init_with_stressstats_saves_reference():
 def test_init_with_ngram_less_than_one_raises_value_error():
 
     with pytest.raises(ValueError, match=".*non-positive n-gram.*"):
-        StressModel(ngram_length=0)
+        StressIndicator(ngram_length=0)
 
 """
 ----------------------------------------------
@@ -45,11 +45,11 @@ def test_init_with_ngram_less_than_one_raises_value_error():
 
 def test_to_string():
 
-    model = StressModel(ngram_length=2, increase=False, right=True, stressstats=None)
+    model = StressIndicator(ngram_length=2, increase=False, right=True, stressstats=None)
 
     s = str(model)
 
-    assert(s == "StressModel(N: 2,Decrease of Right Stress)")
+    assert(s == "StressIndicator(N: 2,Decrease of Right Stress)")
 
 """
 ----------------------------------------------
@@ -59,7 +59,7 @@ def test_to_string():
 
 def test_segment_empty_text():
 
-    model = StressModel()
+    model = StressIndicator()
 
     segmented = list(model.segment(""))
 
@@ -69,7 +69,7 @@ def test_segment_update_model_false_does_not_update_model():
 
     text = ["a b b c", "b a c b"]
     stress = ["0 0 0 0", "1 1 1 1"]
-    model = StressModel()
+    model = StressIndicator()
 
     list(model.segment(text, update_model=False, stress_lines=stress))
 
@@ -80,7 +80,7 @@ def test_segment_updates_phonestats_when_not_provided():
 
     text = ["a b c d", "e f g h"]
     stress = ["0 0 0 0", "1 1 1 1"]
-    model = StressModel()
+    model = StressIndicator()
 
     list(model.segment(text, update_model=True, stress_lines=stress))
 
@@ -94,7 +94,7 @@ def test_segment_does_not_update_phonestats_when_provided():
     text = ["a b c d", "e f g h"]
     stress = ["0 0 0 0", "1 1 1 1"]
     stressstats = PhoneStats(max_ngram=2)
-    model = StressModel(stressstats=stressstats)
+    model = StressIndicator(stressstats=stressstats)
 
     list(model.segment(text, update_model=True, stress_lines=stress))
 
@@ -103,7 +103,7 @@ def test_segment_does_not_update_phonestats_when_provided():
 
 def test_segmented_utterance_has_correct_number_of_boundaries():
     
-    model = StressModel()
+    model = StressIndicator()
     utterance = PhoneSequence("a b c d".split(' '), stress=['0', '1', '2', '1'])
 
     segmented = model.segment_utterance(utterance, update_model=False)

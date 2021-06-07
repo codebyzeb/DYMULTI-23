@@ -13,7 +13,7 @@ MODEL_TYPES = ["lm", "venk", "blanch"]
 BR_CORPUS_SYLLABIC_SOUNDS = ['I','E','&','A','a','O','U','6','i','e','u','o','9','Q','7','3','R','#','%','*','(',')','L','~']
 IPA_SYLLABIC_SOUNDS = ['ɪ','ɐ','ʊ','i','ĩ','ĭ','ɨ','y','ỹ','ȳ','u','ʉ','ɯ','u','ʏ','ũ','ŭ','ʌ','ɞ','ü',
                         'ø','ɵ','ɤ','o','œ','œ','ö','œ','ɔ','ọ','õ','ŏ','ɵ','e','ɘ','ə','ɜ','ẹ','ɛ','ε','ɚ','ẽ','ĕ',
-                        'æ','ɐ','a','ä','ɑ','ɒ','ã','ă','α']
+                        'æ','ɐ','a','ä','ɑ','ɒ','ã','ă','α','A']
 BUCKEYE_SYLLABIC_SOUNDS = ['aa','aan','ae','aen','ah','ahn','ao','aon','aw','awn','ay','ayn','eh','ehn','el','em','en',
                             'er','ern','ey','eyn','ih','ihn','iy','iyn','ow','own','oy','oyn','uh','uhn','uw','uwn']
 SYLLABIC_SOUNDS = BR_CORPUS_SYLLABIC_SOUNDS

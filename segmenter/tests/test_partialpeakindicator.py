@@ -1,10 +1,10 @@
 """ Run tests for the PeakModel abstract class """
 
-from segmenter.peakmodels import PeakModel
+from segmenter.partialpeakindicators import PartialPeakIndicator
 from segmenter.phonesequence import PhoneSequence
 
 # Create subclass with implementation of score() for testing
-class ExamplePeakModel(PeakModel):
+class ExamplePeakModel(PartialPeakIndicator):
 
     def __init__(self, increase=True):
         self.a = 1
@@ -46,7 +46,7 @@ def test_to_string():
 
     s = str(model)
 
-    assert(s == "PeakModel(Decrease)")
+    assert(s == "PeakIndicator(Decrease)")
 
 """
 ----------------------------------------------

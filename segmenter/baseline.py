@@ -29,7 +29,6 @@ class BaselineModel(Model):
     ValueError
         If `probability` is not in the range (0, 1).
 
-
     """
 
     def __init__(self, probability=0.5, log=utils.null_logger()):

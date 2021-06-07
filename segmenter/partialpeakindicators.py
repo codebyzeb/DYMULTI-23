@@ -14,7 +14,7 @@ from segmenter.phonestats import PhoneStats
 
 PREDICTABILITY_MEASURES = ["mi", "tp", "ent", "sv", "bp"]
 
-class PeakModel(Model):
+class PartialPeakIndicator(Model):
     """ An abstract model for segmentation that places boundaries at peaks of a particular score.
 
     Child classes should implement the score() method, used to calculate the score at a position
@@ -37,7 +37,7 @@ class PeakModel(Model):
         self.increase = increase
 
     def __str__(self):
-        return "PeakModel({})".format("Increase" if self.increase else "Decrease")
+        return "PeakIndicator({})".format("Increase" if self.increase else "Decrease")
 
     # Overrides Model.segment_utterance()
     def segment_utterance(self, utterance, update_model=True):
@@ -81,7 +81,7 @@ class PeakModel(Model):
 
     @abstractmethod
     def score(self, utterance, position):
-        """ Peak models should implement a method for calculating some score at a candidate
+        """ Partial peak indicators should implement a method for calculating some score at a candidate
         boundary in the utterance. The boundary is considered to be after the phoneme at utterance.phones[position].
         """
         pass
@@ -98,7 +98,7 @@ class PeakModel(Model):
         """
         pass
 
-class PredictabilityModel(PeakModel):
+class PredictabilityIndicator(PartialPeakIndicator):
     """ Train and segment using measures of predictability. 
 
     Only provides a single cue, should be used in combination with other ngram lengths and
@@ -132,11 +132,11 @@ class PredictabilityModel(PeakModel):
                 right=False,  phonestats=None, log=utils.null_logger()):
         super().__init__(increase, log)
 
-        # Initialise model parameters
+        # Initialise parameters
         if ngram_length < 1:
-            raise ValueError("Cannot initialise a Predictability Model with non-positive n-gram length.")
+            raise ValueError("Cannot initialise a Predictability Indicator with non-positive n-gram length.")
         if not measure in PREDICTABILITY_MEASURES:
-            raise ValueError("Cannot initialise a Predictability Model with unknown predictability measure '{}'".format(measure))
+            raise ValueError("Cannot initialise a Predictability Indicator with unknown predictability measure '{}'".format(measure))
         self.ngram_length = ngram_length
         self.measure = measure
         self.right = right
@@ -161,7 +161,7 @@ class PredictabilityModel(PeakModel):
             "Boundary Probability" if self.measure == "bp" else
             "Transitional Probability" if self.measure == "tp" else self.measure)
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def score(self, utterance, position):
         """
         Returns a score for the candidate boundary before utterance.phones[i], calculated
@@ -171,14 +171,14 @@ class PredictabilityModel(PeakModel):
             phones=utterance.phones, position=position, measure=self.measure,
             right=self.right, ngram_length=self.ngram_length)
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def update(self, segmented):
         """ Update phonestats with phones in utterance. """
         if self._updatephonestats:
             self._phonestats.add_phones(segmented.phones)
 
-class LexiconFrequencyModel(PeakModel):
-    """ A simple lexicon-based model for word segmentation.
+class LexiconFrequencyIndicator(PartialPeakIndicator):
+    """ A simple lexicon-based indicator for word segmentation.
 
     Based on "An explicit statistical model of learning lexical segmentation using multiple cues"
     (Çöltekin et al, 2014). Counts the frequency of previously-seen words that start and end at the
@@ -209,7 +209,7 @@ class LexiconFrequencyModel(PeakModel):
     def __init__(self, increase=True, right=True, use_presence=False, lexicon=None, log=utils.null_logger()):
         super().__init__(increase, log)
 
-        # Initialise model parameters
+        # Initialise parameters
         self.use_presence = use_presence
         self.right = right
 
@@ -222,12 +222,12 @@ class LexiconFrequencyModel(PeakModel):
             self._updatelexicon = False
 
     def __str__(self):
-        return "LexiconFreqModel({},{},{})".format(
+        return "LexiconFreqIndicator({},{},{})".format(
             "Increase" if self.increase else "Decrease",
             "Type Frequency" if self.use_presence else "Token Frequency",
             "Right Context" if self.right else "Left Context")
 
-    # Overrides PeakModel.score()
+    # Overrides PartialPeakIndicator.score()
     def score(self, utterance, position):
         """
         Returns a score for the candidate boundary before utterance.phones[i], calculated
@@ -246,15 +246,15 @@ class LexiconFrequencyModel(PeakModel):
 
         return word_count
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def update(self, segmented):
         """ Updates lexicon with newly found words. """
         if self._updatelexicon:
             for word in segmented.get_words():
                 self._lexicon.increase_count(''.join(word))
 
-class LexiconBoundaryModel(PeakModel):
-    """ A simple lexicon-based model for word segmentation.
+class LexiconBoundaryIndicator(PartialPeakIndicator):
+    """ A simple lexicon-based indicator for word segmentation.
 
     Based on "An explicit statistical model of learning lexical segmentation using multiple cues"
     (Çöltekin et al, 2014). Calculates P(boundary | left context) or P(boundary | right context) using
@@ -287,7 +287,7 @@ class LexiconBoundaryModel(PeakModel):
     def __init__(self, ngram_length=1, increase=True, right=True, lexicon=None, phonestats=None, log=utils.null_logger()):
         super().__init__(increase, log)
 
-        # Initialise model parameters
+        # Initialise parameters
         self.ngram_length = ngram_length
         self.right = right
 
@@ -308,12 +308,12 @@ class LexiconBoundaryModel(PeakModel):
             self._updatephonestats = False
 
     def __str__(self):
-        return "LexiconBoundaryModel({},{},{})".format(
+        return "LexiconBoundaryIndicator({},{},{})".format(
             "N: " + str(self.ngram_length),
             "Increase" if self.increase else "Decrease",
             "Right Context" if self.right else "Left Context")
 
-    # Overrides PeakModel.score()
+    # Overrides PartialPeakIndicator.score()
     def score(self, utterance, position):
         """
         Returns a score for the candidate boundary after utterance.phones[i], calculated
@@ -323,7 +323,7 @@ class LexiconBoundaryModel(PeakModel):
             phones=utterance.phones, position=position, measure="bp",
             right=self.right, ngram_length=self.ngram_length)
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def update(self, segmented):
         """ Updates lexicon and phonestats with newly found words. """
         for word in segmented.get_words():
@@ -332,14 +332,14 @@ class LexiconBoundaryModel(PeakModel):
             if self._updatephonestats:
                 self._phonestats.add_phones(word)
 
-class StressModel(PeakModel):
-    """ A simple lexicon-based model for word segmentation.
+class StressIndicator(PartialPeakIndicator):
+    """ A simple lexicon-based indicator for word segmentation.
 
     Based on "An explicit statistical model of learning lexical segmentation using multiple cues"
     (Çöltekin et al, 2014). Collects statistics about stress alignments on previously-segmented
     utterances to estimate boundaries given word-initial or word-final stress alignments.
 
-    Operates essentially the same as the Predictability Model with the Boundary Probability measure,
+    Operates essentially the same as the Predictability indicator with the Boundary Probability measure,
     but keeps track and uses stress alignment information instead of phonemes.
 
     Parameters
@@ -361,9 +361,9 @@ class StressModel(PeakModel):
     def __init__(self, ngram_length=1, increase=True, right=False, stressstats=None, log=utils.null_logger()):
         super().__init__(increase, log)
 
-        # Initialise model parameters
+        # Initialise parameters
         if ngram_length < 1:
-            raise ValueError("Cannot initialise a Stress Model with non-positive n-gram length.")
+            raise ValueError("Cannot initialise a Stress Indicator with non-positive n-gram length.")
         self.ngram_length = ngram_length
         self.right = right
 
@@ -377,12 +377,12 @@ class StressModel(PeakModel):
             self._updatestress = False
 
     def __str__(self):
-        return "StressModel({},{}{})".format(
+        return "StressIndicator({},{}{})".format(
             "N: " + str(self.ngram_length),
             "Increase of " if self.increase else "Decrease of ",
             "Right Stress" if self.right else "Left Stress")
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def score(self, utterance, position):
         """
         Returns a score for the candidate boundary before utterance.stress[i], calculated
@@ -392,7 +392,7 @@ class StressModel(PeakModel):
             phones=utterance.stress, position=position, measure="bp",
             right=self.right, ngram_length=self.ngram_length)
 
-    # Overrides PeakModel.update()
+    # Overrides PartialPeakIndicator.update()
     def update(self, segmented):
         """ Updates stress phonestats with stress information from each word """
         if self._updatestress:

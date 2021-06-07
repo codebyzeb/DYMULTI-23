@@ -2,7 +2,7 @@
 
 import pytest
 
-from segmenter.peakmodels import PredictabilityModel
+from segmenter.partialpeakindicators import PredictabilityIndicator
 from segmenter.phonestats import PhoneStats
 from segmenter.phonesequence import PhoneSequence
 
@@ -14,7 +14,7 @@ from segmenter.phonesequence import PhoneSequence
 
 def test_init_without_phonestats_sets_correct_properties():
 
-    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
+    model = PredictabilityIndicator(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
 
     assert(model.ngram_length == 2)
     assert(model.increase == False)
@@ -28,7 +28,7 @@ def test_init_with_phonestats_saves_reference():
 
     phonestats = PhoneStats(2)
 
-    model = PredictabilityModel(phonestats=phonestats)
+    model = PredictabilityIndicator(phonestats=phonestats)
 
     assert(not model._updatephonestats)
     assert(model._phonestats == phonestats)
@@ -36,12 +36,12 @@ def test_init_with_phonestats_saves_reference():
 def test_init_with_ngram_less_than_one_raises_value_error():
 
     with pytest.raises(ValueError, match=".*non-positive n-gram.*"):
-        PredictabilityModel(ngram_length=0)
+        PredictabilityIndicator(ngram_length=0)
 
 def test_init_with_invalid_measure_raises_value_error():
 
     with pytest.raises(ValueError, match=".*unknown predictability measure.*"):
-        PredictabilityModel(measure="fake")
+        PredictabilityIndicator(measure="fake")
 
 """
 ----------------------------------------------
@@ -51,7 +51,7 @@ def test_init_with_invalid_measure_raises_value_error():
 
 def test_to_string():
 
-    model = PredictabilityModel(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
+    model = PredictabilityIndicator(ngram_length=2, increase=False, measure="ent", right=True, phonestats=None)
 
     s = str(model)
 
@@ -65,7 +65,7 @@ def test_to_string():
 
 def test_segment_empty_text():
 
-    model = PredictabilityModel()
+    model = PredictabilityIndicator()
 
     segmented = list(model.segment(""))
 
@@ -74,7 +74,7 @@ def test_segment_empty_text():
 def test_segment_update_model_false_does_not_update_model():
 
     text = ["a b b c", "b a c b"]
-    model = PredictabilityModel()
+    model = PredictabilityIndicator()
 
     list(model.segment(text, update_model=False))
 
@@ -84,7 +84,7 @@ def test_segment_updates_phonestats_when_not_provided():
     """ If not provided a PhoneStats object, a local one is created an updated at each utterance """
 
     text = ["a b c d", "e f g h"]
-    model = PredictabilityModel()
+    model = PredictabilityIndicator()
 
     list(model.segment(text, update_model=True))
 
@@ -97,7 +97,7 @@ def test_segment_does_not_update_phonestats_when_provided():
 
     text = ["a b c d", "e f g h"]
     phonestats = PhoneStats()
-    model = PredictabilityModel(phonestats=phonestats)
+    model = PredictabilityIndicator(phonestats=phonestats)
 
     list(model.segment(text, update_model=True))
 
@@ -106,7 +106,7 @@ def test_segment_does_not_update_phonestats_when_provided():
 
 def test_segmented_utterance_has_correct_number_of_boundaries():
     
-    model = PredictabilityModel()
+    model = PredictabilityIndicator()
     utterance = PhoneSequence("a b c d".split(' '))
 
     segmented = model.segment_utterance(utterance, update_model=False)

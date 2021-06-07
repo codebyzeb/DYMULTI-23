@@ -21,13 +21,13 @@ class DynamicMultiCueModel(MultiCueModel):
 
     Parameters
     ----------
-    models : list of Model, optional
+    indicators : list of Model, optional
         A list of Model objects used for segmentation, whose suggestions are combined 
         using weighted majority voting to produce a final segmentation.
     weight_type : str, optional
         If "accuracy", the weight of each cue is based on the accuracy of that cue. If "precision", a pair of weights
         is assigned for each cue, based on the precision and recall of that cue. This allows the multicue model
-        to learn which cues are very precise at placing boundaries and weigh votes from these models higher. If "none",
+        to learn which cues are very precise at placing boundaries and weigh votes from these indicators higher. If "none",
         no weights are used.
     recognition_weight : float, optional
         The weight to assign previously-seen words. If set to 1, the model will always try to place boundaries around
@@ -44,8 +44,8 @@ class DynamicMultiCueModel(MultiCueModel):
 
     """
 
-    def __init__(self, models=[], weight_type="accuracy", recognition_weight=0, corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
-        super().__init__(models=models, weight_type=weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
+    def __init__(self, indicators=[], weight_type="accuracy", recognition_weight=0, corpus_phonestats=None, lexicon_phonestats=None, stressstats=None, lexicon=None, log=utils.null_logger()):
+        super().__init__(indicators=indicators, weight_type=weight_type, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
         self.recognition_weight = recognition_weight
 
     def __str__(self):
@@ -71,8 +71,8 @@ class DynamicMultiCueModel(MultiCueModel):
         segmented = PhoneSequence(utterance.phones, utterance.stress)
         n = len(segmented)
 
-        # Get suggested segmentations from each model, with the weighted vote for each boundary position
-        segmentations = [model.segment_utterance(utterance) for model in self.models]
+        # Get suggested segmentations from each indicator, with the weighted vote for each boundary position
+        segmentations = [indicator.segment_utterance(utterance) for indicator in self.indicators]
         boundaries = np.array([segmentation.boundaries for segmentation in segmentations])
         boundary_votes = [self._make_boundary_decision(boundary_votes)[1] for boundary_votes in boundaries.T]
         no_boundary_votes = [self._make_boundary_decision(boundary_votes)[2] for boundary_votes in boundaries.T]
@@ -159,7 +159,7 @@ class DynamicMultiCueModel(MultiCueModel):
 
         return (boundary_score + lexicon_score)
 
-from segmenter.multicue import _add_arguments as _add_arguments_multicue, prepare_predictability_models, prepare_lexicon_models, prepare_stress_models
+from segmenter.multicue import _add_arguments as _add_arguments_multicue, prepare_predictability_indicators, prepare_lexicon_indicators, prepare_stress_indicators
 
 def _add_arguments(parser):
     _add_arguments_multicue(parser)
@@ -170,7 +170,7 @@ def _add_arguments(parser):
         'default is %(default)s')
 
 def segment(text, args, log=utils.null_logger()):
-    """ Segment using a Multi Cue segmenter model composed of a collection of models using a variety of cues. """
+    """ Segment using a Multi Cue segmenter model composed of a collection of indicators using a variety of cues. """
 
     log.info('Using a Dynamic Multiple Cue model to segment text.')
     log.info('{} smoothing for probability estimates'.format("Using add-"+str(args.smoothing) if args.smoothing else "Not using"))
@@ -186,28 +186,28 @@ def segment(text, args, log=utils.null_logger()):
     lexicon_phonestats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
     stressstats = PhoneStats(max_ngram=ngrams[-1]+1, smoothing=args.smoothing, use_boundary_tokens=True)
 
-    # Set up submodels for predictability, lexicon and stress
-    models = []
-    if args.predictability_models != "none":
+    # Set up indicators for predictability, lexicon and stress
+    indicators = []
+    if args.predictability_indicators != "none":
         log.info('Setting up Predictability Models')
-        models.extend(prepare_predictability_models(args, ngrams, corpus_phonestats, log))
-    if args.lexicon_models != "none":
+        indicators.extend(prepare_predictability_indicators(args, ngrams, corpus_phonestats, log))
+    if args.lexicon_indicators != "none":
         log.info('Setting up Lexicon Models')
-        models.extend(prepare_lexicon_models(args, ngrams, lexicon_phonestats, lexicon, log))
+        indicators.extend(prepare_lexicon_indicators(args, ngrams, lexicon_phonestats, lexicon, log))
     if args.stress_file:
         log.info('Loading stress alignment information at {}'.format(args.stress_file))
-        models.extend(prepare_stress_models(args, ngrams, stressstats, log))
+        indicators.extend(prepare_stress_indicators(args, ngrams, stressstats, log))
 
-    model = DynamicMultiCueModel(models=models, weight_type=args.weight_type, recognition_weight=args.alpha, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
+    model = DynamicMultiCueModel(indicators=indicators, weight_type=args.weight_type, recognition_weight=args.alpha, corpus_phonestats=corpus_phonestats, lexicon_phonestats=lexicon_phonestats, stressstats=stressstats, lexicon=lexicon, log=log)
     
     segmented = list(model.segment(text))
 
     log.info('Final weights:')
     if model.weight_type in ["precision", "recall", "f1"]:
-        for m, weight_p, weight_n in zip(model.models, model.weights_positive, model.weights_negative):
+        for m, weight_p, weight_n in zip(model.indicators, model.weights_positive, model.weights_negative):
             log.info('\t{}\t{}\t{}'.format(m, '%.4g' % weight_p, '%.4g' % weight_n))
     elif model.weight_type == "accuracy":
-        for m, weight in zip(model.models, model.weights):
+        for m, weight in zip(model.indicators, model.weights):
             log.info('\t{}\t{}'.format(m, '%.4g' % weight))
     else:
         log.info(' -- no weights used --')

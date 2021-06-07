@@ -3,7 +3,7 @@
 from segmenter.phonesequence import PhoneSequence
 from segmenter.phonestats import PhoneStats
 from segmenter.lexicon import Lexicon
-from segmenter.peakmodels import LexiconBoundaryModel
+from segmenter.partialpeakindicators import LexiconBoundaryIndicator
 
 """
 ----------------------------------------------
@@ -13,7 +13,7 @@ from segmenter.peakmodels import LexiconBoundaryModel
 
 def test_init_without_lexicon_or_phonestats_sets_correct_properties():
     
-    model = LexiconBoundaryModel(ngram_length=3, increase=False, right=True, lexicon=None, phonestats=None)
+    model = LexiconBoundaryIndicator(ngram_length=3, increase=False, right=True, lexicon=None, phonestats=None)
 
     assert(model.increase == False)
     assert(model.right == True)
@@ -30,7 +30,7 @@ def test_init_with_lexicon_and_phonestats_sets_correct_properties():
     lexicon.increase_count("word", 10)
     phonestats = PhoneStats(3, use_boundary_tokens=True)
 
-    model = LexiconBoundaryModel(ngram_length=3, increase=False, right=True, lexicon=lexicon, phonestats=phonestats)
+    model = LexiconBoundaryIndicator(ngram_length=3, increase=False, right=True, lexicon=lexicon, phonestats=phonestats)
 
     assert(model.increase == False)
     assert(model.right == True)
@@ -48,11 +48,11 @@ def test_init_with_lexicon_and_phonestats_sets_correct_properties():
 
 def test_to_string():
 
-    model = LexiconBoundaryModel(ngram_length=3, increase=False, right=True, lexicon=None, phonestats=None)
+    model = LexiconBoundaryIndicator(ngram_length=3, increase=False, right=True, lexicon=None, phonestats=None)
 
     s = str(model)
 
-    assert(s == "LexiconBoundaryModel(N: 3,Decrease,Right Context)")
+    assert(s == "LexiconBoundaryIndicator(N: 3,Decrease,Right Context)")
 
 """
 ----------------------------------------------
@@ -62,7 +62,7 @@ def test_to_string():
 
 def test_segment_empty_text():
 
-    model = LexiconBoundaryModel()
+    model = LexiconBoundaryIndicator()
 
     segmented = list(model.segment(""))
 
@@ -71,7 +71,7 @@ def test_segment_empty_text():
 def test_segment_update_model_false_does_not_update_model():
 
     text = ["a b b c", "b a c b"]
-    model = LexiconBoundaryModel()
+    model = LexiconBoundaryIndicator()
 
     list(model.segment(text, update_model=False))
 
@@ -82,7 +82,7 @@ def test_segment_update_model_false_does_not_update_model():
 def test_segment_update_model_true_updates_model():
 
     text = ["a b c d", "e f g h"]
-    model = LexiconBoundaryModel()
+    model = LexiconBoundaryIndicator()
 
     list(model.segment(text, update_model=True))
 
@@ -96,7 +96,7 @@ def test_segment_does_not_update_lexicon_or_phonestats_when_provided():
     text = ["a b b c", "b a c b"]
     lexicon = Lexicon()
     phonestats = PhoneStats(max_ngram=2, use_boundary_tokens=True)
-    model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon)
+    model = LexiconBoundaryIndicator(phonestats=phonestats, lexicon=lexicon)
 
     list(model.segment(text, update_model=True))
 
@@ -111,7 +111,7 @@ def test_previously_seen_utterances_used_as_words():
     for increase in [True, False]:
         for right in [True, False]:
 
-            model = LexiconBoundaryModel(increase=increase, right=right)
+            model = LexiconBoundaryIndicator(increase=increase, right=right)
 
             segmentations = list(model.segment(text, update_model=True))
 
@@ -125,7 +125,7 @@ def test_previously_seen_utterances_used_as_words():
 
 def test_segmented_utterance_has_correct_number_of_boundaries():
     
-    model = LexiconBoundaryModel(increase=True, right=False)
+    model = LexiconBoundaryIndicator(increase=True, right=False)
     utterance = PhoneSequence("a b c d".split(' '))
 
     segmented = model.segment_utterance(utterance, update_model=False)
@@ -147,7 +147,7 @@ def test_score_right_context():
     phonestats.add_phones(["p", "a", "r", "k"])
     lexicon = Lexicon({"car" : 1, "park" : 1})
 
-    model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=True)
+    model = LexiconBoundaryIndicator(phonestats=phonestats, lexicon=lexicon, right=True)
 
     # Right context used for scoring
     assert(model.score(utterance, 0) == 1) # P(boundary | 'c' == 1)
@@ -167,7 +167,7 @@ def test_score_left_context():
     phonestats.add_phones(["p", "a", "r", "k"])
     lexicon = Lexicon({"car" : 1, "park" : 1})
 
-    model = LexiconBoundaryModel(phonestats=phonestats, lexicon=lexicon, right=False)
+    model = LexiconBoundaryIndicator(phonestats=phonestats, lexicon=lexicon, right=False)
 
     # Left context used for scoring
     assert(model.score(utterance, 0) == 0) # P(boundary | boundary == 0) -> problem?
