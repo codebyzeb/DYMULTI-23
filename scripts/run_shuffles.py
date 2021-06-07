@@ -2,16 +2,13 @@ import random, os
 
 import numpy as np
 
-#experiment_dir = "experiments/Z3"
-
 #command = "python -m segmenter.probabilistic -o {}/segmented.txt -v -n 0 -m venk {}/prepared2.txt".format(experiment_dir, experiment_dir)
 
-languages = ["Basque", "Cantonese", "Croatian", "Danish", "Dutch", "English", "Estonian", "Farsi", "French", "German", "Greek", "Hungarian", "Icelandic", "Indonesian", "Irish", "Italian", "Japanese", "Korean", "Mandarin", "Norwegian", "Portuguese", "Romanian", "Serbian", "Spanish", "Swedish", "Turkish"]
+#languages = ["Basque", "Cantonese", "Croatian", "Danish", "Dutch", "English", "Estonian", "Farsi", "French", "German", "Greek", "Hungarian", "Icelandic", "Indonesian", "Irish", "Italian", "Japanese", "Korean", "Mandarin", "Norwegian", "Portuguese", "Romanian", "Serbian", "Spanish", "Swedish", "Turkish"]
 
 #for experiment_dir in ["experiments/L-{}-M".format(language) for language in languages[20:]]:
 #for experiment_dir in ["experiments/DM14A0"]:
-
-for experiment_dir in ["experiments/E"]:
+for experiment_dir in ["experiment_A"]:
 
 	stress = "{}/stress.txt".format(experiment_dir)
 	gold = "{}/gold.txt".format(experiment_dir)

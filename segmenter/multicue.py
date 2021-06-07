@@ -308,7 +308,7 @@ def segment(text, args, log=utils.null_logger()):
         for m, weight_p, weight_n in zip(model.models, model.weights_positive, model.weights_negative):
             log.info('\t{}\t{}\t{}'.format(m, '%.4g' % weight_p, '%.4g' % weight_n))
     elif model.weight_type == "accuracy":
-        for m, weight in zip(model.models, model.weights):
+        for m, weight in zip(model.indicators, model.weights):
             log.info('\t{}\t{}'.format(m, '%.4g' % weight))
     else:
         log.info(' -- no weights used --')

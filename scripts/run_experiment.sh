@@ -28,5 +28,4 @@ echo "Calculating statistics"
 wordseg-eval -r $EXPERIMENT_DIR/prepared.txt -s $EXPERIMENT_DIR/seg_errors.json $EXPERIMENT_DIR/segmented.txt $EXPERIMENT_DIR/gold.txt > $EXPERIMENT_DIR/eval.txt
 python scripts/calculate_errors.py $EXPERIMENT_DIR/segmented.txt $EXPERIMENT_DIR/gold.txt $EXPERIMENT_DIR/prepared.txt >> $EXPERIMENT_DIR/eval.txt
 less $EXPERIMENT_DIR/eval.txt | column -t
-python scripts/print_table_scores.py $EXPERIMENT_DIR/eval.txt
 echo "Written error summary to $EXPERIMENT_DIR/seg_errors.json"
