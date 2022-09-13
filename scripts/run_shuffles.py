@@ -8,7 +8,7 @@ import numpy as np
 
 #for experiment_dir in ["experiments/L-{}-M".format(language) for language in languages[20:]]:
 #for experiment_dir in ["experiments/DM14A0"]:
-for experiment_dir in ["experiment_A"]:
+for experiment_dir in ["experiments/D"]:
 
 	stress = "{}/stress.txt".format(experiment_dir)
 	gold = "{}/gold.txt".format(experiment_dir)
@@ -22,10 +22,14 @@ for experiment_dir in ["experiment_A"]:
 		prepared2 = "{}/prepared{}.txt".format(experiment_dir, i)
 		gold2 = "{}/gold{}.txt".format(experiment_dir, i)
 
-		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -n 3,1 -d both -P ent,mi,bp -L both -X {}/stress{}.txt -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i)
-		#command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4,3,2,1 -d both -P sv -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
-		command = "python -m segmenter.dynamicmulticue -o {}/segmented{}.txt -v -n 4,3,2,1 -d both -P sv,bp -L both -a 0 {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
-		#command = "python -m segmenter.probabilistic -o {}/segmented{}.txt -v -n 0 -m blanch {}/prepared{}.txt".format(experiment_dir, i, experiment_dir, i)
+		#command = "python -m segmenter.dynamicmulticue -o {0}/segmented{1}.txt -n 3,1 -d both -P ent,mi,bp -L both -X {0}/stress{1}.txt -a 0 {0}/prepared{1}.txt".format(experiment_dir, i) # dymulti-14
+		#command = "python -m segmenter.dynamicmulticue -o {0}/segmented{1}.txt -v -n 4,3,2,1 -d both -P sv -a 0 {0}/prepared{1}.txt".format(experiment_dir, i) # dymulti-17
+		command = "python -m segmenter.dynamicmulticue -o {0}/segmented{1}.txt -v -n 4,3,2,1 -d both -P sv,bp -L both -a 0.5 {0}/prepared{1}.txt".format(experiment_dir, i) # dymulti-22
+		#command = "python -m segmenter.probabilistic -o {0}/segmented{1}.txt -v -n 0 -m blanch {0}/prepared{1}.txt".format(experiment_dir, i) # phocus-1s
+		#command = "python -m segmenter.probabilistic -o {0}/segmented{1}.txt -v -n 0 -m venk {0}/prepared{1}.txt".format(experiment_dir, i) # phocus-1
+		#command = "python -m segmenter.multicue -o {0}/segmented{1}.txt -v -n 3,1 -d both -P ent,mi,bp -L both -X {0}/stress{1}.txt {0}/prepared{1}.txt".format(experiment_dir, i) # multicue-14
+		#command = "python -m segmenter.multicue -o {0}/segmented{1}.txt -v -n 4,3,2,1 -d both -P sv {0}/prepared{1}.txt".format(experiment_dir, i) # multicue-17
+		#command = "python -m segmenter.multicue -o {0}/segmented{1}.txt -v -n 4,3,2,1 -d both -P sv,bp -L both {0}/prepared{1}.txt".format(experiment_dir, i) # multicue-22
 
 		evall = "{}/eval{}.txt".format(experiment_dir, i)
 		evalcommand = "wordseg-eval -r {}/prepared{}.txt {}/segmented{}.txt {}/gold{}.txt > {}/eval{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i, experiment_dir, i)
@@ -47,7 +51,7 @@ for experiment_dir in ["experiment_A"]:
 		#	stress2file.writelines(stresslines)
 		os.system(command)
 		os.system(evalcommand)
-		os.system("python -m segmenter.evaluation {}/segmented{}.txt {}/gold{}.txt {}/prepared{}.txt >> {}/eval{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i, experiment_dir, i))
+		os.system("python scripts/calculate_errors.py {}/segmented{}.txt {}/gold{}.txt {}/prepared{}.txt >> {}/eval{}.txt".format(experiment_dir, i, experiment_dir, i, experiment_dir, i, experiment_dir, i))
 		evallines = open(evall, 'r').readlines()
 		for line in evallines:
 			[key, num] = line.strip().split('\t')
