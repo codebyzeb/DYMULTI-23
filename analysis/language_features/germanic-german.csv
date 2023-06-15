@@ -1,0 +1,158 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+3A	Low	Consonant-Vowel Ratio	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+6A	Uvular continuants only	Uvular Consonants	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+9A	No initial velar nasal	The Velar Nasal		Phonology	
+10A	Contrast absent	Vowel Nasalization	Kohler 1999; Moulton 1962	Phonology	
+11A	High and mid	Front Rounded Vowels	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+12A	Complex	Syllable Structure	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+13A	No tones	Tone	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Jessen 1999	Phonology	
+15A	Right-oriented: One of the last three	Weight-Sensitive Stress	Jessen 1999	Phonology	
+16A	Coda consonant	Weight Factors in Weight-Sensitive Stress Systems	Jessen 1999	Phonology	
+17A	Trochaic	Rhythm Types	Jessen 1999	Phonology	
+18A	All present	Absence of Common Consonants	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+19A	None	Presence of Uncommon Consonants	Kohler 1999; Moulton 1962; Wangler 1972	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives		Morphology	
+21A	Case + number	Exponence of Selected Inflectional Formatives		Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection		Morphology	
+22A	2-3 categories per word	Inflectional Synthesis of the Verb		Morphology	
+23A	Dependent marking	Locus of Marking in the Clause		Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases		Morphology	
+25A	Dependent-marking	Locus of Marking: Whole-language Typology		Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments		Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Lederer 1969: passim	Morphology	
+27A	No productive reduplication	Reduplication	Borgert and Nyhan 1975	Morphology	
+28A	Core and non-core	Case Syncretism		Morphology	
+29A	Syncretic	Syncretism in Verbal Person/Number Marking		Morphology	
+30A	Three	Number of Genders		Nominal Categories	
+31A	Sex-based	Sex-based and Non-sex-based Gender Systems		Nominal Categories	
+32A	Semantic and formal	Systems of Gender Assignment		Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Lederer 1969: 172-175	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality		Nominal Categories	
+35A	Person-number stem	Plurality in Independent Personal Pronouns		Nominal Categories	
+36A	Unique periphrastic associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Lederer 1969: 604	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Lederer 1969: 604	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns		Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection		Nominal Categories	
+41A	No distance contrast	Distance Contrasts in Demonstratives		Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives		Nominal Categories	
+43A	Related by gender markers	Third Person Pronouns and Demonstratives	Curme 1922: 153, 177	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Borgert and Nyhan 1975: 361	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns		Nominal Categories	
+46A	Mixed	Indefinite Pronouns		Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns		Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Borgert and Nyhan 1975: 373	Nominal Categories	
+49A	4 cases	Number of Cases	Duden 1998: 220-229, 237-239, 281-286, 311-313, 329-333, 338-349	Nominal Categories	
+50A	Syncretism in relevant NP-types	Asymmetrical Case-Marking	Duden 1998: 220-229, 237-239, 281-286, 311-313, 329-333, 338-349	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Lederer 1969: 181	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals		Nominal Categories	
+53A	First, two-th, three-th	Ordinal Numerals		Nominal Categories	
+54A	Marked by preceding word	Distributive Numerals		Nominal Categories	
+55A	Absent	Numeral Classifiers		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Lederer 1969: passim	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection		Nominal Syntax	
+58B	None reported	Number of Possessive Nouns		Nominal Syntax	
+59A	No possessive classification	Possessive Classification		Nominal Syntax	
+62A	Ergative-Possessive	Action Nominal Constructions	Esau 1973: 184	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction		Nominal Syntax	
+65A	No grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 166	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 166	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 166	Verbal Categories	
+68A	From possessive	The Perfect	Dahl 1985: 166	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Lederer 1969: 48	Verbal Categories	
+70A	Second singular	The Morphological Imperative		Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+73A	Inflectional optative absent	The Optative		Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Zifonun et al. 1997: 1888-1892	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Zifonun et al. 1997: 1888	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Zifonun et al. 1997: 1891	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality	Palmer 1986: 75 	Verbal Categories	
+78A	Modal morpheme	Coding of Evidentiality	Palmer 1986: 75 	Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect	Lide and Magnusson 1970: 24, 44	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Lide and Magnusson 1970	Verbal Categories	
+81A	No dominant order	Order of Subject, Object and Verb	Lederer 1969: 575ff., own knowledge	Word Order	
+81B	SOV or SVO	Languages with two Dominant Orders of Subject, Object, and Verb	Lederer 1969: 575ff, own knowledge	Word Order	
+82A	SV	Order of Subject and Verb	Lederer 1969: 575ff., own knowledge	Word Order	
+83A	No dominant order	Order of Object and Verb	Lederer 1969: 575ff., own knowledge	Word Order	
+84A	No dominant order	Order of Object, Oblique, and Verb	Lederer 1969: own knowledge	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Lederer 1969: 356-357	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Lederer 1969: 605, 608	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Lederer 1969: 604	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Lederer 1969: 604	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Lederer 1969: 604	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Lederer 1969: 604, 612-613	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Lederer 1969: 604, 612-613	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Lederer 1969: 618	Word Order	
+92A	No question particle	Position of Polar Question Particles	Lederer 1969: 479	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Lederer 1969: 209, 474	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Lederer 1969: 412	Word Order	
+95A	Other	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	Other	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	Other	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases		Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns		Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Borgert and Nyhan 1975: 367	Simple Clauses	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects	Lederer 1969: 46, 48	Simple Clauses	
+102A	Only the A argument	Verbal Person Marking	Borgert and Nyhan 1975: 367, 370	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Borgert and Nyhan 1975: 367, 370	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Borgert and Nyhan 1975: 367, 370	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'		Simple Clauses	
+106A	Mixed	Reciprocal Constructions	Wiemer and Nedjalkov 2007	Simple Clauses	
+107A	Present	Passive Constructions	Borgert and Nyhan 1975: 378	Simple Clauses	
+108A	No antipassive	Antipassive Constructions		Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction		Simple Clauses	
+109A	No applicative construction	Applicative Constructions		Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Sequential but no purposive	Periphrastic Causative Constructions	Durrell 1992: 93-95 ; Harbert 1977: passim	Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions	Durrell 1992: 93-95 ; Harbert 1977: passim	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Lederer 1969: passim	Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation		Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation		Simple Clauses	
+115A	No predicate negation	Negative Indefinite Pronouns and Predicate Negation		Simple Clauses	
+116A	Interrogative word order	Polar Questions	Lederer 1969: 479	Simple Clauses	
+122A	Relative pronoun	Relativization on Subjects		Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques		Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects		Complex Sentences	
+125A	Balanced/deranked	Purpose Clauses		Complex Sentences	
+126A	Balanced/deranked	'When' Clauses		Complex Sentences	
+127A	Balanced	Reason Clauses		Complex Sentences	
+129A	Different	Hand and Arm	Breul 1906	Lexicon	
+130A	Different	Finger and Hand	Breul 1906	Lexicon	
+131A	Decimal	Numeral Bases		Lexicon	
+132A	6	Number of Non-Derived Basic Colour Categories		Lexicon	
+133A	11	Number of Basic Colour Categories		Lexicon	
+134A	Green vs. blue	Green and Blue		Lexicon	
+135A	Red vs. yellow	Red and Yellow		Lexicon	
+136A	M-T pronouns, paradigmatic	M-T Pronouns		Lexicon	
+136B	m in first person singular	M in First Person Singular		Lexicon	
+137A	No N-M pronouns	N-M Pronouns		Lexicon	
+137B	No m in second person singular	M in Second Person Singular		Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea		Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	Type 1 / Type 2	Order of Negative Morpheme and Verb	Lederer 1969: 583	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Lederer 1969: 583	Word Order	
+143F	VNeg	Postverbal Negative Morphemes	Lederer 1969: 583	Word Order	
+143G	None	Minor morphological means of signaling negation	Lederer 1969: 583	Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb	Lederer 1969: 583	Word Order	
+144B	End, not immed postverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Lederer 1969: 583	Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages	Lederer 1969: 583	Word Order	
+144E	SVONeg/SONegV	Multiple Negative Constructions in SVO Languages	Lederer 1969: 583	Word Order	
+144H	No NegSVO	NegSVO Order	Lederer 1969: 583	Word Order	
+144I	No SNegVO	SNegVO Order	Lederer 1969: 583	Word Order	
+144J	No SVNegO	SVNegO Order	Lederer 1969: 583	Word Order	
+144K	NoDoubleNeg	SVONeg Order	Lederer 1969: 583	Word Order	
+144L	More than one construction	The Position of Negative Morphemes in SOV Languages	Lederer 1969: 583	Word Order	
+144M	SONegV/SVONeg	Multiple Negative Constructions in SOV Languages	Lederer 1969: 583	Word Order	
+144P	No NegSOV	NegSOV Order	Lederer 1969: 583	Word Order	
+144Q	No SNegOV	SNegOV Order	Lederer 1969: 583	Word Order	
+144R	Word&NoDoubleNeg	SONegV Order	Lederer 1969: 583	Word Order	
+144S	NoSOVNeg	SOVNeg Order	Lederer 1969: 583	Word Order	

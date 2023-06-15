@@ -1,0 +1,78 @@
+Fid	Value	Feature	Reference	Area
+14A	Initial	Fixed Stress Locations	Árnason 1980	Phonology	
+15A	Fixed stress (no weight-sensitivity)	Weight-Sensitive Stress	Árnason 1980	Phonology	
+16A	No weight	Weight Factors in Weight-Sensitive Stress Systems	Árnason 1980	Phonology	
+17A	Trochaic	Rhythm Types	Árnason 1980	Phonology	
+23A	Dependent marking	Locus of Marking in the Clause	Einarsson 1945; Kress 1982	Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases	Einarsson 1945; Kress 1982	Morphology	
+25A	Dependent-marking	Locus of Marking: Whole-language Typology	Einarsson 1945; Kress 1982	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Einarsson 1945; Kress 1982	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Einarsson 1945: passim; Jonsson 1927: passim; Thráinsson 1994: passim	Morphology	
+30A	Three	Number of Genders	Jonsson 1927	Nominal Categories	
+31A	Sex-based	Sex-based and Non-sex-based Gender Systems	Jonsson 1927	Nominal Categories	
+32A	Semantic and formal	Systems of Gender Assignment	Jonsson 1927	Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Jonsson 1927: 14-20	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Thráinsson 1994	Nominal Categories	
+36A	Unique periphrastic associative plural	The Associative Plural	Einarsson 1949: 122	Nominal Categories	
+37A	Definite affix	Definite Articles	Einarsson 1945: 48-49	Nominal Categories	
+38A	No indefinite, but definite article	Indefinite Articles	Einarsson 1945: 48	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Haspelmath 1997: 252-3	Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Kress 1982: 104, 108	Nominal Categories	
+49A	4 cases	Number of Cases	Kress 1982: 56-92, 100-102, 104-113, 224-231	Nominal Categories	
+50A	Syncretism in relevant NP-types	Asymmetrical Case-Marking	Kress 1982: 56-92, 100-102, 104-113, 224-231	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Einarsson 1945: 33-47; Jonsson 1927: 15-20	Nominal Categories	
+52A	Mixed	Comitatives and Instrumentals	Pétursson 1978: 117 	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Pétursson 1978: 90-91 	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Jonsson 1927: passim	Nominal Categories	
+62A	Other	Action Nominal Constructions		Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Einarsson 1945	Nominal Syntax	
+65A	No grammatical marking	Perfective/Imperfective Aspect	Einarsson 1949	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Einarsson 1949: 73	Verbal Categories	
+67A	No inflectional future	The Future Tense	Einarsson 1949	Verbal Categories	
+68A	From possessive	The Perfect	Einarsson 1949: 135	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Jonsson 1927: 40-41	Verbal Categories	
+70A	Second singular	The Morphological Imperative	Thráinsson 1994: 158; Pétursson 1978: 124-125 	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive	Thráinsson 1994: 187; Pétursson 1978: 99 	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems	Pétursson 1978: 124-125, 138 	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Thráinsson 1994	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Pétursson 1978: 109 	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Pétursson 1978: 110 	Verbal Categories	
+76A	Overlap for either possibility or necessity	Overlap between Situational and Epistemic Modal Marking	Pétursson 1978: 109f. 	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Einarsson 1945: 172	Word Order	
+82A	SV	Order of Subject and Verb	Einarsson 1945: 172	Word Order	
+83A	VO	Order of Object and Verb	Einarsson 1945: 172	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Jonsson 1927: 39	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Einarsson 1945: 117; Jonsson 1927: 20-21	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Einarsson 1945: passim; Jonsson 1927: 12	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Einarsson 1945: passim	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Einarsson 1945: passim	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Einarsson 1945: passim 127	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Einarsson 1945: passim, 127	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Einarsson 1945: 175	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects	Thráinsson 1994: 168	Simple Clauses	
+108A	No antipassive	Antipassive Constructions	Jonsson 1927; Maling and Zaenen 1990	Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction	Jonsson 1927; Maling and Zaenen 1990	Simple Clauses	
+109A	No applicative construction	Applicative Constructions	Jonsson 1927	Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+112A	Negative particle	Negative Morphemes		Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation	Kress 1982: passim; Glendening 1966: 28	Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation	Kress 1982: passim; Glendening 1966: 28	Simple Clauses	
+115A	Mixed behaviour	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 252-3	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Einarsson 1945	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Einarsson 1945	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Einarsson 1945	Simple Clauses	
+138A	Words derived from Min Nan Chinese te	Tea	Malherbe and Rosenberg 1996: 978	Lexicon	
+143A	Type 1 / Type 2	Order of Negative Morpheme and Verb		Word Order	
+143E	NegV	Preverbal Negative Morphemes		Word Order	
+143F	VNeg	Postverbal Negative Morphemes		Word Order	
+143G	None	Minor morphological means of signaling negation		Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb		Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages		Word Order	
+144E	SNegVO/SVNegO	Multiple Negative Constructions in SVO Languages		Word Order	
+144H	No NegSVO	NegSVO Order		Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order		Word Order	
+144J	Word&NoDoubleNeg	SVNegO Order		Word Order	
+144K	No SVONeg	SVONeg Order		Word Order

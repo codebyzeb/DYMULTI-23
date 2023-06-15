@@ -1,0 +1,150 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+3A	Moderately low	Consonant-Vowel Ratio	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+4A	No voicing contrast	Voicing in Plosives and Fricatives	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+5A	Other	Voicing and Gaps in Plosive Systems	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+6A	None	Uvular Consonants	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+7A	Ejectives only	Glottalized Consonants	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+9A	No initial velar nasal	The Velar Nasal	Sohn 1994	Phonology	
+10A	Contrast absent	Vowel Nasalization	Lee 1999; Chang 1996 	Phonology	
+11A	None	Front Rounded Vowels	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+12A	Moderately complex	Syllable Structure	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+13A	No tones	Tone	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+18A	All present	Absence of Common Consonants	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+19A	None	Presence of Uncommon Consonants	Cho 1967; Kim 1972; Kim 1986; Lee 1999; Martin 1951 ; Martin 1954; Martin and Lee 1969	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Martin and Lee 1969; Sohn 1994; Chang 1996 ; Ramstedt 1968; Song 1988	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Martin and Lee 1969; Sohn 1994; Chang 1996 ; Ramstedt 1968; Song 1988	Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection	Martin and Lee 1969; Sohn 1994; Chang 1996 ; Ramstedt 1968; Song 1988	Morphology	
+22A	6-7 categories per word	Inflectional Synthesis of the Verb	Chang 1996 ; Song 1988	Morphology	
+23A	Dependent marking	Locus of Marking in the Clause	Sohn 1994; Chang 1996 	Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases	Sohn 1994; Chang 1996 	Morphology	
+25A	Dependent-marking	Locus of Marking: Whole-language Typology	Sohn 1994; Chang 1996 	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Sohn 1994; Chang 1996 	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Ramstedt 1968: passim; Sohn 1999: passim 	Morphology	
+27A	Productive full and partial reduplication	Reduplication	Sohn 1999 	Morphology	
+28A	No case marking	Case Syncretism	Sohn 1999 	Morphology	
+29A	No subject person/number marking	Syncretism in Verbal Person/Number Marking	Sohn 1999 	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Sohn 1999: 300 	Nominal Categories	
+35A	Person-number stem + nominal plural affix	Plurality in Independent Personal Pronouns	Sohn 1994: 281-287	Nominal Categories	
+36A	Associative same as additive plural	The Associative Plural	Sohn 1994: 268-269	Nominal Categories	
+37A	No definite or indefinite article	Definite Articles	Sohn 1999: 265 	Nominal Categories	
+38A	No definite or indefinite article	Indefinite Articles	Sohn 1999: 265 	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Sohn 1994: 283	Nominal Categories	
+40A	No person marking	Inclusive/Exclusive Distinction in Verbal Inflection	Sohn 1994: 299 ff.	Nominal Categories	
+41A	Three-way contrast	Distance Contrasts in Demonstratives	Sohn 1994: 294	Nominal Categories	
+42A	Different stem	Pronominal and Adnominal Demonstratives	Sohn 1994: 294	Nominal Categories	
+43A	Unrelated	Third Person Pronouns and Demonstratives	Sohn 1999: 107-8 	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Sohn 1994: 287	Nominal Categories	
+45A	Pronouns avoided for politeness	Politeness Distinctions in Pronouns	Sohn 1999: 207f 251f 407-413 	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Chang 1996: 37-8 	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Chang 1996: 38-39 	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Sohn 1994: 106, 375	Nominal Categories	
+49A	6-7 cases	Number of Cases	Chang 1996: 55-57 ; Sohn 1999: 326-345 ; Lee and Ramsey 2000: 143-160, 171	Nominal Categories	
+50A	Symmetrical	Asymmetrical Case-Marking	Chang 1996: 55-57 ; Sohn 1999: 326-345 ; Lee and Ramsey 2000: 143-160, 171	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Ramstedt 1968: 36	Nominal Categories	
+52A	Differentiation	Comitatives and Instrumentals	Sohn 1994	Nominal Categories	
+53A	One-th, two-th, three-th	Ordinal Numerals	Sohn 1994: 380-384	Nominal Categories	
+54A	Marked by suffix	Distributive Numerals	Gil 1991	Nominal Categories	
+55A	Obligatory	Numeral Classifiers		Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Chang 1996 ; Sohn 1994	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Sohn 1994; Chang 1996 	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Sohn 1994; Chang 1996 	Nominal Syntax	
+60A	Highly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Marked by following word	Adjectives without Nouns		Nominal Syntax	
+62A	Sentential	Action Nominal Constructions	Sohn 1994: 243	Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Lee 1989	Nominal Syntax	
+64A	Differentiation	Nominal and Verbal Conjunction	Chang 1996: 57, 137 	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Lee 1991: 261-269	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Lee 1991: 225	Verbal Categories	
+67A	No inflectional future	The Future Tense	Chang 1996 ; Lee 1991	Verbal Categories	
+68A	No perfect	The Perfect	Lee 1991	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Ramstedt 1968: 61ff	Verbal Categories	
+70A	Second person number-neutral	The Morphological Imperative	Chang 1996: 87 ; Sohn 1994: 42	Verbal Categories	
+71A	Normal imperative + special negative	The Prohibitive	Sohn 1994: 43, 131; Chang 1996: 101 	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems	Sohn 1994: 40, 42, 45, 344, p.c.	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Sohn 1994	Verbal Categories	
+74A	Other kinds of markers	Situational Possibility	Wymann 1996: 75, 106-108	Verbal Categories	
+75A	Other	Epistemic Possibility	Wymann 1996: 136, 145f.	Verbal Categories	
+76A	Overlap for either possibility or necessity	Overlap between Situational and Epistemic Modal Marking	Wymann 1996: 111-117	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality	Chang 1996 	Verbal Categories	
+78A	Verbal affix or clitic	Coding of Evidentiality	Chang 1996 	Verbal Categories	
+79A	None	Suppletion According to Tense and Aspect	Sohn 1994	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Sohn 1994	Verbal Categories	
+81A	SOV	Order of Subject, Object and Verb	Ramstedt 1968: 184; Sohn 1999: 293 	Word Order	
+82A	SV	Order of Subject and Verb	Ramstedt 1968: 184; Sohn 1999: 293 	Word Order	
+83A	OV	Order of Object and Verb	Ramstedt 1968: 184; Sohn 1999: 293 	Word Order	
+85A	Postpositions	Order of Adposition and Noun Phrase	Sohn 1999: 213 	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Ramstedt 1968: 42; Sohn 1999: 265, 293 	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Sohn 1999: 265, 293 ; Ramstedt 1968: 34, 105, 185	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Ramstedt 1968: 35, 48, 385	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Ramstedt 1968: 34-35, 54, 185	Word Order	
+90A	Relative clause-Noun	Order of Relative Clause and Noun	Sohn 1999: 293 	Word Order	
+90B	Relative clause-Noun (RelN) dominant	Prenominal relative clauses	Sohn 1999: 293 	Word Order	
+90D	Internally-headed occurs as nondominant type	Internally-headed relative clauses	Sohn 1999: 293 	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Sohn 1999: 265 	Word Order	
+92A	No question particle	Position of Polar Question Particles	Sohn 1999: 269 ; Ramstedt 1968: 80	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Sohn 1999: 265 	Word Order	
+94A	Final subordinator word	Order of Adverbial Subordinator and Clause		Word Order	
+95A	OV and Postpositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	OV and RelN	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	OV and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases	Sohn 1994: 235, 302	Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns	Sohn 1994: 82, 187, 282	Simple Clauses	
+100A	Neutral	Alignment of Verbal Person Marking	Sohn 1994: 358	Simple Clauses	
+101A	Optional pronouns in subject position	Expression of Pronominal Subjects	Sohn 1999: passim 	Simple Clauses	
+102A	No person marking	Verbal Person Marking	Sohn 1994: 358	Simple Clauses	
+103A	No person marking	Third Person Zero of Verbal Person Marking	Sohn 1994: 358	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Sohn 1994: 358	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'	Chang 1996: 93 	Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions	Sohn 1994: 164-166	Simple Clauses	
+107A	Present	Passive Constructions	Sohn 1994: 301, 306	Simple Clauses	
+108A	No antipassive	Antipassive Constructions		Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction		Simple Clauses	
+109A	No applicative construction	Applicative Constructions		Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Purposive but no sequential	Periphrastic Causative Constructions		Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions		Simple Clauses	
+112A	Negative particle	Negative Morphemes	Ramstedt 1968: passim	Simple Clauses	
+113A	Both	Symmetric and Asymmetric Standard Negation	Chang 1996: 100-103 ; Song 1988: 72-75	Simple Clauses	
+114A	A/Fin and A/NonReal	Subtypes of Asymmetric Standard Negation	Chang 1996: 100-103 ; Song 1988: 72-75	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Chang 1996: 105 	Simple Clauses	
+116A	Interrogative verb morphology	Polar Questions	Ramstedt 1968: 80; Sohn 1999: 269 	Simple Clauses	
+117A	Locational	Predicative Possession	Lizotte 1983	Simple Clauses	
+118A	Mixed	Predicative Adjectives	Lee 1989	Simple Clauses	
+119A	Different	Nominal and Locational Predication	Lee 1989	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Lee 1989	Simple Clauses	
+121A	Locational	Comparative Constructions	Ramstedt 1968	Simple Clauses	
+122A	Gap	Relativization on Subjects	Sohn 1994	Complex Sentences	
+123A	Gap	Relativization on Obliques	Sohn 1994	Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects	Chang 1996: 65, 126 	Complex Sentences	
+125A	Balanced	Purpose Clauses	Chang 1996: 164-5 	Complex Sentences	
+126A	Balanced	'When' Clauses	Chang 1996: 152-4 	Complex Sentences	
+127A	Balanced	Reason Clauses	Chang 1996: 155-7 	Complex Sentences	
+128A	Balanced	Utterance Complement Clauses	Chang 1996: 145 	Complex Sentences	
+129A	Different	Hand and Arm	Underwood 1954	Lexicon	
+130A	Different	Finger and Hand	Underwood 1954	Lexicon	
+131A	Decimal	Numeral Bases	Sohn 1994: 380	Lexicon	
+132A	6	Number of Non-Derived Basic Colour Categories		Lexicon	
+133A	11	Number of Basic Colour Categories		Lexicon	
+134A	Green vs. blue	Green and Blue		Lexicon	
+135A	Red vs. yellow	Red and Yellow		Lexicon	
+136A	No M-T pronouns	M-T Pronouns	Lee 1989	Lexicon	
+136B	No m in first person singular	M in First Person Singular	Lee 1989	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	Lee 1989	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	Lee 1989	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 747	Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Ramstedt 1968: 104, 159; Sohn 1999: 389 	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Ramstedt 1968: 104, 159; Sohn 1999: 389 	Word Order	
+143F	None	Postverbal Negative Morphemes	Ramstedt 1968: 104, 159; Sohn 1999: 389 	Word Order	
+143G	None	Minor morphological means of signaling negation	Ramstedt 1968: 104, 159; Sohn 1999: 389 	Word Order	
+144A	SONegV	Position of Negative Word With Respect to Subject, Object, and Verb		Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb		Word Order	
+144L	SONegV	The Position of Negative Morphemes in SOV Languages		Word Order	
+144P	No NegSOV	NegSOV Order		Word Order	
+144Q	No SNegOV	SNegOV Order		Word Order	
+144R	Word&NoDoubleNeg	SONegV Order		Word Order	
+144S	NoSOVNeg	SOVNeg Order		Word Order

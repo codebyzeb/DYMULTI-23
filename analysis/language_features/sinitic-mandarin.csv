@@ -1,0 +1,154 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+2A	Average (5-6)	Vowel Quality Inventories	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+3A	Average	Consonant-Vowel Ratio	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+4A	In fricatives alone	Voicing in Plosives and Fricatives	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+5A	Other	Voicing and Gaps in Plosive Systems	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+6A	None	Uvular Consonants	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+9A	No initial velar nasal	The Velar Nasal	Li and Thompson 1981: 89	Phonology	
+10A	Contrast absent	Vowel Nasalization	Li and Thompson 1981	Phonology	
+11A	High only	Front Rounded Vowels	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+12A	Moderately complex	Syllable Structure	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+13A	Complex tone system	Tone	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Henne et al. 1977	Phonology	
+15A	Not predictable	Weight-Sensitive Stress	Henne et al. 1977	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Henne et al. 1977	Phonology	
+18A	All present	Absence of Common Consonants	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+19A	None	Presence of Uncommon Consonants	Cheng 1973a; Dow 1972; Hanyu 1960; Chao 1968	Phonology	
+20A	Isolating/concatenative	Fusion of Selected Inflectional Formatives	Li and Thompson 1981; Bisang 1991 ; Bisang 1992 	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Li and Thompson 1981; Bisang 1991 ; Bisang 1992 	Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection	Li and Thompson 1981; Bisang 1991 ; Bisang 1992 	Morphology	
+22A	0-1 category per word	Inflectional Synthesis of the Verb	Li and Thompson 1981	Morphology	
+23A	Dependent marking	Locus of Marking in the Clause	Li and Thompson 1981	Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases	Li and Thompson 1981	Morphology	
+25A	Dependent-marking	Locus of Marking: Whole-language Typology	Li and Thompson 1981	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Li and Thompson 1981	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Li and Thompson 1981: passim	Morphology	
+27A	Productive full and partial reduplication	Reduplication	Zhu 2001	Morphology	
+28A	No case marking	Case Syncretism		Morphology	
+29A	No subject person/number marking	Syncretism in Verbal Person/Number Marking		Morphology	
+30A	None	Number of Genders	Li and Thompson 1981	Nominal Categories	
+31A	No gender	Sex-based and Non-sex-based Gender Systems	Li and Thompson 1981	Nominal Categories	
+32A	No gender	Systems of Gender Assignment	Li and Thompson 1981	Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Li and Thompson 1981: 12, 40	Nominal Categories	
+34A	Only human nouns, optional	Occurrence of Nominal Plurality	Li and Thompson 1981: 40	Nominal Categories	
+35A	Person stem + nominal plural affix	Plurality in Independent Personal Pronouns	Li and Thompson 1981: 40-41, 134	Nominal Categories	
+36A	Unique periphrastic associative plural	The Associative Plural	Chao 1968: 635-636	Nominal Categories	
+39A	Inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Chao 1968: 637	Nominal Categories	
+40A	No person marking	Inclusive/Exclusive Distinction in Verbal Inflection	Chao 1968: passim	Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives	Chao 1968: 565	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Chao 1968: 565	Nominal Categories	
+43A	Related for non-human reference	Third Person Pronouns and Demonstratives	Li and Thompson 1981: 130, 134	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Li and Thompson 1981: 132	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Li and Thompson 1981: 134	Nominal Categories	
+46A	Mixed	Indefinite Pronouns	Chappell 1994: 111-3	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Hole 1998: 256-275	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Li and Thompson 1981: 24	Nominal Categories	
+49A	No morphological case-marking	Number of Cases	Li and Thompson 1981: passim	Nominal Categories	
+50A	No case-marking	Asymmetrical Case-Marking	Li and Thompson 1981: passim	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes	Li and Thompson 1981: passim	Nominal Categories	
+52A	Differentiation	Comitatives and Instrumentals	Stolz 1996: 196	Nominal Categories	
+53A	One-th, two-th, three-th	Ordinal Numerals	Li and Thompson 1981	Nominal Categories	
+54A	No distributive numerals	Distributive Numerals		Nominal Categories	
+55A	Obligatory	Numeral Classifiers		Nominal Categories	
+56A	Formally similar, with interrogative	Conjunctions and Universal Quantifiers		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Li and Thompson 1981: passim	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Li and Thompson 1981	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Li and Thompson 1981	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Li and Thompson 1981	Nominal Syntax	
+60A	Weakly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Marked by following word	Adjectives without Nouns		Nominal Syntax	
+62A	No action nominals	Action Nominal Constructions		Nominal Syntax	
+63A	'And' identical to 'with'	Noun Phrase Conjunction	Li and Thompson 1981	Nominal Syntax	
+64A	Differentiation	Nominal and Verbal Conjunction	Li and Thompson 1981; Chappell 1994	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 180	Verbal Categories	
+66A	No past tense	The Past Tense	Dahl 1985: 180	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 180	Verbal Categories	
+68A	No perfect	The Perfect	Dahl 1985: 180	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Li and Thompson 1981: 13	Verbal Categories	
+70A	No second-person imperatives	The Morphological Imperative	Li and Thompson 1981: 451-452	Verbal Categories	
+71A	Normal imperative + special negative	The Prohibitive	Li and Thompson 1981: 455-456	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems	Li and Thompson 1981: 451-452, 455-462	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Li and Thompson 1981	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Li and Thompson 1981: 56f., 172-183	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Li and Thompson 1981: 179	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Li and Thompson 1981: 56f., 172ff., 179-183	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality	Li and Thompson 1981	Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality	Li and Thompson 1981	Verbal Categories	
+79A	None	Suppletion According to Tense and Aspect	Li and Thompson 1981	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Li and Thompson 1981	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Li and Thompson 1981: 26	Word Order	
+82A	SV	Order of Subject and Verb	Li and Thompson 1981: 26	Word Order	
+83A	VO	Order of Object and Verb	Li and Thompson 1981: 26	Word Order	
+84A	XVO	Order of Object, Oblique, and Verb	Li and Thompson 1981: 24	Word Order	
+85A	No dominant order	Order of Adposition and Noun Phrase	Li and Thompson 1981: passim	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Li and Thompson 1981: 24	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Li and Thompson 1981: 116, 124	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Li and Thompson 1981: 104	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Li and Thompson 1981: 104	Word Order	
+90A	Relative clause-Noun	Order of Relative Clause and Noun	Li and Thompson 1981: 124	Word Order	
+90B	Relative clause-Noun (RelN) dominant	Prenominal relative clauses	Li and Thompson 1981: 124	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Li and Thompson 1981: passim	Word Order	
+92A	Final	Position of Polar Question Particles	Li and Thompson 1981: 547	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Li and Thompson 1981: 522	Word Order	
+95A	Other	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and RelN	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Neutral	Alignment of Case Marking of Full Noun Phrases	Li and Thompson 1981: 20, 157	Simple Clauses	
+99A	Neutral	Alignment of Case Marking of Pronouns	Li and Thompson 1981: 23, 155	Simple Clauses	
+100A	Neutral	Alignment of Verbal Person Marking	Norman 1988: 161-167 	Simple Clauses	
+101A	Optional pronouns in subject position	Expression of Pronominal Subjects	Li and Thompson 1981: 657ff	Simple Clauses	
+102A	No person marking	Verbal Person Marking	Li and Thompson 1981: 161-167	Simple Clauses	
+103A	No person marking	Third Person Zero of Verbal Person Marking	Li and Thompson 1981: 161-67	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Norman 1988: 161-167 	Simple Clauses	
+105A	Mixed	Ditransitive Constructions: The Verb 'Give'	Li and Thompson 1981: 375-8	Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions	Hoa et al. 2007	Simple Clauses	
+107A	Present	Passive Constructions	Li and Thompson 1981: 492-500	Simple Clauses	
+108A	No antipassive	Antipassive Constructions	Li and Thompson 1981	Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction	Li and Thompson 1981	Simple Clauses	
+109A	No applicative construction	Applicative Constructions	Li and Thompson 1981	Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+111A	Compound but no morphological	Nonperiphrastic Causative Constructions	Li and Thompson 1976: 480	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Li and Thompson 1981: 415ff., 182-183	Simple Clauses	
+113A	Both	Symmetric and Asymmetric Standard Negation	Lin 2001: 174-176, passim; Wiedenhof 1994: 95-106	Simple Clauses	
+114A	A/Fin	Subtypes of Asymmetric Standard Negation	Lin 2001: 174-176, passim; Wiedenhof 1994: 95-106	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Li and Thompson 1981: 529	Simple Clauses	
+116A	Question particle	Polar Questions	Li and Thompson 1981: 547	Simple Clauses	
+117A	Topic	Predicative Possession	Li and Thompson 1981	Simple Clauses	
+118A	Verbal encoding	Predicative Adjectives	Li and Thompson 1981	Simple Clauses	
+119A	Different	Nominal and Locational Predication	Li and Thompson 1981	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Li and Thompson 1981	Simple Clauses	
+121A	Exceed	Comparative Constructions	Li and Thompson 1981	Simple Clauses	
+122A	Gap	Relativization on Subjects	Li and Thompson 1981	Complex Sentences	
+123A	Gap	Relativization on Obliques	Li and Thompson 1981	Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects	Li and Thompson 1981: 598	Complex Sentences	
+125A	Balanced	Purpose Clauses	Li and Thompson 1981: 595-8, 651-6	Complex Sentences	
+126A	Balanced	'When' Clauses	Li and Thompson 1981: 595-8, 640-1	Complex Sentences	
+127A	Balanced	Reason Clauses	Li and Thompson 1981: 651-6	Complex Sentences	
+128A	Balanced	Utterance Complement Clauses	Li and Thompson 1981: 172-83, 598-611	Complex Sentences	
+129A	Different	Hand and Arm	Huang 1954	Lexicon	
+130A	Different	Finger and Hand	Huang 1954	Lexicon	
+131A	Decimal	Numeral Bases		Lexicon	
+132A	6	Number of Non-Derived Basic Colour Categories		Lexicon	
+133A	8-8.5	Number of Basic Colour Categories		Lexicon	
+134A	Green vs. blue	Green and Blue		Lexicon	
+135A	Red vs. yellow	Red and Yellow		Lexicon	
+136A	No M-T pronouns	M-T Pronouns	Li and Thompson 1981	Lexicon	
+136B	No m in first person singular	M in First Person Singular	Li and Thompson 1981	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	Li and Thompson 1981	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	Li and Thompson 1981	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 732	Lexicon	
+143A	NegV	Order of Negative Morpheme and Verb	Li and Thompson 1981: 417	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Li and Thompson 1981: 417	Word Order	
+143F	None	Postverbal Negative Morphemes	Li and Thompson 1981: 417	Word Order	
+143G	None	Minor morphological means of signaling negation	Li and Thompson 1981: 417	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb		Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb		Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages		Word Order	
+144H	No NegSVO	NegSVO Order		Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order		Word Order	
+144J	No SVNegO	SVNegO Order		Word Order	
+144K	No SVONeg	SVONeg Order		Word Order

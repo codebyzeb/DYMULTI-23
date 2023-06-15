@@ -1,0 +1,156 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+2A	Average (5-6)	Vowel Quality Inventories	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+3A	Average	Consonant-Vowel Ratio	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+4A	In fricatives alone	Voicing in Plosives and Fricatives	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+5A	Other	Voicing and Gaps in Plosive Systems	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+6A	None	Uvular Consonants	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+9A	No velar nasal	The Velar Nasal		Phonology	
+10A	Contrast absent	Vowel Nasalization	Green 1988	Phonology	
+11A	None	Front Rounded Vowels	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+12A	Moderately complex	Syllable Structure	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+13A	No tones	Tone	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Harris 1969a; Green 1988; Alarcos Llorach 1965; Harris 1983; Navarro 1965; Roca 1991; Roca 1999	Phonology	
+15A	Right-edge: Ultimate or penultimate	Weight-Sensitive Stress	Harris 1969a; Green 1988; Alarcos Llorach 1965; Harris 1983; Navarro 1965; Roca 1991; Roca 1999	Phonology	
+16A	Combined	Weight Factors in Weight-Sensitive Stress Systems	Harris 1969a; Green 1988; Alarcos Llorach 1965; Harris 1983; Navarro 1965; Roca 1991; Roca 1999	Phonology	
+17A	Trochaic	Rhythm Types	Harris 1969a; Green 1988; Alarcos Llorach 1965; Harris 1983; Navarro 1965; Roca 1991; Roca 1999	Phonology	
+18A	All present	Absence of Common Consonants	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+19A	'Th' sounds	Presence of Uncommon Consonants	Harris 1969a; Navarro 1961; Saporta and Contreras 1962	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Butt and Benjamin 2000	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Butt and Benjamin 2000	Morphology	
+21B	TAM+agreement	Exponence of Tense-Aspect-Mood Inflection	Butt and Benjamin 2000	Morphology	
+22A	4-5 categories per word	Inflectional Synthesis of the Verb	Butt and Benjamin 2000	Morphology	
+23A	Double marking	Locus of Marking in the Clause		Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases		Morphology	
+25A	Inconsistent or other	Locus of Marking: Whole-language Typology		Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments		Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Green 1988: passim; Butt and Benjamin 2000: passim	Morphology	
+27A	No productive reduplication	Reduplication	Lopez 2001	Morphology	
+28A	Core and non-core	Case Syncretism	Butt and Benjamin 2000	Morphology	
+29A	Syncretic	Syncretism in Verbal Person/Number Marking	Butt and Benjamin 2000	Morphology	
+30A	Two	Number of Genders		Nominal Categories	
+31A	Sex-based	Sex-based and Non-sex-based Gender Systems		Nominal Categories	
+32A	Semantic and formal	Systems of Gender Assignment		Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality		Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality		Nominal Categories	
+35A	Person-number stem + pronominal plural affix	Plurality in Independent Personal Pronouns		Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Green 1988: 104	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Green 1988: 104	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns		Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection		Nominal Categories	
+41A	Three-way contrast	Distance Contrasts in Demonstratives		Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives		Nominal Categories	
+43A	Unrelated	Third Person Pronouns and Demonstratives	Green 1988: 95-6	Nominal Categories	
+44A	In 3rd person + 1st and/or 2nd person	Gender Distinctions in Independent Personal Pronouns	Green 1988: 96	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Berschin et.al. 1995: 190-200	Nominal Categories	
+46A	Special	Indefinite Pronouns		Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Otero 1999: 1427ff.	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Green 1988: 103	Nominal Categories	
+49A	No morphological case-marking	Number of Cases	Butt and Benjamin 2000: 127-128, 132-136, 149-154	Nominal Categories	
+50A	Additive-quantitatively asymmetrical	Asymmetrical Case-Marking	Butt and Benjamin 2000: 127-128, 132-136, 149-154	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes		Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals		Nominal Categories	
+54A	No distributive numerals	Distributive Numerals		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes		Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection		Nominal Syntax	
+58B	None reported	Number of Possessive Nouns		Nominal Syntax	
+59A	No possessive classification	Possessive Classification		Nominal Syntax	
+61A	Without marking	Adjectives without Nouns		Nominal Syntax	
+62A	Ergative-Possessive	Action Nominal Constructions		Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Ashcom and Goodell 1955	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction		Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 171	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 171	Verbal Categories	
+67A	Inflectional future exists	The Future Tense	Dahl 1985: 171	Verbal Categories	
+68A	From possessive	The Perfect	Dahl 1985: 171	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes		Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative		Verbal Categories	
+71A	Special imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+73A	Inflectional optative absent	The Optative	Butt and Benjamin 1994	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Butt and Benjamin 1988: 128	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Butt and Benjamin 1988: 199	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Butt and Benjamin 1988: 128, 356	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality	Butt and Benjamin 2000	Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality	Butt and Benjamin 2000	Verbal Categories	
+79A	Tense and aspect	Suppletion According to Tense and Aspect		Verbal Categories	
+79B	Imperative	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion		Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Green 1988: 114-115	Word Order	
+82A	No dominant order	Order of Subject and Verb		Word Order	
+83A	VO	Order of Object and Verb	Green 1988: 103	Word Order	
+84A	VOX	Order of Object, Oblique, and Verb		Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Green 1988: 103	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Green 1988: 103	Word Order	
+87A	Noun-Adjective	Order of Adjective and Noun	Green 1988: 104-105	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Green 1988: 104	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Green 1988: 104	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Green 1988: 104-105	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Green 1988: 104-105	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective		Word Order	
+92A	No question particle	Position of Polar Question Particles	Butt and Benjamin 2000: 516-517	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Green 1988: 104	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause		Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and NAdj	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases		Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns		Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Green 1988: 98	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects		Simple Clauses	
+102A	Both the A and P arguments	Verbal Person Marking	Green 1988: 98, 107-109	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Green 1988: 98	Simple Clauses	
+104A	P precedes A	Order of Person Markers on the Verb	Green 1988: 98, 107-109	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'		Simple Clauses	
+106A	Mixed	Reciprocal Constructions	Green 1988	Simple Clauses	
+107A	Present	Passive Constructions	Green 1988: 113	Simple Clauses	
+108A	No antipassive	Antipassive Constructions		Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction		Simple Clauses	
+109A	No applicative construction	Applicative Constructions		Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Both	Periphrastic Causative Constructions		Simple Clauses	
+111A	Both	Nonperiphrastic Causative Constructions		Simple Clauses	
+112A	Negative particle	Negative Morphemes		Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation		Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation		Simple Clauses	
+115A	Mixed behaviour	Negative Indefinite Pronouns and Predicate Negation		Simple Clauses	
+116A	Interrogative word order	Polar Questions	Butt and Benjamin 2000: 516-517	Simple Clauses	
+117A	'Have'	Predicative Possession	Jarvis et al. 1981	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives		Simple Clauses	
+119A	Different	Nominal and Locational Predication		Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals		Simple Clauses	
+121A	Particle	Comparative Constructions		Simple Clauses	
+122A	Gap	Relativization on Subjects		Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques		Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects		Complex Sentences	
+125A	Deranked	Purpose Clauses	Butt and Benjamin 2000: 206, 239, 260-1	Complex Sentences	
+126A	Balanced/deranked	'When' Clauses	Butt and Benjamin 2000: 206-9, 260	Complex Sentences	
+127A	Balanced/deranked	Reason Clauses	Butt and Benjamin 2000: 210-1, 260	Complex Sentences	
+128A	Balanced/deranked	Utterance Complement Clauses	Butt and Benjamin 2000: 254	Complex Sentences	
+129A	Different	Hand and Arm	Cuyás 1972	Lexicon	
+130A	Different	Finger and Hand	Cuyás 1972	Lexicon	
+131A	Decimal	Numeral Bases		Lexicon	
+132A	6	Number of Non-Derived Basic Colour Categories		Lexicon	
+133A	11	Number of Basic Colour Categories		Lexicon	
+134A	Green vs. blue	Green and Blue		Lexicon	
+135A	Red vs. yellow	Red and Yellow		Lexicon	
+136A	M-T pronouns, paradigmatic	M-T Pronouns		Lexicon	
+136B	m in first person singular	M in First Person Singular		Lexicon	
+137A	No N-M pronouns	N-M Pronouns		Lexicon	
+137B	No m in second person singular	M in Second Person Singular		Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea		Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Green 1988: 116	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Green 1988: 116	Word Order	
+143F	None	Postverbal Negative Morphemes	Green 1988: 116	Word Order	
+143G	None	Minor morphological means of signaling negation	Green 1988: 116	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb		Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb		Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages		Word Order	
+144H	No NegSVO	NegSVO Order		Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order		Word Order	
+144J	No SVNegO	SVNegO Order		Word Order	
+144K	No SVONeg	SVONeg Order		Word Order	

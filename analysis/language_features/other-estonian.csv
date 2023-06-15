@@ -1,0 +1,61 @@
+Fid	Value	Feature	Reference	Area
+14A	Initial	Fixed Stress Locations	Eek 1975; Hint 1973	Phonology	
+15A	Fixed stress (no weight-sensitivity)	Weight-Sensitive Stress	Eek 1975; Hint 1973	Phonology	
+16A	Long vowel	Weight Factors in Weight-Sensitive Stress Systems	Eek 1975; Hint 1973	Phonology	
+17A	Trochaic	Rhythm Types	Eek 1975; Hint 1973	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Tauli 1973: passim; Tauli 1983: passim; de Sivers 1969: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	de Sivers 1969: 32	Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	No definite or indefinite article	Definite Articles	de Sivers 1969: passim	Nominal Categories	
+38A	No definite or indefinite article	Indefinite Articles	de Sivers 1969: passim	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Kask 1966: 47	Nominal Categories	
+49A	10 or more cases	Number of Cases	Viitso 1998: 127-129, 132-135	Nominal Categories	
+50A	Symmetrical	Asymmetrical Case-Marking	Viitso 1998: 127-129, 132-135	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Tauli 1973: 40; de Sivers 1969: 109, 123	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Laanest 1982 	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Laanest 1982: 187-188 	Nominal Categories	
+62A	Mixed	Action Nominal Constructions		Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Oinas 1966	Nominal Syntax	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Tauli 1973: 92; de Sivers 1969: 54	Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative	Oinas 1966: 125	Verbal Categories	
+71A	Special imperative + normal negative	The Prohibitive	Oinas 1966: 307-308	Verbal Categories	
+72A	Maximal system	Imperative-Hortative Systems	Oinas 1966: 125, 161-162, 196, 307-308	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Oinas 1966	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality	Valmet et al. 1981	Verbal Categories	
+78A	Verbal affix or clitic	Coding of Evidentiality	Valmet et al. 1981	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Tauli 1983: 37; de Sivers 1969: 351-352	Word Order	
+82A	SV	Order of Subject and Verb	Tauli 1983: 37; de Sivers 1969: 351-352	Word Order	
+83A	VO	Order of Object and Verb	Tauli 1983: 54	Word Order	
+84A	VOX	Order of Object, Oblique, and Verb	Tauli 1983: 158	Word Order	
+85A	Postpositions	Order of Adposition and Noun Phrase	Tauli 1973: 113; Tauli 1983: 23; de Sivers 1969: 166-172, 179-188	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Tauli 1983: 23; de Sivers 1969: 26, 260	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	de Sivers 1969: 18, 43	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Tauli 1983: 189; de Sivers 1969: 248	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Tauli 1983: 165; de Sivers 1969: 37, 40, 44	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Tauli 1983: 257; de Sivers 1969: 227, 229	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Tauli 1983: 257; de Sivers 1969: 227, 229	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Tauli 1983: 23	Word Order	
+92A	In either of two positions	Position of Polar Question Particles	Tauli 1983: 317; de Sivers 1969: 353	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Tauli 1983: 308	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Tauli 1983: 245ff; de Sivers 1969: 274, 278	Word Order	
+95A	VO and Postpositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	de Sivers 1969: 47-48	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Tauli 1973: 94; Tauli 1983: 32, 150	Simple Clauses	
+116A	Question particle	Polar Questions	Tauli 1983: 317; de Sivers 1969: 353	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Lehiste 1972	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Lehiste 1972	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Lehiste 1972	Simple Clauses	
+138A	Words derived from Min Nan Chinese te	Tea	Malherbe and Rosenberg 1996: 822	Lexicon	
+143A	NegV	Order of Negative Morpheme and Verb	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+143F	None	Postverbal Negative Morphemes	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+143G	None	Minor morphological means of signaling negation	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144H	No NegSVO	NegSVO Order	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144J	No SVNegO	SVNegO Order	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order	
+144K	No SVONeg	SVONeg Order	Tauli 1973: 94; Tauli 1983: 32, 150; de Sivers 1969: 69-71	Word Order

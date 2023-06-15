@@ -1,0 +1,156 @@
+Fid	Value	Feature	Reference	Area
+1A	Moderately large	Consonant Inventories	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+3A	Average	Consonant-Vowel Ratio	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+6A	None	Uvular Consonants	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+9A	No velar nasal	The Velar Nasal	Kenesei et al. 1998 	Phonology	
+10A	Contrast absent	Vowel Nasalization	Kenesei et al. 1998 	Phonology	
+11A	High and mid	Front Rounded Vowels	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+12A	Complex	Syllable Structure	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+13A	No tones	Tone	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+14A	Initial	Fixed Stress Locations	Kerek 1971; Szinnyei 1912	Phonology	
+15A	Fixed stress (no weight-sensitivity)	Weight-Sensitive Stress	Kerek 1971; Szinnyei 1912	Phonology	
+16A	Long vowel	Weight Factors in Weight-Sensitive Stress Systems	Kerek 1971; Szinnyei 1912	Phonology	
+17A	Trochaic	Rhythm Types	Kerek 1971; Szinnyei 1912	Phonology	
+18A	All present	Absence of Common Consonants	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+19A	None	Presence of Uncommon Consonants	Banhidi et al. 1965; Hall 1944; Szende 1999	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Kenesei et al. 1998 	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Kenesei et al. 1998 	Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection	Kenesei et al. 1998 	Morphology	
+22A	4-5 categories per word	Inflectional Synthesis of the Verb	Kenesei et al. 1998 	Morphology	
+23A	Dependent marking	Locus of Marking in the Clause	Kenesei et al. 1998 	Morphology	
+24A	Head marking	Locus of Marking in Possessive Noun Phrases	Kenesei et al. 1998 	Morphology	
+25A	Inconsistent or other	Locus of Marking: Whole-language Typology	Kenesei et al. 1998 	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Kenesei et al. 1998 	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Kenesei et al. 1998: passim ; Benkö and Imre 1972: passim; Kiefer 1967: passim; Schaap 1980: passim	Morphology	
+27A	Productive full and partial reduplication	Reduplication	Hetzron 2001	Morphology	
+28A	No syncretism	Case Syncretism	Lotz 1988	Morphology	
+29A	Not syncretic	Syncretism in Verbal Person/Number Marking	Lotz 1988	Morphology	
+30A	None	Number of Genders		Nominal Categories	
+31A	No gender	Sex-based and Non-sex-based Gender Systems		Nominal Categories	
+32A	No gender	Systems of Gender Assignment		Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Benkö and Imre 1972: 163	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Kenesei et al. 1998 	Nominal Categories	
+35A	Person-number stem	Plurality in Independent Personal Pronouns	Majtinskaja 1976: 392	Nominal Categories	
+36A	Unique affixal associative plural	The Associative Plural	Kenesei et al. 1998 	Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Kenesei et al. 1998: 94 ; Benkö and Imre 1972: 89-90	Nominal Categories	
+38A	Indefinite word distinct from 'one'	Indefinite Articles	Kenesei et al. 1998: 94 ; Benkö and Imre 1972: 89-90	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Tompa 1968: 61	Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection	Tompa 1968: 159 ff.	Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives	Moravcsik 1997: 308	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Moravcsik 1997: 308	Nominal Categories	
+43A	Related for non-human reference	Third Person Pronouns and Demonstratives	Kenesei et al. 1998: 260, 275 	Nominal Categories	
+44A	No gender distinctions	Gender Distinctions in Independent Personal Pronouns	Kenesei et al. 1998: 260 	Nominal Categories	
+45A	Multiple politeness distinctions	Politeness Distinctions in Pronouns	Keresztes 1992: 95-96	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Kenesei et al. 1998 	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Kenesei et al. 1998: 98, 128-138 	Nominal Categories	
+48A	Pronouns only	Person Marking on Adpositions	Kenesei et al. 1998: 86-92 	Nominal Categories	
+49A	10 or more cases	Number of Cases	Tompa 1968: 61-62, 77-79, 176-177, 188-210	Nominal Categories	
+50A	Symmetrical	Asymmetrical Case-Marking	Tompa 1968: 61-62, 77-79, 176-177, 188-210	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Benkö and Imre 1972: 163	Nominal Categories	
+52A	Mixed	Comitatives and Instrumentals	Banhidi et al. 1975: 235, 252	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Banhidi et al. 1975: 55 and 254	Nominal Categories	
+54A	Marked by reduplication	Distributive Numerals		Nominal Categories	
+55A	Optional	Numeral Classifiers	Beckwith 1992	Nominal Categories	
+56A	Formally similar, without interrogative	Conjunctions and Universal Quantifiers		Nominal Categories	
+57A	Possessive suffixes	Position of Pronominal Possessive Affixes	Benkö and Imre 1972: 125	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Kenesei et al. 1998 	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Kenesei et al. 1998 	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Kenesei et al. 1998 	Nominal Syntax	
+60A	Highly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Without marking	Adjectives without Nouns	Gil 1994a: 38. Istvan Kenesei, p.c., cited in Gil 1994	Nominal Syntax	
+62A	Restricted	Action Nominal Constructions		Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Ginter and Tarnói 1991	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction	Kenesei et al. 1998: 102, 106 	Nominal Syntax	
+65A	No grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 181	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 181	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 181	Verbal Categories	
+68A	No perfect	The Perfect	Dahl 1985: 181	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Benkö and Imre 1972: 130	Verbal Categories	
+70A	No second-person imperatives	The Morphological Imperative	Kenesei et al. 1998: 311 	Verbal Categories	
+71A	Normal imperative + special negative	The Prohibitive	Kenesei et al. 1998: 113, 312 	Verbal Categories	
+72A	Maximal system	Imperative-Hortative Systems	Kenesei et al. 1998: 311 	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Kenesei et al. 1998 	Verbal Categories	
+74A	Affixes on verbs	Situational Possibility	Kenesei et al. 1998: 315 	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Kenesei et al. 1998: 316 	Verbal Categories	
+76A	Overlap for either possibility or necessity	Overlap between Situational and Epistemic Modal Marking	Kenesei et al. 1998: 313-316 	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality	Kenesei et al. 1998 	Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality	Kenesei et al. 1998 	Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect	Olsson 1992: 180-181	Verbal Categories	
+79B	A regular and a suppletive form alternate	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Olsson 1992	Verbal Categories	
+81A	No dominant order	Order of Subject, Object and Verb	Kenesei et al. 1998: 73 	Word Order	
+81B	SOV or SVO	Languages with two Dominant Orders of Subject, Object, and Verb	Kenesei et al. 1998: 73 	Word Order	
+82A	SV	Order of Subject and Verb	Kenesei et al. 1998: 73 	Word Order	
+83A	VO	Order of Object and Verb	Kenesei et al. 1998: 73 	Word Order	
+85A	Postpositions	Order of Adposition and Noun Phrase	Kenesei et al. 1998: 86 ; Benkö and Imre 1972: 132; Kiefer 1967: 24	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Benkö and Imre 1972: 132	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Kenesei et al. 1998: 92 ; Benkö and Imre 1972: 132	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Kenesei et al. 1998: 95 ; Benkö and Imre 1972: 89, 166	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Kenesei et al. 1998: 96 	Word Order	
+90A	Mixed	Order of Relative Clause and Noun	Kenesei et al. 1998: 38 	Word Order	
+90B	RelN or NRel	Prenominal relative clauses	Kenesei et al. 1998: 38 	Word Order	
+90C	NRel or RelN	Postnominal relative clauses	Kenesei et al. 1998: 38 	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Kenesei et al. 1998: 79, 83 	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Kenesei et al. 1998: 5 ; Kiefer 1967: 90, 195	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Kenesei et al. 1998: 48-54 	Word Order	
+95A	VO and Postpositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	Other	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases	Kenesei et al. 1998: 195 	Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns	Kenesei et al. 1998: 263 	Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Kenesei et al. 1998: 321-328 	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Kenesei et al. 1998: 263 	Simple Clauses	
+102A	Both the A and P arguments	Verbal Person Marking	Kenesei et al. 1998: 321-328 	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Kenesei et al. 1998: 321-328 	Simple Clauses	
+104A	A and P are fused	Order of Person Markers on the Verb	Kenesei et al. 1998: 321-28 	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'	Kenesei et al. 1998: 198 	Simple Clauses	
+107A	Present	Passive Constructions	Kenesei et al. 1998: 282 	Simple Clauses	
+108A	No antipassive	Antipassive Constructions		Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction		Simple Clauses	
+109A	No applicative construction	Applicative Constructions		Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Both	Periphrastic Causative Constructions	Kenesei et al. 1998: 286-288 	Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions	Kenesei et al. 1998: 286-288 	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation	de Groot 1994: 146-147	Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation	de Groot 1994: 146-147	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Kenesei et al. 1998 ; Haspelmath 1997: 292	Simple Clauses	
+116A	Question particle	Polar Questions	Kenesei et al. 1998: 2, 350 	Simple Clauses	
+117A	Locational	Predicative Possession	Biermann 1985	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Ginter and Tarnói 1991	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Ginter and Tarnói 1991	Simple Clauses	
+120A	Possible	Zero Copula for Predicate Nominals	Ginter and Tarnói 1991	Simple Clauses	
+121A	Particle	Comparative Constructions	Tompa 1968	Simple Clauses	
+122A	Relative pronoun	Relativization on Subjects	Kenesei et al. 1998 	Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques	Kenesei et al. 1998 	Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects	Kenesei et al. 1998: 33 	Complex Sentences	
+125A	Deranked	Purpose Clauses	Kenesei et al. 1998: 50-1, 56 	Complex Sentences	
+126A	Balanced	'When' Clauses	Kenesei et al. 1998: 48-9 	Complex Sentences	
+127A	Balanced	Reason Clauses	Kenesei et al. 1998: 51 	Complex Sentences	
+128A	Balanced	Utterance Complement Clauses	Kenesei et al. 1998: 1, 30-1 	Complex Sentences	
+129A	Different	Hand and Arm	Biro et al. 1965	Lexicon	
+130A	Different	Finger and Hand	Biro et al. 1965	Lexicon	
+131A	Decimal	Numeral Bases		Lexicon	
+136A	M-T pronouns, paradigmatic	M-T Pronouns	Hall 1944	Lexicon	
+136B	m in first person singular	M in First Person Singular	Hall 1944	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	Hall 1944	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	Hall 1944	Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea	Malherbe and Rosenberg 1996: 950	Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Kenesei et al. 1998: 112 ; Benkö and Imre 1972: 133; Kiefer 1967: 188	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Kenesei et al. 1998: 112 ; Benkö and Imre 1972: 133; Kiefer 1967: 188	Word Order	
+143F	None	Postverbal Negative Morphemes	Kenesei et al. 1998: 112 ; Benkö and Imre 1972: 133; Kiefer 1967: 188	Word Order	
+143G	None	Minor morphological means of signaling negation	Kenesei et al. 1998: 112 ; Benkö and Imre 1972: 133; Kiefer 1967: 188	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144C	SVO/SOV, but SNegVO	Languages with different word order in negative clauses	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144D	SOV/SOV but SNegVO	The Position of Negative Morphemes in SVO Languages	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144H	No NegSVO	NegSVO Order	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144J	No SVNegO	SVNegO Order	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order	
+144K	No SVONeg	SVONeg Order	Kenesei et al. 1998: 112-113 ; Kiefer 1967: 188	Word Order

@@ -1,0 +1,155 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Zimmer and Orgun 1999	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Zimmer and Orgun 1999	Phonology	
+3A	Average	Consonant-Vowel Ratio	Zimmer and Orgun 1999	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Zimmer and Orgun 1999	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Zimmer and Orgun 1999	Phonology	
+6A	None	Uvular Consonants	Zimmer and Orgun 1999	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Zimmer and Orgun 1999	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Zimmer and Orgun 1999	Phonology	
+9A	No velar nasal	The Velar Nasal	Kornfilt 1997	Phonology	
+10A	Contrast absent	Vowel Nasalization	Zimmer and Orgun 1999; Kornfilt 1997	Phonology	
+11A	High and mid	Front Rounded Vowels	Zimmer and Orgun 1999	Phonology	
+12A	Moderately complex	Syllable Structure	Zimmer and Orgun 1999	Phonology	
+13A	No tones	Tone	Zimmer and Orgun 1999	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Kornfilt 1997; Lees 1961; Sezer 1983; Underhill 1976	Phonology	
+15A	Unbounded: Stress can be anywhere	Weight-Sensitive Stress	Kornfilt 1997; Lees 1961; Sezer 1983; Underhill 1976	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Kornfilt 1997; Lees 1961; Sezer 1983; Underhill 1976	Phonology	
+17A	No rhythmic stress	Rhythm Types	Kornfilt 1997; Lees 1961; Sezer 1983; Underhill 1976	Phonology	
+18A	All present	Absence of Common Consonants	Zimmer and Orgun 1999	Phonology	
+19A	None	Presence of Uncommon Consonants	Zimmer and Orgun 1999	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Underhill 1976; Lewis 1967; Swift 1963	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Underhill 1976; Lewis 1967; Swift 1963	Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection	Underhill 1976; Lewis 1967; Swift 1963	Morphology	
+22A	6-7 categories per word	Inflectional Synthesis of the Verb	Underhill 1976; Lewis 1967	Morphology	
+23A	Dependent marking	Locus of Marking in the Clause	Lewis 1967	Morphology	
+24A	Double marking	Locus of Marking in Possessive Noun Phrases	Lewis 1967	Morphology	
+25A	Inconsistent or other	Locus of Marking: Whole-language Typology	Lewis 1967	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Lewis 1967	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Kornfilt 1997: passim; Underhill 1976: passim; Lewis 1967: passim; Erguvanli 1984: passim; Thomas 1967: passim	Morphology	
+27A	Productive full and partial reduplication	Reduplication	Godel 1945: 6	Morphology	
+28A	No syncretism	Case Syncretism	Lewis 1967	Morphology	
+29A	Not syncretic	Syncretism in Verbal Person/Number Marking	Lewis 1967	Morphology	
+30A	None	Number of Genders	Kornfilt 1997: 291, 322, 383	Nominal Categories	
+31A	No gender	Sex-based and Non-sex-based Gender Systems	Kornfilt 1997: 291, 322, 383	Nominal Categories	
+32A	No gender	Systems of Gender Assignment	Kornfilt 1997: 291, 322, 383	Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Underhill 1976: 33; Lewis 1967: 25	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Kornfilt 1997: 109	Nominal Categories	
+35A	Person stem + nominal plural affix	Plurality in Independent Personal Pronouns	Kononov 1941: 42, 95	Nominal Categories	
+36A	Associative same as additive plural	The Associative Plural	Lewis 1967: 26, 40, 65	Nominal Categories	
+37A	No definite, but indefinite article	Definite Articles	Erguvanli 1984: passim	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Underhill 1976: 38; Lewis 1967: 54; Thomas 1967: 18	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Kornfilt 1997: 281	Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection	Kornfilt 1997: 382	Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives	Underhill 1976: 121	Nominal Categories	
+42A	Different inflection	Pronominal and Adnominal Demonstratives	Lewis 1967: 97	Nominal Categories	
+43A	Related to remote demonstratives	Third Person Pronouns and Demonstratives	Lewis 1967: 67, 71	Nominal Categories	
+44A	No gender distinctions	Gender Distinctions in Independent Personal Pronouns	Lewis 1967: 67	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Lewis 1967: 67-84	Nominal Categories	
+46A	Generic-noun-based	Indefinite Pronouns	Kornfilt 1997: 295	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Kornfilt 1997: 138-158	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Lewis 1967: 85-95	Nominal Categories	
+49A	6-7 cases	Number of Cases	Kornfilt 1997: 212-215, 281, 301-302, 311-313, 316-317	Nominal Categories	
+50A	Symmetrical	Asymmetrical Case-Marking	Kornfilt 1997: 212-215, 281, 301-302, 311-313, 316-317	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Underhill 1976: 50, 67, 68, 79; Lewis 1967: 28	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals		Nominal Categories	
+53A	First/one-th, two-th, three-th	Ordinal Numerals		Nominal Categories	
+54A	Marked by suffix	Distributive Numerals	Lewis 1967: 83	Nominal Categories	
+55A	Optional	Numeral Classifiers	Lewis 1967: 80-81	Nominal Categories	
+56A	Formally different	Conjunctions and Universal Quantifiers	Lewis 1967	Nominal Categories	
+57A	Possessive suffixes	Position of Pronominal Possessive Affixes	Lewis 1967: 38	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Lewis 1967	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Lewis 1967	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Lewis 1967	Nominal Syntax	
+60A	Highly differentiated	Genitives, Adjectives and Relative Clauses	Lewis 1967	Nominal Syntax	
+61A	Without marking	Adjectives without Nouns	Lewis 1967: 53	Nominal Syntax	
+62A	Possessive-Accusative	Action Nominal Constructions	Kornfilt 1997: 212-213, 225	Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Lewis 1967	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction	Kornfilt 1997: 113	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 157	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 157	Verbal Categories	
+67A	Inflectional future exists	The Future Tense	Dahl 1985: 157	Verbal Categories	
+68A	No perfect	The Perfect	Dahl 1985: 157	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Underhill 1976: 112, 135, 145-146; Lewis 1967: 108-128	Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative	Kornfilt 1997: 40-42	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive	Kornfilt 1997: 43; Németh 1962: 66; van Schaaik 1994: 38	Verbal Categories	
+72A	Maximal system	Imperative-Hortative Systems	Kornfilt 1997: 40-44, 371-372	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Lewis 1967; Kononov 1956	Verbal Categories	
+74A	Affixes on verbs	Situational Possibility	Kornfilt 1997: 374f.	Verbal Categories	
+75A	Affixes on verbs	Epistemic Possibility	Kornfilt 1997: 376	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Kornfilt 1997: 373-376	Verbal Categories	
+77A	Direct and indirect	Semantic Distinctions of Evidentiality	Aksu-Koç and Slobin 1986	Verbal Categories	
+78A	Part of the tense system	Coding of Evidentiality	Aksu-Koç and Slobin 1986	Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect	Lewis 1967: 99, 141	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Lewis 1967	Verbal Categories	
+81A	SOV	Order of Subject, Object and Verb	Lewis 1967: 240; Erguvanli 1984: 2	Word Order	
+82A	SV	Order of Subject and Verb	Underhill 1976: 71	Word Order	
+83A	OV	Order of Object and Verb	Underhill 1976: 71	Word Order	
+84A	XOV	Order of Object, Oblique, and Verb	Lewis 1967: 240	Word Order	
+85A	Postpositions	Order of Adposition and Noun Phrase	Underhill 1976: 157-160, 234-239; Lewis 1967: 85	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Underhill 1976: 91; Lewis 1967: 239	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Lewis 1967: 239; Thomas 1967: 18	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Underhill 1976: 124; Lewis 1967: 71	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Lewis 1967: 26	Word Order	
+90A	Relative clause-Noun	Order of Relative Clause and Noun	Underhill 1976: 276	Word Order	
+90B	Relative clause-Noun (RelN) dominant	Prenominal relative clauses	Underhill 1976: 276	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Underhill 1976: passim 224; Lewis 1967: 239	Word Order	
+92A	Final	Position of Polar Question Particles	Underhill 1976: 58	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Underhill 1976: passim; Lewis 1967: passim	Word Order	
+94A	Mixed	Order of Adverbial Subordinator and Clause	Underhill 1976: 381-382, 388, 435-436	Word Order	
+95A	OV and Postpositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	OV and RelN	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	OV and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases	Kornfilt 1997: 219-220, 243	Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns	Kornfilt 1997: 219, 285, 385	Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Lewis 1967: 106-132	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Kornfilt 1997: 281; Lewis 1967: 68	Simple Clauses	
+102A	Only the A argument	Verbal Person Marking	Lewis 1967: 106-132	Simple Clauses	
+103A	Zero in all 3sg forms	Third Person Zero of Verbal Person Marking	Lewis 1967: 106-132	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Lewis 1967: 106-132	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'	Kornfilt 1997: 220	Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions	Kornfilt 1997: 158-160, 305-306	Simple Clauses	
+107A	Present	Passive Constructions	Lewis 1967: 149-150, 323	Simple Clauses	
+108A	No antipassive	Antipassive Constructions	Kornfilt 1997	Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction	Kornfilt 1997	Simple Clauses	
+109A	No applicative construction	Applicative Constructions	Kornfilt 1997	Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Purposive but no sequential	Periphrastic Causative Constructions	Kornfilt 1997: 331-335	Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions	Kornfilt 1997: 331-335	Simple Clauses	
+112A	Negative affix	Negative Morphemes	Underhill 1976: 57; Lewis 1967: 110	Simple Clauses	
+113A	Both	Symmetric and Asymmetric Standard Negation	van Schaaik 1994: 38-41	Simple Clauses	
+114A	A/Cat	Subtypes of Asymmetric Standard Negation	van Schaaik 1994: 38-41	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Kornfilt 1997: 125; Haspelmath 1997: 287	Simple Clauses	
+116A	Question particle	Polar Questions	Underhill 1976: 58	Simple Clauses	
+117A	Genitive	Predicative Possession	Lewis 1967	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Lewis 1967	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Lewis 1967	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Lewis 1967	Simple Clauses	
+121A	Locational	Comparative Constructions	Lewis 1967	Simple Clauses	
+122A	Gap	Relativization on Subjects	Comrie 1998	Complex Sentences	
+123A	Gap	Relativization on Obliques	Comrie 1998	Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects	Kornfilt 1997: 50	Complex Sentences	
+125A	Deranked	Purpose Clauses	Underhill 1976: 311	Complex Sentences	
+126A	Deranked	'When' Clauses	Underhill 1976: 381, 399-401	Complex Sentences	
+127A	Balanced/deranked	Reason Clauses	Underhill 1976: 324-5, 435-6	Complex Sentences	
+128A	Balanced/deranked	Utterance Complement Clauses	Underhill 1976: 322-4, 433-6	Complex Sentences	
+129A	Different	Hand and Arm	Kornrumpf 1960	Lexicon	
+130A	Different	Finger and Hand	Kornrumpf 1960	Lexicon	
+131A	Decimal	Numeral Bases	Kornfilt 1997: 428	Lexicon	
+136A	M-T pronouns, paradigmatic	M-T Pronouns	Lewis 1967	Lexicon	
+136B	m in first person singular	M in First Person Singular	Lewis 1967	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	Lewis 1967	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	Lewis 1967	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 1616	Lexicon	
+142A	Logical meanings	Para-Linguistic Usages of Clicks	Darwin 1872 	Other	
+143A	[V-Neg]	Order of Negative Morpheme and Verb	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+143E	None	Preverbal Negative Morphemes	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+143F	[V-Neg]	Postverbal Negative Morphemes	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+143G	None	Minor morphological means of signaling negation	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144A	MorphNeg	Position of Negative Word With Respect to Subject, Object, and Verb	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144L	SO[V-Neg]	The Position of Negative Morphemes in SOV Languages	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144P	No NegSOV	NegSOV Order	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144Q	No SNegOV	SNegOV Order	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144R	No SONegV	SONegV Order	Underhill 1976: 57; Lewis 1967: 110	Word Order	
+144S	Suffix&NoDoubleNeg	SOVNeg Order	Underhill 1976: 57; Lewis 1967: 110	Word Order

@@ -1,0 +1,94 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Zee 1999	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Zee 1999	Phonology	
+3A	Moderately low	Consonant-Vowel Ratio	Zee 1999	Phonology	
+4A	No voicing contrast	Voicing in Plosives and Fricatives	Zee 1999	Phonology	
+5A	Other	Voicing and Gaps in Plosive Systems	Zee 1999	Phonology	
+6A	None	Uvular Consonants	Zee 1999	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Zee 1999	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Zee 1999	Phonology	
+9A	Initial velar nasal	The Velar Nasal	Matthews and Yip 1994: 16 	Phonology	
+11A	High and mid	Front Rounded Vowels	Zee 1999	Phonology	
+12A	Moderately complex	Syllable Structure	Zee 1999	Phonology	
+13A	Complex tone system	Tone	Zee 1999	Phonology	
+18A	All present	Absence of Common Consonants	Zee 1999	Phonology	
+19A	None	Presence of Uncommon Consonants	Zee 1999	Phonology	
+26A	Little affixation	Prefixing vs. Suffixing in Inflectional Morphology	Matthews and Yip 1994: passim ; Killingley 1982: passim	Morphology	
+30A	None	Number of Genders	Matthews and Yip 1994: 79, 81 	Nominal Categories	
+31A	No gender	Sex-based and Non-sex-based Gender Systems	Matthews and Yip 1994: 79, 81 	Nominal Categories	
+32A	No gender	Systems of Gender Assignment	Matthews and Yip 1994: 79, 81 	Nominal Categories	
+33A	No plural	Coding of Nominal Plurality	Matthews and Yip 1994: impl 	Nominal Categories	
+35A	Person stem + nominal plural affix	Plurality in Independent Personal Pronouns	Matthews and Yip 1994: 79-80, 83 	Nominal Categories	
+36A	Unique affixal associative plural	The Associative Plural	Matthews and Yip 1994: 34, 79-80 	Nominal Categories	
+37A	No definite, but indefinite article	Definite Articles	Matthews and Yip 1994: 89 	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Matthews and Yip 1994: 88, 89 	Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives	Matthews and Yip 1994: 89 	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Matthews and Yip 1994: 89-92 	Nominal Categories	
+43A	Unrelated	Third Person Pronouns and Demonstratives	Matthews and Yip 1994: 79, 89 	Nominal Categories	
+46A	Special	Indefinite Pronouns	Matthews and Yip 1994: 271 	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Matthews and Yip 1994: 84-85 	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes	Matthews and Yip 1994: passim 	Nominal Categories	
+53A	One-th, two-th, three-th	Ordinal Numerals	Matthews and Yip 1994 	Nominal Categories	
+54A	No distributive numerals	Distributive Numerals		Nominal Categories	
+55A	Obligatory	Numeral Classifiers		Nominal Categories	
+56A	Formally similar, with interrogative	Conjunctions and Universal Quantifiers		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Matthews and Yip 1994: impl 	Nominal Categories	
+60A	Weakly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Marked by following word	Adjectives without Nouns		Nominal Syntax	
+62A	No action nominals	Action Nominal Constructions		Nominal Syntax	
+64A	Differentiation	Nominal and Verbal Conjunction	Matthews and Yip 1994: 288 	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Bybee et al. 1994: 84, 332-333, quoting Kwok 1971:105-8	Verbal Categories	
+66A	No past tense	The Past Tense	Bybee et al. 1994	Verbal Categories	
+67A	No inflectional future	The Future Tense	Bybee et al. 1994: 252, 350, quoting Kwok 1971:114	Verbal Categories	
+68A	Other perfect	The Perfect	Bybee et al. 1994: 64-65, 329, quoting Kwok 1971:108-9	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Matthews and Yip 1994: 42, 197 	Verbal Categories	
+70A	No second-person imperatives	The Morphological Imperative	Matthews and Yip 1994: 359-361 	Verbal Categories	
+71A	Normal imperative + special negative	The Prohibitive	Matthews and Yip 1994: 256-257, 363-365 	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Matthews and Yip 1994: 59, 229-232 	Verbal Categories	
+75A	Other	Epistemic Possibility	Matthews and Yip 1994: 231 	Verbal Categories	
+76A	Overlap for either possibility or necessity	Overlap between Situational and Epistemic Modal Marking	Matthews and Yip 1994: 235 	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality	Matthews 1997	Verbal Categories	
+78A	Separate particle	Coding of Evidentiality	Matthews 1997	Verbal Categories	
+79A	None	Suppletion According to Tense and Aspect	Matthews and Yip 1994 	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Matthews and Yip 1994 	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Matthews and Yip 1994: 68 	Word Order	
+82A	SV	Order of Subject and Verb	Matthews and Yip 1994: 69 	Word Order	
+83A	VO	Order of Object and Verb	Matthews and Yip 1994: 68 	Word Order	
+84A	XVO	Order of Object, Oblique, and Verb	Matthews and Yip 1994: 115-127 	Word Order	
+85A	No dominant order	Order of Adposition and Noun Phrase	Matthews and Yip 1994: 60, 62 	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Matthews and Yip 1994: 107 	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Matthews and Yip 1994: 88 	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Matthews and Yip 1994: 88 	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Matthews and Yip 1994: 88 	Word Order	
+90A	Relative clause-Noun	Order of Relative Clause and Noun	Matthews and Yip 1994: 109 	Word Order	
+90B	Relative clause-Noun (RelN) dominant	Prenominal relative clauses	Matthews and Yip 1994: 109 	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Matthews and Yip 1994: 160, 169, 172 	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Matthews and Yip 1994: 323 	Word Order	
+94A	Mixed	Order of Adverbial Subordinator and Clause	Matthews and Yip 1994: 293-302 	Word Order	
+95A	Other	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and RelN	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+105A	Mixed	Ditransitive Constructions: The Verb 'Give'	Matthews and Yip 1994: 137 	Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions	Matthews and Yip 1994: 87 	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Matthews and Yip 1994: 252-254 	Simple Clauses	
+113A	Both	Symmetric and Asymmetric Standard Negation	Matthews and Yip 1994: 251-257, 281 	Simple Clauses	
+114A	A/Cat	Subtypes of Asymmetric Standard Negation	Matthews and Yip 1994: 251-257, 281 	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Matthews and Yip 1994: 257-9 	Simple Clauses	
+116A	Question particle	Polar Questions	Matthews and Yip 1994: 311 	Simple Clauses	
+124A	Subject is left implicit	'Want' Complement Subjects	Matthews and Yip 1994: 235ff., 250 	Complex Sentences	
+129A	Different	Hand and Arm	Huang 1970	Lexicon	
+130A	Different	Finger and Hand	Huang 1970	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 700	Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+143F	None	Postverbal Negative Morphemes	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+143G	None	Minor morphological means of signaling negation	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144H	No NegSVO	NegSVO Order	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144J	No SVNegO	SVNegO Order	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order	
+144K	No SVONeg	SVONeg Order	Matthews and Yip 1994: 252-254 ; Cheung 1983: 7	Word Order

@@ -1,0 +1,156 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Householder et al. 1964	Phonology	
+2A	Average (5-6)	Vowel Quality Inventories	Householder et al. 1964	Phonology	
+3A	Average	Consonant-Vowel Ratio	Householder et al. 1964	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Householder et al. 1964	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Householder et al. 1964	Phonology	
+6A	None	Uvular Consonants	Householder et al. 1964	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Householder et al. 1964	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Householder et al. 1964	Phonology	
+9A	No velar nasal	The Velar Nasal		Phonology	
+10A	Contrast absent	Vowel Nasalization	Joseph and Philippaki-Warburton 1987	Phonology	
+11A	None	Front Rounded Vowels	Householder et al. 1964	Phonology	
+12A	Complex	Syllable Structure	Householder et al. 1964	Phonology	
+13A	No tones	Tone	Householder et al. 1964	Phonology	
+14A	Antepenultimate	Fixed Stress Locations	Drachman and Malikouti-Drachman 1999; Malikouti-Drachman and Drachman 1981	Phonology	
+15A	Fixed stress (no weight-sensitivity)	Weight-Sensitive Stress	Drachman and Malikouti-Drachman 1999; Malikouti-Drachman and Drachman 1981	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Drachman and Malikouti-Drachman 1999; Malikouti-Drachman and Drachman 1981	Phonology	
+17A	Trochaic	Rhythm Types	Drachman and Malikouti-Drachman 1999; Malikouti-Drachman and Drachman 1981	Phonology	
+18A	All present	Absence of Common Consonants	Householder et al. 1964	Phonology	
+19A	'Th' sounds	Presence of Uncommon Consonants	Householder et al. 1964	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 ; Mackridge 1985	Morphology	
+21A	Case + number	Exponence of Selected Inflectional Formatives	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 ; Mackridge 1985	Morphology	
+21B	TAM+agreement+diathesis	Exponence of Tense-Aspect-Mood Inflection	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 ; Mackridge 1985	Morphology	
+22A	4-5 categories per word	Inflectional Synthesis of the Verb	Holton et al. 1997 ; Mackridge 1985	Morphology	
+23A	Double marking	Locus of Marking in the Clause	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Morphology	
+24A	Double marking	Locus of Marking in Possessive Noun Phrases	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Morphology	
+25A	Double-marking	Locus of Marking: Whole-language Typology	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Joseph and Philippaki-Warburton 1987: passim; Holton et al. 1997: passim ; Mackridge 1985: passim	Morphology	
+27A	No productive reduplication	Reduplication		Morphology	
+28A	Core and non-core	Case Syncretism	Sofroniou 1962	Morphology	
+29A	Not syncretic	Syncretism in Verbal Person/Number Marking	Sofroniou 1962	Morphology	
+30A	Three	Number of Genders	Mackridge 1985: 43-54	Nominal Categories	
+31A	Sex-based	Sex-based and Non-sex-based Gender Systems	Mackridge 1985: 43-54	Nominal Categories	
+32A	Semantic and formal	Systems of Gender Assignment	Mackridge 1985: 43-54	Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality	Mackridge 1985: 361	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Holton et al. 1997 	Nominal Categories	
+35A	Person-number stem + pronominal plural affix	Plurality in Independent Personal Pronouns	Mackridge 1985: 145-146	Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Mackridge 1985: 193	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Mackridge 1985: passim	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Ruge 1986: 53	Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection	Ruge 1986: 58 ff.	Nominal Categories	
+41A	Three-way contrast	Distance Contrasts in Demonstratives	Holton et al. 1997: 97 	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Holton et al. 1997: 97 	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Mackridge 1985: 145	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Mackridge 1985: 77-78, 123, 144	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Holton et al. 1997: 320 	Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Joseph and Philippaki-Warburton 1987: 83, 161	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Mackridge 1985: 203	Nominal Categories	
+49A	3 cases	Number of Cases	Holton et al. 1997: 48-86, 95-107 	Nominal Categories	
+50A	Syncretism in relevant NP-types	Asymmetrical Case-Marking	Holton et al. 1997: 48-86, 95-107 	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Mackridge 1985: 361	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals		Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals		Nominal Categories	
+54A	Marked by preceding word	Distributive Numerals		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Mackridge 1985: passim	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Joseph and Philippaki-Warburton 1987; Holton et al. 1997 	Nominal Syntax	
+62A	Ergative-Possessive	Action Nominal Constructions	Joseph and Philippaki-Warburton 1987: 129	Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Joseph and Philippaki-Warburton 1987	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction	Holton et al. 1997 	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 169	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 169	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 169	Verbal Categories	
+68A	From possessive	The Perfect	Dahl 1985: 169	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Mackridge 1985: 171-176, 364ff	Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative	Joseph and Philippaki-Warburton 1987: 15, 183; Hedin 1995: 234	Verbal Categories	
+71A	Special imperative + special negative	The Prohibitive	Joseph and Philippaki-Warburton 1987: 16-17	Verbal Categories	
+72A	Maximal system	Imperative-Hortative Systems	Joseph and Philippaki-Warburton 1987: 15-17, 180-183	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Mackridge 1985	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Joseph and Philippaki-Warburton 1987: 184; Palmer 1986: 19f 	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Joseph and Philippaki-Warburton 1987: 184; Palmer 1986: 19 	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Joseph and Philippaki-Warburton 1987: 184; Palmer 1986: 19f 	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality	Joseph and Philippaki-Warburton 1987	Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality	Joseph and Philippaki-Warburton 1987	Verbal Categories	
+79A	Tense and aspect	Suppletion According to Tense and Aspect	Joseph and Philippaki-Warburton 1987: 196; Christiades 1980: in passim	Verbal Categories	
+79B	Imperative	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Joseph and Philippaki-Warburton 1987; Christiades 1980	Verbal Categories	
+81A	No dominant order	Order of Subject, Object and Verb	Mackridge 1985: 236	Word Order	
+81B	SVO or VSO	Languages with two Dominant Orders of Subject, Object, and Verb	Mackridge 1985: 236	Word Order	
+82A	No dominant order	Order of Subject and Verb	Holton et al. 1997: 427-428 	Word Order	
+83A	VO	Order of Object and Verb	Mackridge 1985: 236	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Mackridge 1985: 203	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Mackridge 1985: 64, passim	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Mackridge 1985: 193	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Mackridge 1985: 193	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Mackridge 1985: 193	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Mackridge 1985: passim	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Mackridge 1985: passim	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Mackridge 1985: 143, 196, passim	Word Order	
+92A	Initial	Position of Polar Question Particles	Mackridge 1985: 301	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Mackridge 1985: 236-237	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Mackridge 1985: 271	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Nominative - accusative (standard)	Alignment of Case Marking of Full Noun Phrases	Holton et al. 1997: 187, 213 	Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns	Holton et al. 1997: 95, 193 	Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Mackridge 1985: 172-182	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Joseph and Philippaki-Warburton 1987: 36	Simple Clauses	
+102A	Both the A and P arguments	Verbal Person Marking	Mackridge 1985: 172-182, 145	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Mackridge 1985: 172-182	Simple Clauses	
+104A	P precedes A	Order of Person Markers on the Verb	Mackridge 1985: 172-182, 145	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'	Holton et al. 1997: 191, 401 	Simple Clauses	
+106A	Mixed	Reciprocal Constructions	Everaert 2000: 68-71	Simple Clauses	
+107A	Present	Passive Constructions	Mackridge 1985: 86	Simple Clauses	
+108A	No antipassive	Antipassive Constructions	Mackridge 1985: 43-54	Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction	Mackridge 1985	Simple Clauses	
+109A	No applicative construction	Applicative Constructions	Mackridge 1985	Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Purposive but no sequential	Periphrastic Causative Constructions	Joseph and Philippaki-Warburton 1987: 171	Simple Clauses	
+111A	Neither	Nonperiphrastic Causative Constructions	Joseph and Philippaki-Warburton 1987: 171	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Mackridge 1985: passim	Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation	Mackridge 1985: 243-247	Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation	Mackridge 1985: 243-247	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Holton et al. 1997: 322 ; Haspelmath 1997: 266-7	Simple Clauses	
+116A	Question particle	Polar Questions	Mackridge 1985: 301	Simple Clauses	
+117A	'Have'	Predicative Possession	Joseph and Philippaki-Warburton 1987	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Joseph and Philippaki-Warburton 1987	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Joseph and Philippaki-Warburton 1987	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Joseph and Philippaki-Warburton 1987	Simple Clauses	
+121A	Particle	Comparative Constructions	Joseph and Philippaki-Warburton 1987	Simple Clauses	
+122A	Relative pronoun	Relativization on Subjects	Joseph and Philippaki-Warburton 1987	Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques	Joseph and Philippaki-Warburton 1987	Complex Sentences	
+124A	Subject is expressed overtly	'Want' Complement Subjects	Holton et al. 1997 	Complex Sentences	
+125A	Deranked	Purpose Clauses	Holton et al. 1997: 464 	Complex Sentences	
+126A	Balanced	'When' Clauses	Holton et al. 1997: 462 	Complex Sentences	
+127A	Balanced	Reason Clauses	Holton et al. 1997: 465-6 	Complex Sentences	
+128A	Balanced	Utterance Complement Clauses	Joseph and Philippaki-Warburton 1987: 3, 22	Complex Sentences	
+129A	Different	Hand and Arm	Bergman 1968	Lexicon	
+130A	Different	Finger and Hand	Bergman 1968	Lexicon	
+131A	Decimal	Numeral Bases	Holton et al. 1997: 105 	Lexicon	
+136A	M-T pronouns, paradigmatic	M-T Pronouns	Joseph 1998	Lexicon	
+136B	m in first person singular	M in First Person Singular	Joseph 1998	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	Joseph 1998	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	Joseph 1998	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 902	Lexicon	
+142A	Logical meanings	Para-Linguistic Usages of Clicks	Haberland and Macrakis 1992	Other	
+143A	NegV	Order of Negative Morpheme and Verb	Mackridge 1985: 243-244	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Mackridge 1985: 243-244	Word Order	
+143F	None	Postverbal Negative Morphemes	Mackridge 1985: 243-244	Word Order	
+143G	None	Minor morphological means of signaling negation	Mackridge 1985: 243-244	Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb	Mackridge 1985: 243-244	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Mackridge 1985: 243-244	Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages	Mackridge 1985: 243-244	Word Order	
+144E	SNegVO/NegVSO	Multiple Negative Constructions in SVO Languages	Mackridge 1985: 243-244	Word Order	
+144H	No NegSVO	NegSVO Order	Mackridge 1985: 243-244	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Mackridge 1985: 243-244	Word Order	
+144J	No SVNegO	SVNegO Order	Mackridge 1985: 243-244	Word Order	
+144K	No SVONeg	SVONeg Order	Mackridge 1985: 243-244	Word Order	
+144T	NegVSO/SNegVO	The Position of Negative Morphemes in Verb-Initial Languages	Mackridge 1985: 243-244	Word Order	
+144V	Separate word, no double negation Word&NoDoubleNeg	Verb-Initial with Preverbal Negative	Mackridge 1985: 243-244	Word Order	
+144W	None	Verb-Initial with Negative that is Immediately Postverbal or between Subject and Object	Mackridge 1985: 243-244	Word Order	
+144X	No clause-final neg	Verb-Initial with Clause-Final Negative	Mackridge 1985: 243-244	Word Ordera

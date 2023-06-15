@@ -1,0 +1,60 @@
+Fid	Value	Feature	Reference	Area
+14A	No fixed stress	Fixed Stress Locations	Abaurre and Wetzels 1992; Camara and Mattoso 1979; Martins 1982; Mateus et al. 1989; Parkinson 1988; Roca 1999	Phonology	
+15A	Right-edge: Ultimate or penultimate	Weight-Sensitive Stress	Abaurre and Wetzels 1992; Camara and Mattoso 1979; Martins 1982; Mateus et al. 1989; Parkinson 1988; Roca 1999	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Abaurre and Wetzels 1992; Camara and Mattoso 1979; Martins 1982; Mateus et al. 1989; Parkinson 1988; Roca 1999	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Parkinson 1988: passim; Hutchinson and Lloyd 1996: passim 	Morphology	
+27A	No productive reduplication	Reduplication	Schmitt 2001	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Hutchinson and Lloyd 1996: 12 	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Parkinson 1988	Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Parkinson 1988: 147, 159	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Parkinson 1988: 147, 159	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Mühlhäusler and Harré 1990: 145-150	Nominal Categories	
+46A	Mixed	Indefinite Pronouns	Haspelmath 1997: 257	Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Gärtner 1998: 245-258	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes	Parkinson 1988: passim	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Lausberg 1972	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Lausberg 1972: 172-183	Nominal Categories	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 171-172	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 171-172	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 171-172	Verbal Categories	
+68A	No perfect	The Perfect	Dahl 1985: 171-172	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Parkinson 1988: 56-63	Verbal Categories	
+70A	Second singular	The Morphological Imperative		Verbal Categories	
+71A	Special imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Gärtner 1998: 46	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Gärtner 1998: 46	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Gärtner 1998: 42-46	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Parkinson 1988: 156	Word Order	
+82A	SV	Order of Subject and Verb	Parkinson 1988: 157	Word Order	
+83A	VO	Order of Object and Verb	Parkinson 1988: 156	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Hutchinson and Lloyd 1996: 90 	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Parkinson 1988: 157	Word Order	
+87A	Noun-Adjective	Order of Adjective and Noun	Parkinson 1988: 157, 159	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Parkinson 1988: 159	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Parkinson 1988: 157	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Parkinson 1988: 157	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Hutchinson and Lloyd 1996: 97 	Word Order	
+92A	Initial	Position of Polar Question Particles	Parkinson 1988: 158	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and NAdj	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Hutchinson and Lloyd 1996: 35 	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Parkinson 1988: passim	Simple Clauses	
+115A	Mixed behaviour	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 257	Simple Clauses	
+116A	Question particle	Polar Questions	Parkinson 1988: 158	Simple Clauses	
+129A	Different	Hand and Arm	Lamb 1964	Lexicon	
+130A	Different	Finger and Hand	Lamb 1964	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 1343	Lexicon	
+143A	NegV	Order of Negative Morpheme and Verb	Parkinson 1988: 158	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Parkinson 1988: 158	Word Order	
+143F	None	Postverbal Negative Morphemes	Parkinson 1988: 158	Word Order	
+143G	None	Minor morphological means of signaling negation	Parkinson 1988: 158	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Parkinson 1988: 158	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Parkinson 1988: 158	Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages	Parkinson 1988: 158	Word Order	
+144H	No NegSVO	NegSVO Order	Parkinson 1988: 158	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Parkinson 1988: 158	Word Order	
+144J	No SVNegO	SVNegO Order	Parkinson 1988: 158	Word Order	
+144K	No SVONeg	SVONeg Order	Parkinson 1988: 158	Word Order

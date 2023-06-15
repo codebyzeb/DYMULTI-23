@@ -1,0 +1,150 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Saltarelli et al. 1988	Phonology	
+2A	Average (5-6)	Vowel Quality Inventories	Saltarelli et al. 1988	Phonology	
+3A	Moderately high	Consonant-Vowel Ratio	Saltarelli et al. 1988	Phonology	
+4A	In plosives alone	Voicing in Plosives and Fricatives	Saltarelli et al. 1988	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Saltarelli et al. 1988	Phonology	
+6A	None	Uvular Consonants	Saltarelli et al. 1988	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Saltarelli et al. 1988	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Saltarelli et al. 1988	Phonology	
+9A	No velar nasal	The Velar Nasal	Saltarelli et al. 1988: 265	Phonology	
+10A	Contrast absent	Vowel Nasalization	Saltarelli et al. 1988	Phonology	
+11A	None	Front Rounded Vowels	Saltarelli et al. 1988	Phonology	
+12A	Complex	Syllable Structure	Saltarelli et al. 1988	Phonology	
+13A	No tones	Tone	Saltarelli et al. 1988	Phonology	
+18A	All present	Absence of Common Consonants	Saltarelli et al. 1988	Phonology	
+19A	None	Presence of Uncommon Consonants	Saltarelli et al. 1988	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives	Saltarelli et al. 1988; Allières 1979; King 1993b ; Lafitte 1962; Rebuschi 1984	Morphology	
+21A	Monoexponential case	Exponence of Selected Inflectional Formatives	Saltarelli et al. 1988; Allières 1979; King 1993b ; Lafitte 1962; Rebuschi 1984	Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection	Saltarelli et al. 1988; Allières 1979; King 1993b ; Lafitte 1962; Rebuschi 1984	Morphology	
+22A	4-5 categories per word	Inflectional Synthesis of the Verb	Saltarelli et al. 1988	Morphology	
+23A	Double marking	Locus of Marking in the Clause	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Morphology	
+25A	Inconsistent or other	Locus of Marking: Whole-language Typology	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Morphology	
+26A	Equal prefixing and suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Hualde and Ortiz de Urbina 2003: passim	Morphology	
+27A	Productive full and partial reduplication	Reduplication	Trask 2001	Morphology	
+28A	Core cases only	Case Syncretism	Saltarelli et al. 1988	Morphology	
+29A	Not syncretic	Syncretism in Verbal Person/Number Marking	Saltarelli et al. 1988	Morphology	
+30A	None	Number of Genders	Trask 1995	Nominal Categories	
+31A	No gender	Sex-based and Non-sex-based Gender Systems	Trask 1995	Nominal Categories	
+32A	No gender	Systems of Gender Assignment	Trask 1995	Nominal Categories	
+33A	Plural clitic	Coding of Nominal Plurality	Saltarelli et al. 1988: 198, 300	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Saltarelli et al. 1988: 198	Nominal Categories	
+35A	Person-number stem	Plurality in Independent Personal Pronouns	Lafitte 1962: 89-90	Nominal Categories	
+36A	Unique periphrastic associative plural	The Associative Plural	Azkue 1906: 261	Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Saltarelli et al. 1988: 75, 76, 200	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Hualde and Ortiz de Urbina 2003: 122, 127	Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns	Trask 1997: 196 	Nominal Categories	
+40A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Verbal Inflection	Trask 1997: 218 ff. 	Nominal Categories	
+41A	Three-way contrast	Distance Contrasts in Demonstratives	Saltarelli et al. 1988: 207, 213	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Saltarelli et al. 1988: 213-4	Nominal Categories	
+43A	Related for all demonstratives	Third Person Pronouns and Demonstratives	Saltarelli et al. 1988: 211	Nominal Categories	
+44A	No gender distinctions	Gender Distinctions in Independent Personal Pronouns	Saltarelli et al. 1988: 208	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Lafitte 1962: 89, 250-334, 391	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Saltarelli et al. 1988: 209	Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Saltarelli et al. 1988: 104ff.	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Saltarelli et al. 1988: 251	Nominal Categories	
+49A	10 or more cases	Number of Cases	Saltarelli et al. 1988: 146-197, 211-217, 251-252, 300-301; Lafitte 1962: 54-63, 89-90	Nominal Categories	
+50A	Syncretism in relevant NP-types	Asymmetrical Case-Marking	Saltarelli et al. 1988: 146-197, 211-217, 251-252, 300-301; Lafitte 1962: 54-63, 89-90	Nominal Categories	
+51A	Postpositional clitics	Position of Case Affixes	Saltarelli et al. 1988: 80, passim; Lafitte 1962: 45; Rebuschi 1984: 110; Arotcarena 1976: 61	Nominal Categories	
+52A	Differentiation	Comitatives and Instrumentals	Kühnel 1999: 18	Nominal Categories	
+53A	First, two-th, three-th	Ordinal Numerals	Kühnel 1999: 225	Nominal Categories	
+54A	Marked by suffix	Distributive Numerals	Saltarelli et al. 1988: 253	Nominal Categories	
+55A	Absent	Numeral Classifiers	Nichols 1992: 295 	Nominal Categories	
+56A	Formally different	Conjunctions and Universal Quantifiers	Saltarelli et al. 1988: 253	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Lafitte 1962: passim	Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Nominal Syntax	
+58B	None reported	Number of Possessive Nouns	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Nominal Syntax	
+59A	No possessive classification	Possessive Classification	Saltarelli et al. 1988; King 1993b ; Lafitte 1962	Nominal Syntax	
+60A	Highly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Without marking	Adjectives without Nouns		Nominal Syntax	
+62A	Sentential	Action Nominal Constructions	Saltarelli et al. 1988: 155	Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Saltarelli et al. 1988	Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction	Saltarelli et al. 1988: 82, 90	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Bybee et al. 1994: 84, 332-333, quoting N'Diaye 1970:204	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Bybee et al. 1994: 142, 338, quoting N'Diaye 1970:203-4	Verbal Categories	
+67A	Inflectional future exists	The Future Tense	Bybee et al. 1994: 252, 350, quoting N'Diaye 1970:211-12	Verbal Categories	
+68A	Other perfect	The Perfect	Bybee et al. 1994: 64-65, 327, quoting N'Diaye 1970:202	Verbal Categories	
+69A	Mixed type	Position of Tense-Aspect Affixes	Saltarelli et al. 1988: passim	Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative	Saltarelli et al. 1988: 233-234; King 1993b: 380 	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive	Saltarelli et al. 1988: 92	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems	King 1993b: 362-381 	Verbal Categories	
+73A	Inflectional optative absent	The Optative	Saltarelli et al. 1988	Verbal Categories	
+74A	Affixes on verbs	Situational Possibility	Saltarelli et al. 1988: 235; King 1993b: 380 ; Eguzkitza 1987: 63-66	Verbal Categories	
+75A	Affixes on verbs	Epistemic Possibility	Saltarelli et al. 1988: 236; King 1993b: 380 	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Saltarelli et al. 1988: 235; King 1993b: 380 	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality	Saltarelli et al. 1988	Verbal Categories	
+78A	Separate particle	Coding of Evidentiality	Saltarelli et al. 1988	Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect	King 1993b: 363 	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	King 1993b 	Verbal Categories	
+81A	SOV	Order of Subject, Object and Verb	Saltarelli et al. 1988: 66; Lafitte 1962: 46; Rebuschi 1984: 68; Urbina 1989: 81	Word Order	
+82A	SV	Order of Subject and Verb	Saltarelli et al. 1988: 66; Lafitte 1962: 46; Rebuschi 1984: 68; Urbina 1989: 81	Word Order	
+83A	OV	Order of Object and Verb	Saltarelli et al. 1988: 66; Lafitte 1962: 46; Rebuschi 1984: 68; Urbina 1989: 81	Word Order	
+84A	XOV	Order of Object, Oblique, and Verb	Saltarelli et al. 1988: 67; Lafitte 1962: 46	Word Order	
+85A	Postpositions	Order of Adposition and Noun Phrase	Saltarelli et al. 1988: 80, passim; Lafitte 1962: 45; Rebuschi 1984: 110; Arotcarena 1976: 61	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Hualde and Ortiz de Urbina 2003: 144	Word Order	
+87A	Noun-Adjective	Order of Adjective and Noun	Hualde and Ortiz de Urbina 2003: 138	Word Order	
+88A	Noun-Demonstrative	Order of Demonstrative and Noun	Hualde and Ortiz de Urbina 2003: 113, 118	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Hualde and Ortiz de Urbina 2003: 113, 118, 127	Word Order	
+90A	Relative clause-Noun	Order of Relative Clause and Noun	Saltarelli et al. 1988: 75; Lafitte 1962: 50; Urbina 1989: 69	Word Order	
+90B	Relative clause-Noun (RelN) dominant	Prenominal relative clauses	Saltarelli et al. 1988: 75; Lafitte 1962: 50; Urbina 1989: 69	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Saltarelli et al. 1988: 71; Lafitte 1962: 45, 143; Urbina 1989: 77	Word Order	
+92A	Other position	Position of Polar Question Particles	Saltarelli et al. 1988: 3	Word Order	
+93A	Not initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Urbina 1989: 213	Word Order	
+94A	Final subordinator word	Order of Adverbial Subordinator and Clause	Lafitte 1962: 49; Ithurry 1895: passim	Word Order	
+95A	OV and Postpositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	OV and RelN	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	OV and NAdj	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Active-inactive	Alignment of Case Marking of Full Noun Phrases	Hualde and Ortiz de Urbina 2003: 364	Simple Clauses	
+99A	Active - inactive	Alignment of Case Marking of Pronouns		Simple Clauses	
+100A	Ergative	Alignment of Verbal Person Marking	Saltarelli et al. 1988: 238-241	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Saltarelli et al. 1988: 205	Simple Clauses	
+102A	Both the A and P arguments	Verbal Person Marking	Saltarelli et al. 1988: 240, 238	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Saltarelli et al. 1988: 238	Simple Clauses	
+104A	P precedes A	Order of Person Markers on the Verb	Saltarelli et al. 1988: 240, 238	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'	Saltarelli et al. 1988: 148-9	Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions	Everaert 2000: 71	Simple Clauses	
+107A	Present	Passive Constructions	Saltarelli et al. 1988: 218	Simple Clauses	
+108A	Oblique patient	Antipassive Constructions	Mejias-Bikandi 1999	Simple Clauses	
+108B	partially productive	Productivity of the Antipassive Construction	Mejias-Bikandi 1999	Simple Clauses	
+109A	No applicative construction	Applicative Constructions	Saltarelli et al. 1988	Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Purposive but no sequential	Periphrastic Causative Constructions	Saltarelli et al. 1988: 220-222	Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions	Saltarelli et al. 1988: 220-222	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Lafitte 1962: passim	Simple Clauses	
+113A	Asymmetric	Symmetric and Asymmetric Standard Negation	Saltarelli et al. 1988: 66-67, 92-93	Simple Clauses	
+114A	A/Cat	Subtypes of Asymmetric Standard Negation	Saltarelli et al. 1988: 66-67, 92-93	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Saltarelli et al. 1988: 93	Simple Clauses	
+116A	Question particle	Polar Questions	Saltarelli et al. 1988: 3	Simple Clauses	
+117A	'Have'	Predicative Possession	Lafitte 1944	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Lafitte 1944	Simple Clauses	
+119A	Different	Nominal and Locational Predication	Lafitte 1944	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Lafitte 1944	Simple Clauses	
+121A	Particle	Comparative Constructions	Lafitte 1944	Simple Clauses	
+122A	Gap	Relativization on Subjects	Saltarelli et al. 1988	Complex Sentences	
+123A	Not possible	Relativization on Obliques	Saltarelli et al. 1988	Complex Sentences	
+125A	Deranked	Purpose Clauses	Saltarelli et al. 1988: 46	Complex Sentences	
+126A	Balanced/deranked	'When' Clauses	Saltarelli et al. 1988: 43-7, 53-60	Complex Sentences	
+127A	Balanced/deranked	Reason Clauses	Saltarelli et al. 1988: 53-60	Complex Sentences	
+128A	Balanced	Utterance Complement Clauses	Saltarelli et al. 1988: 2, 43-50	Complex Sentences	
+129A	Different	Hand and Arm	Aulestia and White 1992 	Lexicon	
+130A	Different	Finger and Hand	Aulestia and White 1992 	Lexicon	
+131A	Hybrid vigesimal-decimal	Numeral Bases		Lexicon	
+136A	No M-T pronouns	M-T Pronouns	King 1993b 	Lexicon	
+136B	No m in first person singular	M in First Person Singular	King 1993b 	Lexicon	
+137A	No N-M pronouns	N-M Pronouns	King 1993b 	Lexicon	
+137B	No m in second person singular	M in Second Person Singular	King 1993b 	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 605	Lexicon	
+143A	NegV	Order of Negative Morpheme and Verb	Lafitte 1962: 48-49	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Lafitte 1962: 48-49	Word Order	
+143F	None	Postverbal Negative Morphemes	Lafitte 1962: 48-49	Word Order	
+143G	None	Minor morphological means of signaling negation	Lafitte 1962: 48-49	Word Order	
+144A	SONegV	Position of Negative Word With Respect to Subject, Object, and Verb	Lafitte 1962: 48-49	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Lafitte 1962: 48-49	Word Order	
+144L	SONegV	The Position of Negative Morphemes in SOV Languages	Lafitte 1962: 48-49	Word Order	
+144P	No NegSOV	NegSOV Order	Lafitte 1962: 48-49	Word Order	
+144Q	No SNegOV	SNegOV Order	Lafitte 1962: 48-49	Word Order	
+144R	Word&NoDoubleNeg	SONegV Order	Lafitte 1962: 48-49	Word Order	
+144S	NoSOVNeg	SOVNeg Order	Lafitte 1962: 48-49	Word Order

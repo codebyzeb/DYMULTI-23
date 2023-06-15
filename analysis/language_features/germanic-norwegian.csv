@@ -1,0 +1,68 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Vanvik 1972	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Vanvik 1972	Phonology	
+3A	Moderately low	Consonant-Vowel Ratio	Vanvik 1972	Phonology	
+4A	In plosives alone	Voicing in Plosives and Fricatives	Vanvik 1972	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Vanvik 1972	Phonology	
+6A	None	Uvular Consonants	Vanvik 1972	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Vanvik 1972	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Vanvik 1972	Phonology	
+11A	High and mid	Front Rounded Vowels	Vanvik 1972	Phonology	
+12A	Complex	Syllable Structure	Vanvik 1972	Phonology	
+13A	Simple tone system	Tone	Vanvik 1972	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Rice 1999	Phonology	
+15A	Right-oriented: One of the last three	Weight-Sensitive Stress	Rice 1999	Phonology	
+16A	Long vowel or coda consonant	Weight Factors in Weight-Sensitive Stress Systems	Rice 1999	Phonology	
+17A	Undetermined	Rhythm Types	Rice 1999	Phonology	
+18A	All present	Absence of Common Consonants	Vanvik 1972	Phonology	
+19A	None	Presence of Uncommon Consonants	Vanvik 1972	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Moen and Pedersen 1983: passim; Olson 1901: passim; Strandskogen and Strandskogen 1986: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Olson 1901: 17; Strandskogen and Strandskogen 1986: 59ff	Nominal Categories	
+36A	Unique periphrastic associative plural	The Associative Plural		Nominal Categories	
+37A	Definite affix	Definite Articles	Olson 1901: 14; Strandskogen and Strandskogen 1986: 45	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Olson 1901: 14; Strandskogen and Strandskogen 1986: 45	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Berit and Strandskogen 1998: 102-104	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Strandskogen and Strandskogen 1995: 102, 105-106, 115	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Olson 1901: 22	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Berulfsen 1977	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Berulfsen 1977: 34-38	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Olson 1901: passim	Nominal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Olson 1901: 52-58; Strandskogen and Strandskogen 1986: 20	Verbal Categories	
+70A	Second person number-neutral	The Morphological Imperative	Askedal 1994: 238	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+73A	Inflectional optative absent	The Optative	Askedal 1994	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Olson 1901: 113, passim	Word Order	
+82A	SV	Order of Subject and Verb	Olson 1901: 113, passim	Word Order	
+83A	VO	Order of Object and Verb	Olson 1901: 113, passim	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Olson 1901: 97ff	Word Order	
+86A	No dominant order	Order of Genitive and Noun	Olson 1901: 116; Strandskogen and Strandskogen 1986: 65-66, 160-161	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Olson 1901: 23-28	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Olson 1901: passim 26-27	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Olson 1901: passim	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Olson 1901: 40-41	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Olson 1901: 40-41	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Moen and Pedersen 1983: 84; Olson 1901: 91	Word Order	
+92A	No question particle	Position of Polar Question Particles	Moen and Pedersen 1983: 41	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Moen and Pedersen 1983: 41	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Olson 1901: 107-109	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects	Olson 1901: 59	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Strandskogen and Strandskogen 1986: 188ff	Simple Clauses	
+116A	Interrogative word order	Polar Questions	Moen and Pedersen 1983: 41	Simple Clauses	
+129A	Different	Hand and Arm	Lektor et al. 1965	Lexicon	
+130A	Different	Finger and Hand	Lektor et al. 1965	Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea		Lexicon	
+143A	Type 1 / Type 2	Order of Negative Morpheme and Verb	Strandskogen and Strandskogen 1986: 188ff; Olson 1901: passim	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+143F	VNeg	Postverbal Negative Morphemes	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+143G	None	Minor morphological means of signaling negation	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144E	SNegVO/SVNegO	Multiple Negative Constructions in SVO Languages	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144H	No NegSVO	NegSVO Order	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144J	Word&NoDoubleNeg	SVNegO Order	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order	
+144K	No SVONeg	SVONeg Order	Olson 1901: passim; Strandskogen and Strandskogen 1986: 188ff	Word Order

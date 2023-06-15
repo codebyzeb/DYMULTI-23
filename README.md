@@ -1,6 +1,6 @@
-# Part-III-Project
+# Word Segmentation using Multiple Cues
 
-This repository contains the code and the dissertation for my Part III Project at the University of Cambridge: *"Word segmentation and lexicon learning from child-directed speechusing multiple cues"*. 
+This repository contains the code for *"Word Segmentation and Lexicon Learning from Child-Directed Speech Using Multiple Cues"* (pending acceptance into the Journal of Child Language). 
 
 ## Prerequisites
 
@@ -70,7 +70,7 @@ The PHOCUS-1S model of [Blanchard et al. (2010)](http://citeseerx.ist.psu.edu/vi
 
 ### DYMULTI models
 
-The DYMULTI model presented in this study can be run with any of the cues of the MULTICUE models. For instance, DYMULTI-21 can be run as follows:
+The DYMULTI model presented in this study can be run with any of the cues of the MULTICUE models. For instance, DYMULTI-23 can be run as follows:
 
     sh scripts/run_experiment.sh dynamicmulticue experiment -v -n 4,3,2,1 -d both -P sv,bp -L both -a 0
 
@@ -78,7 +78,7 @@ To add the lexical recognition process, simply change the value after the `-a` f
 
 ## Running several shuffles
 
-In my results, I often report scores averaged over 10 shuffles of the input corpus. This was achieved by running `python scripts/run_shuffles.py`. This script is not as polished as the others, but in its current form it will run DYMULTI-21 with alpha=0 for ten shuffles of whatever corpus is prepared in the directory `experiment/`. It can be manually adjusted to run other models in other directories, if need be.
+In my results, I often report scores averaged over 10 shuffles of the input corpus. This was achieved by running `python scripts/run_shuffles.py`. This script is not as polished as the others, but in its current form it will run DYMULTI-23 with alpha=0 for ten shuffles of whatever corpus is prepared in the directory `experiment/`. It can be manually adjusted to run other models in other directories, if need be.
 
 ## Analysis 
 

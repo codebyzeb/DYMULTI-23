@@ -1,0 +1,83 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+3A	Average	Consonant-Vowel Ratio	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+6A	None	Uvular Consonants	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+11A	None	Front Rounded Vowels	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+13A	No tones	Tone	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Augerot 1974; Avram 1978; Graur and Rosetti 1938; Lombard 1935; Roca 1999; Steriade 1984; Ulivi 1977; Ulivi 1985	Phonology	
+15A	Right-edge: Ultimate or penultimate	Weight-Sensitive Stress	Augerot 1974; Avram 1978; Graur and Rosetti 1938; Lombard 1935; Roca 1999; Steriade 1984; Ulivi 1977; Ulivi 1985	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Augerot 1974; Avram 1978; Graur and Rosetti 1938; Lombard 1935; Roca 1999; Steriade 1984; Ulivi 1977; Ulivi 1985	Phonology	
+18A	All present	Absence of Common Consonants	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+19A	None	Presence of Uncommon Consonants	Agard 1958; Ruhlen 1973; Tataru 1978	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Mallinson 1986: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Mallinson 1986: 206, 243, 244	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Mallinson 1986	Nominal Categories	
+37A	Definite affix	Definite Articles	Mallinson 1986: 107, 206	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Mallinson 1986: 107	Nominal Categories	
+45A	Multiple politeness distinctions	Politeness Distinctions in Pronouns	Braun 1984: 151-156	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Haspelmath 1997: 263-65	Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Mallinson 1986: 151-161	Nominal Categories	
+49A	2 cases	Number of Cases	Beyrer et al. 1987: 84-85, 89-95, 97-124	Nominal Categories	
+50A	Additive-quantitatively asymmetrical	Asymmetrical Case-Marking	Beyrer et al. 1987: 84-85, 89-95, 97-124	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Mallinson 1986: 205	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Lausberg 1972	Nominal Categories	
+53A	First, two-th, three-th	Ordinal Numerals	Lausberg 1972: 172-183	Nominal Categories	
+54A	Marked by preceding word	Distributive Numerals		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Mallinson 1986: passim	Nominal Categories	
+63A	'And' different from 'with'	Noun Phrase Conjunction	Mallinson 1986	Nominal Syntax	
+65A	Grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 171-172	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 171-172	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 171-172	Verbal Categories	
+68A	No perfect	The Perfect	Dahl 1985: 171-172	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Mallinson 1986: 274	Verbal Categories	
+70A	Second singular	The Morphological Imperative	Mallinson 1988: 408	Verbal Categories	
+71A	Special imperative + normal negative	The Prohibitive	Mallinson 1988: 410	Verbal Categories	
+72A	Maximal system	Imperative-Hortative Systems	Mallinson 1986: 23-28, 286-287, 289	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Mallinson 1986: 288	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Mallinson 1986: 288	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Coteanu et al. 1998: 1109	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality	Mallinson 1986	Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality	Mallinson 1986	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Mallinson 1986: 91, 91-92, 207	Word Order	
+82A	SV	Order of Subject and Verb	Mallinson 1986: 195	Word Order	
+83A	VO	Order of Object and Verb	Mallinson 1986: 91, 91-92, 207	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Mallinson 1986: 101	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Mallinson 1986: 111	Word Order	
+87A	Noun-Adjective	Order of Adjective and Noun	Mallinson 1986: 98, 105	Word Order	
+88A	Mixed	Order of Demonstrative and Noun	Mallinson 1986: 103, passim	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Mallinson 1986: passim 114	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Mallinson 1986: 56	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Mallinson 1986: 56	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Mallinson 1986: 100-105, passim	Word Order	
+92A	No question particle	Position of Polar Question Particles	Mallinson 1986: 4	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Mallinson 1986: 7, 17	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Mallinson 1986: 68, passim	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and NAdj	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+112A	Negative particle	Negative Morphemes	Mallinson 1986: passim	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 263-5	Simple Clauses	
+116A	Interrogative intonation only	Polar Questions	Mallinson 1986: 4	Simple Clauses	
+117A	'Have'	Predicative Possession	Cazacu et al. 1967	Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Mallinson 1986	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Mallinson 1986	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Mallinson 1986	Simple Clauses	
+124A	Subject is expressed overtly	'Want' Complement Subjects		Complex Sentences	
+129A	Different	Hand and Arm	Bergman 1968	Lexicon	
+130A	Different	Finger and Hand	Bergman 1968	Lexicon	
+143A	NegV	Order of Negative Morpheme and Verb	Mallinson 1986: 134-135	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Mallinson 1986: 134-135	Word Order	
+143F	None	Postverbal Negative Morphemes	Mallinson 1986: 134-135	Word Order	
+143G	None	Minor morphological means of signaling negation	Mallinson 1986: 134-135	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Mallinson 1986: 134-135	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Mallinson 1986: 134-135	Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages	Mallinson 1986: 134-135	Word Order	
+144H	No NegSVO	NegSVO Order	Mallinson 1986: 134-135	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Mallinson 1986: 134-135	Word Order	
+144J	No SVNegO	SVNegO Order	Mallinson 1986: 134-135	Word Order	
+144K	No SVONeg	SVONeg Order	Mallinson 1986: 134-135	Word Order

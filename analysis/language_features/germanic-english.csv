@@ -1,0 +1,160 @@
+Fid	Value	Feature	Reference	Area
+1A	Average	Consonant Inventories	Gimson 1970	Phonology	
+2A	Large (7-14)	Vowel Quality Inventories	Gimson 1970	Phonology	
+3A	Low	Consonant-Vowel Ratio	Gimson 1970	Phonology	
+4A	In both plosives and fricatives	Voicing in Plosives and Fricatives	Gimson 1970	Phonology	
+5A	None missing in /p t k b d g/	Voicing and Gaps in Plosive Systems	Gimson 1970	Phonology	
+6A	None	Uvular Consonants	Gimson 1970	Phonology	
+7A	No glottalized consonants	Glottalized Consonants	Gimson 1970	Phonology	
+8A	/l/, no obstruent laterals	Lateral Consonants	Gimson 1970	Phonology	
+9A	No initial velar nasal	The Velar Nasal		Phonology	
+10A	Contrast absent	Vowel Nasalization	Moulton 1962	Phonology	
+11A	None	Front Rounded Vowels	Gimson 1970	Phonology	
+12A	Complex	Syllable Structure	Gimson 1970	Phonology	
+13A	No tones	Tone	Gimson 1970	Phonology	
+14A	No fixed stress	Fixed Stress Locations	Trommelen and Zonneveld 1999b	Phonology	
+15A	Right-oriented: One of the last three	Weight-Sensitive Stress	Trommelen and Zonneveld 1999b	Phonology	
+16A	Long vowel or coda consonant	Weight Factors in Weight-Sensitive Stress Systems	Trommelen and Zonneveld 1999b	Phonology	
+17A	Trochaic	Rhythm Types	Trommelen and Zonneveld 1999b	Phonology	
+18A	All present	Absence of Common Consonants	Gimson 1970	Phonology	
+19A	'Th' sounds	Presence of Uncommon Consonants	Gimson 1970	Phonology	
+20A	Exclusively concatenative	Fusion of Selected Inflectional Formatives		Morphology	
+21A	No case	Exponence of Selected Inflectional Formatives		Morphology	
+21B	monoexponential TAM	Exponence of Tense-Aspect-Mood Inflection		Morphology	
+22A	2-3 categories per word	Inflectional Synthesis of the Verb		Morphology	
+23A	Dependent marking	Locus of Marking in the Clause		Morphology	
+24A	Dependent marking	Locus of Marking in Possessive Noun Phrases		Morphology	
+25A	Dependent-marking	Locus of Marking: Whole-language Typology		Morphology	
+25B	Non-zero marking	Zero Marking of A and P Arguments		Morphology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology		Morphology	
+27A	No productive reduplication	Reduplication	Erickson 2001	Morphology	
+28A	Core cases only	Case Syncretism		Morphology	
+29A	Syncretic	Syncretism in Verbal Person/Number Marking		Morphology	
+30A	Three	Number of Genders		Nominal Categories	
+31A	Sex-based	Sex-based and Non-sex-based Gender Systems		Nominal Categories	
+32A	Semantic	Systems of Gender Assignment		Nominal Categories	
+33A	Plural suffix	Coding of Nominal Plurality		Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality		Nominal Categories	
+35A	Person-number stem	Plurality in Independent Personal Pronouns		Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles		Nominal Categories	
+38A	Indefinite word distinct from 'one'	Indefinite Articles		Nominal Categories	
+39A	No inclusive/exclusive	Inclusive/Exclusive Distinction in Independent Pronouns		Nominal Categories	
+40A	'We' the same as 'I'	Inclusive/Exclusive Distinction in Verbal Inflection		Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives		Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives		Nominal Categories	
+43A	Related for all demonstratives	Third Person Pronouns and Demonstratives	Quirk et al. 1985: 365	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Quirk et al. 1972: 205	Nominal Categories	
+45A	No politeness distinction	Politeness Distinctions in Pronouns		Nominal Categories	
+46A	Generic-noun-based	Indefinite Pronouns		Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns		Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Quirk et al. 1972: 297-337	Nominal Categories	
+49A	2 cases	Number of Cases	Quirk et al. 1985: 318-331, 336-339, 361-371	Nominal Categories	
+50A	Additive-quantitatively asymmetrical	Asymmetrical Case-Marking	Quirk et al. 1985: 318-331, 336-339, 361-371	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes		Nominal Categories	
+52A	Identity	Comitatives and Instrumentals		Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals		Nominal Categories	
+54A	No distributive numerals	Distributive Numerals		Nominal Categories	
+55A	Absent	Numeral Classifiers		Nominal Categories	
+56A	Formally similar, without interrogative	Conjunctions and Universal Quantifiers		Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes		Nominal Categories	
+58A	Absent	Obligatory Possessive Inflection		Nominal Syntax	
+58B	None reported	Number of Possessive Nouns		Nominal Syntax	
+59A	No possessive classification	Possessive Classification		Nominal Syntax	
+60A	Highly differentiated	Genitives, Adjectives and Relative Clauses		Nominal Syntax	
+61A	Marked by following word	Adjectives without Nouns		Nominal Syntax	
+62A	Mixed	Action Nominal Constructions		Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction		Nominal Syntax	
+64A	Identity	Nominal and Verbal Conjunction		Nominal Syntax	
+65A	No grammatical marking	Perfective/Imperfective Aspect	Dahl 1985: 166	Verbal Categories	
+66A	Present, no remoteness distinctions	The Past Tense	Dahl 1985: 166	Verbal Categories	
+67A	No inflectional future	The Future Tense	Dahl 1985: 166	Verbal Categories	
+68A	From possessive	The Perfect	Dahl 1985: 166	Verbal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes		Verbal Categories	
+70A	No second-person imperatives	The Morphological Imperative		Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+73A	Inflectional optative absent	The Optative		Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Leech and Svartvik 1994: 145-147	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Leech and Svartvik 1994: 145f.	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Leech and Svartvik 1994: 135, 163	Verbal Categories	
+77A	No grammatical evidentials	Semantic Distinctions of Evidentiality		Verbal Categories	
+78A	No grammatical evidentials	Coding of Evidentiality		Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect		Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion		Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb		Word Order	
+82A	SV	Order of Subject and Verb		Word Order	
+83A	VO	Order of Object and Verb		Word Order	
+84A	VOX	Order of Object, Oblique, and Verb		Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase		Word Order	
+86A	No dominant order	Order of Genitive and Noun		Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun		Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun		Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun		Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun		Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses		Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective		Word Order	
+92A	No question particle	Position of Polar Question Particles		Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions		Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause		Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+98A	Neutral	Alignment of Case Marking of Full Noun Phrases		Simple Clauses	
+99A	Nominative - accusative (standard)	Alignment of Case Marking of Pronouns		Simple Clauses	
+100A	Accusative	Alignment of Verbal Person Marking	Quirk et al. 1972: 71-73	Simple Clauses	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects		Simple Clauses	
+102A	Only the A argument	Verbal Person Marking	Quirk et al. 1972: 71-73	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Quirk et al. 1972: 71-73	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Quirk et al. 1972: 71-73	Simple Clauses	
+105A	Mixed	Ditransitive Constructions: The Verb 'Give'		Simple Clauses	
+106A	Distinct from reflexive	Reciprocal Constructions		Simple Clauses	
+107A	Present	Passive Constructions	Quirk et al. 1972: 801-811	Simple Clauses	
+108A	No antipassive	Antipassive Constructions		Simple Clauses	
+108B	no antipassive	Productivity of the Antipassive Construction		Simple Clauses	
+109A	No applicative construction	Applicative Constructions		Simple Clauses	
+109B	No applicative construction	Other Roles of Applied Objects		Simple Clauses	
+110A	Sequential but no purposive	Periphrastic Causative Constructions		Simple Clauses	
+111A	Morphological but no compound	Nonperiphrastic Causative Constructions		Simple Clauses	
+112A	Negative particle	Negative Morphemes		Simple Clauses	
+113A	Both	Symmetric and Asymmetric Standard Negation		Simple Clauses	
+114A	A/Cat	Subtypes of Asymmetric Standard Negation		Simple Clauses	
+115A	Mixed behaviour	Negative Indefinite Pronouns and Predicate Negation		Simple Clauses	
+116A	Interrogative word order	Polar Questions		Simple Clauses	
+117A	'Have'	Predicative Possession		Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives		Simple Clauses	
+119A	Identical	Nominal and Locational Predication		Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals		Simple Clauses	
+121A	Particle	Comparative Constructions		Simple Clauses	
+122A	Relative pronoun	Relativization on Subjects		Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques		Complex Sentences	
+124A	Subject is left implicit	'Want' Complement Subjects		Complex Sentences	
+125A	Balanced/deranked	Purpose Clauses		Complex Sentences	
+126A	Balanced/deranked	'When' Clauses		Complex Sentences	
+127A	Balanced/deranked	Reason Clauses		Complex Sentences	
+128A	Balanced	Utterance Complement Clauses		Complex Sentences	
+129A	Different	Hand and Arm		Lexicon	
+130A	Different	Finger and Hand		Lexicon	
+131A	Decimal	Numeral Bases		Lexicon	
+132A	6	Number of Non-Derived Basic Colour Categories		Lexicon	
+133A	11	Number of Basic Colour Categories		Lexicon	
+134A	Green vs. blue	Green and Blue		Lexicon	
+135A	Red vs. yellow	Red and Yellow		Lexicon	
+136A	No M-T pronouns	M-T Pronouns		Lexicon	
+136B	m in first person singular	M in First Person Singular		Lexicon	
+137A	No N-M pronouns	N-M Pronouns		Lexicon	
+137B	No m in second person singular	M in Second Person Singular		Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea		Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb		Word Order	
+143E	NegV	Preverbal Negative Morphemes		Word Order	
+143F	None	Postverbal Negative Morphemes		Word Order	
+143G	None	Minor morphological means of signaling negation		Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb		Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb		Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages		Word Order	
+144H	No NegSVO	NegSVO Order		Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order		Word Order	
+144J	No SVNegO	SVNegO Order		Word Order	
+144K	No SVONeg	SVONeg Order		Word Order

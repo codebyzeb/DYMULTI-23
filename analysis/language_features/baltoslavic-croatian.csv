@@ -1,0 +1,61 @@
+Fid	Value	Feature	Reference	Area
+14A	No fixed stress	Fixed Stress Locations	Gvozdanovic 1999; Hodge 1946	Phonology	
+15A	Unbounded: Stress can be anywhere	Weight-Sensitive Stress	Gvozdanovic 1999; Hodge 1946	Phonology	
+16A	Prominence	Weight Factors in Weight-Sensitive Stress Systems	Gvozdanovic 1999; Hodge 1946	Phonology	
+17A	No rhythmic stress	Rhythm Types	Gvozdanovic 1999; Hodge 1946	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Browne 1974: passim; Javarek and Sudjic 1972: passim; Partridge 1964: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Partridge 1964: 47-49	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality	Hamm 1981	Nominal Categories	
+37A	No definite or indefinite article	Definite Articles	Partridge 1964: 33	Nominal Categories	
+38A	No definite or indefinite article	Indefinite Articles	Partridge 1964: 33	Nominal Categories	
+43A	Unrelated	Third Person Pronouns and Demonstratives	Kordic 1997: 22, 25	Nominal Categories	
+46A	Interrogative-based	Indefinite Pronouns	Haspelmath 1997: 270-1	Nominal Categories	
+49A	5 cases	Number of Cases	Hamm 1981: 71-79, 82-86; Browne 1993: 318-327	Nominal Categories	
+50A	Syncretism in relevant NP-types	Asymmetrical Case-Marking	Hamm 1981: 71-79, 82-86; Browne 1993: 318-327	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Partridge 1964: 47-49	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Schmaus 1983: 67 and 132; Subotic and Forbes 1918	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Partridge 1964: passim	Nominal Categories	
+63A	'And' different from 'with'	Noun Phrase Conjunction		Nominal Syntax	
+69A	No tense-aspect inflection	Position of Tense-Aspect Affixes	Partridge 1964: passim	Verbal Categories	
+70A	Second singular and second plural	The Morphological Imperative	Kordic 1997: 42	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive	Kordic 1997: 49	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems	Browne 1993: 350-351	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Kalogjera 1982: 80-86	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Kalogjera 1982: 80-86	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Kalogjera 1982: 29f., 80-95	Verbal Categories	
+79A	Tense and aspect	Suppletion According to Tense and Aspect	Subotic and Forbes 1918: 75	Verbal Categories	
+79B	A regular and a suppletive form alternate	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Subotic and Forbes 1918	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Browne 1974: 40, passim	Word Order	
+82A	SV	Order of Subject and Verb	Browne 1974: 40, passim	Word Order	
+83A	VO	Order of Object and Verb	Browne 1974: 40, passim	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Partridge 1964: 33, 123	Word Order	
+86A	No dominant order	Order of Genitive and Noun	Browne 1974: 43; Javarek and Sudjic 1972: passim; Partridge 1964: 128	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Browne 1974: 44; Partridge 1964: 68	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Javarek and Sudjic 1972: passim; Partridge 1964: passim	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Partridge 1964: 162	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Partridge 1964: passim	Word Order	
+92A	In either of two positions	Position of Polar Question Particles	Partridge 1964: 32	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Partridge 1964: 176	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Partridge 1964: 35	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Partridge 1964: passim	Simple Clauses	
+115A	Predicate negation also present	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 270-1	Simple Clauses	
+116A	Question particle	Polar Questions	Partridge 1964: 32	Simple Clauses	
+117A	'Have'	Predicative Possession		Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives	Hamm 1975	Simple Clauses	
+119A	Identical	Nominal and Locational Predication	Hamm 1975	Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals	Hamm 1975	Simple Clauses	
+129A	Identical	Hand and Arm	Hewitt 1989c	Lexicon	
+130A	Different	Finger and Hand	Hewitt 1989c	Lexicon	
+138A	Words derived from Sinitic cha	Tea	Malherbe and Rosenberg 1996: 1419	Lexicon	
+142A	Logical meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Partridge 1964: 31	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Partridge 1964: 31	Word Order	
+143F	None	Postverbal Negative Morphemes	Partridge 1964: 31	Word Order	
+143G	None	Minor morphological means of signaling negation	Partridge 1964: 31	Word Order	
+144A	Other	Position of Negative Word With Respect to Subject, Object, and Verb	Partridge 1964: 31	Word Order	
+144D	Other NegV	The Position of Negative Morphemes in SVO Languages	Partridge 1964: 31	Word Order	
+144J	No SVNegO	SVNegO Order	Partridge 1964: 31	Word Order	
+144K	No SVONeg	SVONeg Order	Partridge 1964: 31	Word Order

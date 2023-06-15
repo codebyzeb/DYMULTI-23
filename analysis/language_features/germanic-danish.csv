@@ -1,0 +1,59 @@
+Fid	Value	Feature	Reference	Area
+14A	No fixed stress	Fixed Stress Locations	Rischel 1972; Rischel 1970; Rischel 1982	Phonology	
+15A	Combined: Right-edge and unbounded	Weight-Sensitive Stress	Rischel 1970; Rischel 1972; Rischel 1982	Phonology	
+16A	Long vowel or coda consonant	Weight Factors in Weight-Sensitive Stress Systems	Rischel 1970; Rischel 1972; Rischel 1982	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Allan et al. 1995: passim ; Bredsdorff 1958: passim; Koefoed 1958: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Allan et al. 1995: 21 ; Bredsdorff 1958: 48-50	Nominal Categories	
+37A	Definite affix	Definite Articles	Bredsdorff 1958: 46, 48; Koefoed 1958: 154	Nominal Categories	
+38A	Indefinite word distinct from 'one'	Indefinite Articles	Bredsdorff 1958: 46-47	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Diderichsen 1979: 41-44	Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Glyn and Gade 1981: 77-79	Nominal Categories	
+51A	Case suffixes	Position of Case Affixes	Bredsdorff 1958: 53	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Nielsen 1975	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Nielsen 1975: 58-59	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Bredsdorff 1958: passim	Nominal Categories	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Allan et al. 1995: 239, 244 ; Bredsdorff 1958: 95, 97-100	Verbal Categories	
+70A	Second person number-neutral	The Morphological Imperative	Allan et al. 1995: 301 ; Haberland 1994: 334	Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+73A	Inflectional optative absent	The Optative	Allan et al. 1995 	Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Allan et al. 1995: 291-295, 298 	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Allan et al. 1995: 291-294 	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Allan et al. 1995: 292-297 	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Allan et al. 1995: 481, 484 ; Bredsdorff 1958: 165, 168	Word Order	
+82A	SV	Order of Subject and Verb	Allan et al. 1995: 481, 484 ; Bredsdorff 1958: 165, 168	Word Order	
+83A	VO	Order of Object and Verb	Allan et al. 1995: 481, 484 ; Bredsdorff 1958: 165, 168	Word Order	
+84A	VOX	Order of Object, Oblique, and Verb	Allan et al. 1995: 504 	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Allan et al. 1995: 378 ; Bredsdorff 1958: 68, 140-161; Koefoed 1958: 196	Word Order	
+86A	Genitive-Noun	Order of Genitive and Noun	Bredsdorff 1958: 53; Koefoed 1958: 154, 160	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Allan et al. 1995: 84 ; Bredsdorff 1958: 171; Koefoed 1958: 196	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Koefoed 1958: passim 173-174; Bredsdorff 1958: passim	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Bredsdorff 1958: passim; Koefoed 1958: passim	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Allan et al. 1995: 201ff ; Bredsdorff 1958: 86-88	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Bredsdorff 1958: 86-88; Allan et al. 1995: 201ff 	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Allan et al. 1995: 226 ; Bredsdorff 1958: 60-61, passim	Word Order	
+92A	No question particle	Position of Polar Question Particles	Allan et al. 1995: 494 ; Koefoed 1958: 193	Word Order	
+93A	Initial interrogative phrase	Position of Interrogative Phrases in Content Questions	Allan et al. 1995: 192-199 ; Bredsdorff 1958: passim 168	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Allan et al. 1995: 465ff ; Bredsdorff 1958: 132-136	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and AdjN	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects	Allan et al. 1995: 244 ; Bredsdorff 1958: 97, 99	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Allan et al. 1995: 491-492, 515 	Simple Clauses	
+116A	Interrogative word order	Polar Questions	Allan et al. 1995: 494 ; Koefoed 1958: 193	Simple Clauses	
+129A	Different	Hand and Arm	Staff of Editions Berlitz 1974	Lexicon	
+130A	Different	Finger and Hand	Staff of Editions Berlitz 1974	Lexicon	
+131A	Hybrid vigesimal-decimal	Numeral Bases	Allan et al. 1995: 123 	Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea		Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	Type 1 / Type 2	Order of Negative Morpheme and Verb	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+143F	VNeg	Postverbal Negative Morphemes	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+143G	None	Minor morphological means of signaling negation	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144E	SNegVO/SVNegO	Multiple Negative Constructions in SVO Languages	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144H	No NegSVO	NegSVO Order	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144J	Word&NoDoubleNeg	SVNegO Order	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order	
+144K	No SVONeg	SVONeg Order	Allan et al. 1995: 491-492, 515 ; Bredsdorff 1958: 105, 165-171	Word Order

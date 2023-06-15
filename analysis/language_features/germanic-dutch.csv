@@ -1,0 +1,90 @@
+Fid	Value	Feature	Reference	Area
+14A	No fixed stress	Fixed Stress Locations	Kager 1989; Trommelen and Zonneveld 1999a; van der Hulst 1984	Phonology	
+15A	Right-oriented: One of the last three	Weight-Sensitive Stress	Kager 1989; Trommelen and Zonneveld 1999a; van der Hulst 1984	Phonology	
+16A	Coda consonant	Weight Factors in Weight-Sensitive Stress Systems	Kager 1989; Trommelen and Zonneveld 1999a; van der Hulst 1984	Phonology	
+17A	Trochaic	Rhythm Types	Kager 1989; Trommelen and Zonneveld 1999a; van der Hulst 1984	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Donaldson 1997b: passim ; Koolhoven 1968: passim; Shetter 1958: passim	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Shetter 1958: 19-21	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality		Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Shetter 1958: passim	Nominal Categories	
+38A	Indefinite word distinct from 'one'	Indefinite Articles	Shetter 1958: passim	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Donaldson 1997b: 54 	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Donaldson 1987: 48-59	Nominal Categories	
+46A	Special	Indefinite Pronouns		Nominal Categories	
+47A	Identical	Intensifiers and Reflexive Pronouns	Donaldson 1997b: 206ff. 	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Donaldson 1997b: 263 	Nominal Categories	
+49A	No morphological case-marking	Number of Cases	Donaldson 1997b: 18-19, 46, 54-67 	Nominal Categories	
+50A	Additive-quantitatively asymmetrical	Asymmetrical Case-Marking	Donaldson 1997b: 18-19, 46, 54-67 	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes	Shetter 1958: passim	Nominal Categories	
+53A	First, two-th, three-th	Ordinal Numerals		Nominal Categories	
+54A	No distributive numerals	Distributive Numerals		Nominal Categories	
+56A	Formally similar, without interrogative	Conjunctions and Universal Quantifiers	Haspelmath 1997: 246-247	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Shetter 1958: passim	Nominal Categories	
+62A	Ergative-Possessive	Action Nominal Constructions	Dik 1985: 24	Nominal Syntax	
+63A	'And' different from 'with'	Noun Phrase Conjunction		Nominal Syntax	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Shetter 1958: 62-63	Verbal Categories	
+70A	Second person number-neutral	The Morphological Imperative		Verbal Categories	
+71A	Normal imperative + normal negative	The Prohibitive		Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Haeseryn et al. 1997: 1616-1618	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Haeseryn et al. 1997: 1616-1618	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Haeseryn et al. 1997: 1607-37	Verbal Categories	
+77A	Indirect only	Semantic Distinctions of Evidentiality		Verbal Categories	
+78A	Modal morpheme	Coding of Evidentiality		Verbal Categories	
+79A	Tense	Suppletion According to Tense and Aspect	Donaldson 1981: 139	Verbal Categories	
+79B	None (= no suppletive imperatives reported in the reference material)	Suppletion in Imperatives and Hortatives		Verbal Categories	
+80A	None	Verbal Number and Suppletion	Donaldson 1981	Verbal Categories	
+81A	No dominant order	Order of Subject, Object and Verb	Shetter 1958: passim	Word Order	
+81B	SOV or SVO	Languages with two Dominant Orders of Subject, Object, and Verb	Shetter 1958: passim	Word Order	
+82A	SV	Order of Subject and Verb	Shetter 1958: 37, 64, passim	Word Order	
+83A	No dominant order	Order of Object and Verb	Shetter 1958: passim	Word Order	
+84A	No dominant order	Order of Object, Oblique, and Verb	Shetter 1958: passim	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Shetter 1958: passim	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Shetter 1958: 50	Word Order	
+87A	Adjective-Noun	Order of Adjective and Noun	Shetter 1958: 39-40	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Shetter 1958: passim	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Shetter 1958: passim	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Shetter 1958: 98-99	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Shetter 1958: 98-99	Word Order	
+92A	No question particle	Position of Polar Question Particles	Donaldson 1997b: 132 	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Shetter 1958: 96-97	Word Order	
+95A	Other	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	Other	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	Other	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+100A	Accusative	Alignment of Verbal Person Marking	Donaldson 1997b: 132-134 	Simple Clauses	
+101A	Obligatory pronouns in subject position	Expression of Pronominal Subjects	Shetter 1958: 28-29	Simple Clauses	
+102A	Only the A argument	Verbal Person Marking	Donaldson 1997b: 132-134 	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Donaldson 1997b: 132-134 	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Donaldson 1997b: 132-134 	Simple Clauses	
+107A	Present	Passive Constructions	Donaldson 1997b: 188 	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Shetter 1958: passim	Simple Clauses	
+115A	No predicate negation	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 247	Simple Clauses	
+116A	Interrogative word order	Polar Questions	Donaldson 1997b: 132 	Simple Clauses	
+117A	'Have'	Predicative Possession		Simple Clauses	
+118A	Nonverbal encoding	Predicative Adjectives		Simple Clauses	
+119A	Identical	Nominal and Locational Predication		Simple Clauses	
+120A	Impossible	Zero Copula for Predicate Nominals		Simple Clauses	
+121A	Particle	Comparative Constructions		Simple Clauses	
+129A	Different	Hand and Arm	van Wely 1951	Lexicon	
+130A	Different	Finger and Hand	van Wely 1951	Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea	Malherbe and Rosenberg 1996: 1244	Lexicon	
+142A	Affective meanings	Para-Linguistic Usages of Clicks		Other	
+143A	Type 1 / Type 2	Order of Negative Morpheme and Verb	Shetter 1958: passim	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Shetter 1958: passim	Word Order	
+143F	VNeg	Postverbal Negative Morphemes	Shetter 1958: passim	Word Order	
+143G	None	Minor morphological means of signaling negation	Shetter 1958: passim	Word Order	
+144A	More than one position	Position of Negative Word With Respect to Subject, Object, and Verb	Shetter 1958: passim	Word Order	
+144B	End, not immed postverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Shetter 1958: passim	Word Order	
+144D	More than one construction	The Position of Negative Morphemes in SVO Languages	Shetter 1958: passim	Word Order	
+144E	SVONeg/SONegV	Multiple Negative Constructions in SVO Languages	Shetter 1958: passim	Word Order	
+144H	No NegSVO	NegSVO Order	Shetter 1958: passim	Word Order	
+144I	No SNegVO	SNegVO Order	Shetter 1958: passim	Word Order	
+144J	No SVNegO	SVNegO Order	Shetter 1958: passim	Word Order	
+144K	NoDoubleNeg	SVONeg Order	Shetter 1958: passim	Word Order	
+144L	More than one construction	The Position of Negative Morphemes in SOV Languages	Shetter 1958: passim	Word Order	
+144M	SONegV/SVONeg	Multiple Negative Constructions in SOV Languages	Shetter 1958: passim	Word Order	
+144P	No NegSOV	NegSOV Order	Shetter 1958: passim	Word Order	
+144Q	No SNegOV	SNegOV Order	Shetter 1958: passim	Word Order	
+144R	Word&NoDoubleNeg	SONegV Order	Shetter 1958: passim	Word Order	
+144S	NoSOVNeg	SOVNeg Order	Shetter 1958: passim	Word Order

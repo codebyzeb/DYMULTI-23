@@ -1,0 +1,82 @@
+Fid	Value	Feature	Reference	Area
+14A	No fixed stress	Fixed Stress Locations	Bertinetto 1981; Lepschy 1978; Malagoli 1946; Muljacic 1972; Roca 1999; Saltarelli 1970; Vincent 1988; Vogel and Scalise 1982	Phonology	
+15A	Right-edge: Ultimate or penultimate	Weight-Sensitive Stress	Bertinetto 1981; Lepschy 1978; Malagoli 1946; Muljacic 1972; Roca 1999; Saltarelli 1970; Vincent 1988; Vogel and Scalise 1982	Phonology	
+16A	Lexical stress	Weight Factors in Weight-Sensitive Stress Systems	Bertinetto 1981; Lepschy 1978; Malagoli 1946; Muljacic 1972; Roca 1999; Saltarelli 1970; Vincent 1988; Vogel and Scalise 1982	Phonology	
+17A	Undetermined	Rhythm Types	Bertinetto 1981; Lepschy 1978; Malagoli 1946; Muljacic 1972; Roca 1999; Saltarelli 1970; Vincent 1988; Vogel and Scalise 1982	Phonology	
+26A	Strongly suffixing	Prefixing vs. Suffixing in Inflectional Morphology	Vincent 1988: passim; Maiden and Robustelli 2000: passim; Sauer 1891: passim	Morphology	
+27A	No productive reduplication	Reduplication	Repetti 2001	Morphology	
+33A	Plural suffix	Coding of Nominal Plurality	Sauer 1891: 12	Nominal Categories	
+34A	All nouns, always obligatory	Occurrence of Nominal Plurality		Nominal Categories	
+36A	No associative plural	The Associative Plural		Nominal Categories	
+37A	Definite word distinct from demonstrative	Definite Articles	Sauer 1891: 9-10	Nominal Categories	
+38A	Indefinite word same as 'one'	Indefinite Articles	Sauer 1891: 10	Nominal Categories	
+41A	Two-way contrast	Distance Contrasts in Demonstratives	Maiden and Robustelli 2000: 80-4	Nominal Categories	
+42A	Identical	Pronominal and Adnominal Demonstratives	Maiden and Robustelli 2000: 80-4	Nominal Categories	
+44A	3rd person singular only	Gender Distinctions in Independent Personal Pronouns	Lepschy and Lepschy 1988: 116	Nominal Categories	
+45A	Binary politeness distinction	Politeness Distinctions in Pronouns	Schwarze 1988: 288-290	Nominal Categories	
+46A	Generic-noun-based	Indefinite Pronouns		Nominal Categories	
+47A	Differentiated	Intensifiers and Reflexive Pronouns	Renzi 1988: 595-603	Nominal Categories	
+48A	No person marking	Person Marking on Adpositions	Lepschy and Lepschy 1988: 103, 116	Nominal Categories	
+49A	No morphological case-marking	Number of Cases	Maiden and Robustelli 2000: 93-98, 113-116	Nominal Categories	
+50A	Additive-quantitatively asymmetrical	Asymmetrical Case-Marking	Maiden and Robustelli 2000: 93-98, 113-116	Nominal Categories	
+51A	No case affixes or adpositional clitics	Position of Case Affixes	Vincent 1988: passim	Nominal Categories	
+52A	Identity	Comitatives and Instrumentals	Lausberg 1972	Nominal Categories	
+53A	First, second, three-th	Ordinal Numerals	Lausberg 1972: 172-183	Nominal Categories	
+57A	No possessive affixes	Position of Pronominal Possessive Affixes	Vincent 1988: passim	Nominal Categories	
+64A	Identity	Nominal and Verbal Conjunction		Nominal Syntax	
+69A	Tense-aspect suffixes	Position of Tense-Aspect Affixes	Maiden and Robustelli 2000: 220-221	Verbal Categories	
+70A	Second singular	The Morphological Imperative	Maiden and Robustelli 2000: 246-249	Verbal Categories	
+71A	Special imperative + normal negative	The Prohibitive	Maiden and Robustelli 2000: 247-248	Verbal Categories	
+72A	Neither type of system	Imperative-Hortative Systems		Verbal Categories	
+74A	Verbal constructions	Situational Possibility	Maiden and Robustelli 2000: 336-339	Verbal Categories	
+75A	Verbal constructions	Epistemic Possibility	Maiden and Robustelli 2000: 336f.	Verbal Categories	
+76A	Overlap for both possibility and necessity	Overlap between Situational and Epistemic Modal Marking	Maiden and Robustelli 2000: 336-339	Verbal Categories	
+81A	SVO	Order of Subject, Object and Verb	Vincent 1988: 305; Maiden and Robustelli 2000: 354; Sauer 1891: 301	Word Order	
+82A	No dominant order	Order of Subject and Verb	Maiden and Robustelli 2000: 354-355	Word Order	
+83A	VO	Order of Object and Verb	Vincent 1988: 305; Maiden and Robustelli 2000: 354; Sauer 1891: 301	Word Order	
+85A	Prepositions	Order of Adposition and Noun Phrase	Sauer 1891: 21, 285-287	Word Order	
+86A	Noun-Genitive	Order of Genitive and Noun	Sauer 1891: passim	Word Order	
+87A	Noun-Adjective	Order of Adjective and Noun	Vincent 1988: 299; Maiden and Robustelli 2000: 49; Sauer 1891: 67	Word Order	
+88A	Demonstrative-Noun	Order of Demonstrative and Noun	Maiden and Robustelli 2000: 48; Sauer 1891: 19-20, 49-50	Word Order	
+89A	Numeral-Noun	Order of Numeral and Noun	Maiden and Robustelli 2000: 189	Word Order	
+90A	Noun-Relative clause	Order of Relative Clause and Noun	Maiden and Robustelli 2000: 130ff	Word Order	
+90C	Noun-Relative clause (NRel) dominant	Postnominal relative clauses	Maiden and Robustelli 2000: 130ff	Word Order	
+91A	Degree word-Adjective	Order of Degree Word and Adjective	Sauer 1891: 72	Word Order	
+92A	No question particle	Position of Polar Question Particles	Maiden and Robustelli 2000: 147	Word Order	
+94A	Initial subordinator word	Order of Adverbial Subordinator and Clause	Maiden and Robustelli 2000: 421-427	Word Order	
+95A	VO and Prepositions	Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase		Word Order	
+96A	VO and NRel	Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun		Word Order	
+97A	VO and NAdj	Relationship between the Order of Object and Verb and the Order of Adjective and Noun		Word Order	
+100A	Accusative	Alignment of Verbal Person Marking	Lepschy and Lepschy 1988: 133-39	Simple Clauses	
+101A	Subject affixes on verb	Expression of Pronominal Subjects	Maiden and Robustelli 2000: 93	Simple Clauses	
+102A	Only the A argument	Verbal Person Marking	Lepschy and Lepschy 1988: 133-39	Simple Clauses	
+103A	No zero realization	Third Person Zero of Verbal Person Marking	Lepschy and Lepschy 1988: 133-39	Simple Clauses	
+104A	A and P do not or do not both occur on the verb	Order of Person Markers on the Verb	Lepschy and Lepschy 1988: 133-39	Simple Clauses	
+105A	Indirect-object construction	Ditransitive Constructions: The Verb 'Give'		Simple Clauses	
+107A	Present	Passive Constructions	Lepschy and Lepschy 1988: 222	Simple Clauses	
+112A	Negative particle	Negative Morphemes	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Simple Clauses	
+113A	Symmetric	Symmetric and Asymmetric Standard Negation		Simple Clauses	
+114A	Non-assignable	Subtypes of Asymmetric Standard Negation		Simple Clauses	
+115A	Mixed behaviour	Negative Indefinite Pronouns and Predicate Negation	Haspelmath 1997: 263	Simple Clauses	
+116A	Interrogative intonation only	Polar Questions	Maiden and Robustelli 2000: 147	Simple Clauses	
+122A	Relative pronoun	Relativization on Subjects		Complex Sentences	
+123A	Relative pronoun	Relativization on Obliques		Complex Sentences	
+125A	Deranked	Purpose Clauses		Complex Sentences	
+126A	Balanced/deranked	'When' Clauses		Complex Sentences	
+127A	Balanced/deranked	Reason Clauses		Complex Sentences	
+128A	Balanced/deranked	Utterance Complement Clauses		Complex Sentences	
+129A	Different	Hand and Arm	Wessely n.d.	Lexicon	
+130A	Different	Finger and Hand	Wessely n.d.	Lexicon	
+138A	Words derived from Min Nan Chinese te	Tea	Malherbe and Rosenberg 1996: 987	Lexicon	
+142A	Logical meanings	Para-Linguistic Usages of Clicks		Other	
+143A	NegV	Order of Negative Morpheme and Verb	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+143E	NegV	Preverbal Negative Morphemes	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+143F	None	Postverbal Negative Morphemes	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+143G	None	Minor morphological means of signaling negation	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144A	SNegVO	Position of Negative Word With Respect to Subject, Object, and Verb	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144B	Immed preverbal	Position of negative words relative to beginning and end of clause and with respect to adjacency to verb	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144D	SNegVO	The Position of Negative Morphemes in SVO Languages	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144H	No NegSVO	NegSVO Order	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144I	Word&NoDoubleNeg	SNegVO Order	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144J	No SVNegO	SVNegO Order	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order	
+144K	No SVONeg	SVONeg Order	Maiden and Robustelli 2000: 401; Sauer 1891: 40	Word Order
